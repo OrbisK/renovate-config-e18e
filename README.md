@@ -12,7 +12,7 @@ Add the preset to your Renovate config (`renovate.json`):
  {
    "extends": [
      "config:best-practices",
-+    "github>OrbisK/renovate-config-e18e#0.0.4"
++    "github>OrbisK/renovate-config-e18e#0.0.5"
    ]
  }
 ```
@@ -21,7 +21,7 @@ It is recommended to pin to a specific version tag to avoid unexpected changes w
 
 This will flag all e18e replaceable packages with an `abandonmentThreshold` of `0 days`, marking them as abandoned in Renovate's UI.
 
-#0.0.4 How it works
+#0.0.5 How it works
 
 The `default.json` preset is generated from the [`module-replacements`](https://www.npmjs.com/package/module-replacements) package, which provides a curated list of npm packages that have preferred modern alternatives (e.g. `axios` -> native `fetch`, `chalk` -> built-in Node.js styling).
 
