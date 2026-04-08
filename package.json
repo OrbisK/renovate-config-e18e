@@ -5,7 +5,7 @@
   "description": "",
   "scripts": {
     "generate": "node scripts/generate.js",
-    "release": "bumpp"
+    "release": "pnpm run generate && bumpp"
   },
   "keywords": [],
   "author": "",
