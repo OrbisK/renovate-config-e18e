@@ -17,7 +17,8 @@ const abandonment = {
       description: "Mark e18e replaceable packages as abandoned",
       matchDatasources: ["npm"],
       matchPackageNames: moduleNames,
-      abandonmentThreshold: "0 days",
+      abandonmentThreshold: "1 second", // 0 days is not supported
+      addLabels: ["e18e"],
     },
   ],
 };
