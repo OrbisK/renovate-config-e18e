@@ -4,6 +4,6 @@
     "e18e presets for Renovate"
   ],
   "extends": [
-    "github>OrbisK/renovate-config-e18e:abandonment#0.0.1"
+    "github>OrbisK/renovate-config-e18e:abandonment#0.0.2"
   ]
 }
