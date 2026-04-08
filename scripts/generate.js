@@ -20,7 +20,8 @@ const abandonment = {
       abandonmentThreshold: "1 second", // 0 days is not supported
       addLabels: ["e18e"],
       prBodyNotes: [
-        "<blockquote>\n[!CAUTION]\n**This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/{{{depName}}}) to find modern, lighter alternatives.\n</blockquote>",
+        `> [!CAUTION]
+> **This package has a recommended replacement.** Check the [e18e replacement guide for \`{{{depName}}}\`](https://e18e.dev/docs/replacements/{{{depName}}}) to find modern, lighter alternatives.`,
       ],
     },
   ],
