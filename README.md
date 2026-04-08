@@ -8,19 +8,20 @@ The package list is auto-generated from the [`module-replacements`](https://www.
 
 Add the preset to your Renovate config (`renovate.json`):
 
-```json
-{
-  "extends": [
-    "github>OrbisK/renovate-config-e18e#0.0.1"
-  ]
-}
+```diff
+ {
+   "extends": [
+     "config:best-practices",
++    "github>OrbisK/renovate-config-e18e#0.0.1"
+   ]
+ }
 ```
 
 It is recommended to pin to a specific version tag to avoid unexpected changes when the package list is updated. You can find available versions on the [releases page](https://github.com/OrbisK/renovate-config-e18e/releases).
 
 This will flag all e18e replaceable packages with an `abandonmentThreshold` of `0 days`, marking them as abandoned in Renovate's UI.
 
-#0.0.1 How it works
+## How it works
 
 The `default.json` preset is generated from the [`module-replacements`](https://www.npmjs.com/package/module-replacements) package, which provides a curated list of npm packages that have preferred modern alternatives (e.g. `axios` -> native `fetch`, `chalk` -> built-in Node.js styling).
 

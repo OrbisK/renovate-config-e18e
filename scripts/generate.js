@@ -1,12 +1,17 @@
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { preferredReplacements } from "module-replacements";
 
 const moduleNames = preferredReplacements.moduleReplacements
   .map((r) => r.moduleName)
   .sort();
 
-const config = {
+const { version } = JSON.parse(
+  readFileSync(new URL("../package.json", import.meta.url), "utf-8"),
+);
+
+const abandonment = {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  description: ["Mark e18e replaceable packages as abandoned"],
   packageRules: [
     {
       description: "Mark e18e replaceable packages as abandoned",
@@ -17,8 +22,20 @@ const config = {
   ],
 };
 
+const defaultConfig = {
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  description: ["e18e presets for Renovate"],
+  extends: [
+    `github>OrbisK/renovate-config-e18e:abandonment#${version}`,
+  ],
+};
+
+writeFileSync(
+  new URL("../abandonment.json", import.meta.url),
+  JSON.stringify(abandonment, null, 2) + "\n",
+);
 writeFileSync(
   new URL("../default.json", import.meta.url),
-  JSON.stringify(config, null, 2) + "\n",
+  JSON.stringify(defaultConfig, null, 2) + "\n",
 );
-console.log(`Generated default.json with ${moduleNames.length} packages`);
+console.log(`Generated abandonment.json with ${moduleNames.length} packages`);
