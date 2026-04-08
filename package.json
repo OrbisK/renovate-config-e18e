@@ -1,0 +1,16 @@
+{
+  "name": "renovate-config-e18e",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "scripts": {
+    "generate": "node scripts/generate.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.33.0",
+  "dependencies": {
+    "module-replacements": "^2.11.0"
+  }
+}
