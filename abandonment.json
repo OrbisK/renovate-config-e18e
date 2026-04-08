@@ -6,11 +6,9 @@
   "packageRules": [
     {
       "description": "Mark e18e replaceable packages as abandoned",
-
       "matchDatasources": [
         "npm"
       ],
-
       "matchPackageNames": [
         "@jsdevtools/ez-spawn",
         "axios",
@@ -413,6 +411,10 @@
         "uri-js",
         "utf8",
         "xmldom"
+      ],
+      "abandonmentThreshold": "1 second",
+      "addLabels": [
+        "e18e"
       ]
     }
   ]
