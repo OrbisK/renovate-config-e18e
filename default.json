@@ -5,7 +5,7 @@
   ],
   "extends": [
     "github>OrbisK/renovate-config-e18e:abandonment#0.0.10",
-    "github>OrbisK/renovate-config-e18e:replacements#0.0.10",
-    "github>OrbisK/renovate-config-e18e:community-notes#0.0.10"
+    "github>OrbisK/renovate-config-e18e:recommendations#0.0.10",
+    "github>OrbisK/renovate-config-e18e:replacements#0.0.10"
   ]
 }

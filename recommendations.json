@@ -5,7 +5,7 @@
   ],
   "packageRules": [
     {
-      "description": "Add e18e replacement guide link to PR body",
+      "description": "Add e18e replacement recommendations to PR body",
       "matchDatasources": [
         "npm"
       ],
@@ -415,8 +415,11 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/{{{depName}}})"
+      },
       "prBodyNotes": [
-        "> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/{{{depName}}}) to find modern, lighter alternatives."
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/{{{depName}}}) to find modern, lighter alternatives.{{/unless}}"
       ]
     }
   ]

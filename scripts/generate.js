@@ -28,41 +28,18 @@ const recommendations = {
   description: ["Add e18e replacement recommendations to PR body"],
   packageRules: [
     {
-      description: "Add e18e replacement guide link to PR body",
+      description: "Add e18e replacement recommendations to PR body",
       matchDatasources: ["npm"],
       matchPackageNames: moduleNames,
       matchUpdateTypes: ["!replacement"],
-      prBodyNotes: [
-        `> [!WARNING]
-> **This package has a recommended replacement.** Check the [e18e replacement guide for \`{{{depName}}}\`](https://e18e.dev/docs/replacements/{{{depName}}}) to find modern, lighter alternatives.`,
-      ],
-    },
-  ],
-};
-
-const communityNotes = {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  description: [
-    "Add community notes column to PR body for e18e replaceable packages",
-  ],
-  packageRules: [
-    {
-      description:
-        "Add community notes column linking to e18e replacement docs",
-      matchDatasources: ["npm"],
-      matchPackageNames: moduleNames,
-      matchUpdateTypes: ["!replacement"],
-      prBodyColumns: [
-        "Package",
-        "Type",
-        "Update",
-        "Change",
-        "Community Notes",
-      ],
       prBodyDefinitions: {
         "Community Notes":
           "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/{{{depName}}})",
       },
+      prBodyNotes: [
+        `{{#unless (includes prBodyColumns "Community Notes")}}> [!WARNING]
+> **This package has a recommended replacement.** Check the [e18e replacement guide for \`{{{depName}}}\`](https://e18e.dev/docs/replacements/{{{depName}}}) to find modern, lighter alternatives.{{/unless}}`,
+      ],
     },
   ],
 };
@@ -162,16 +139,11 @@ const defaultConfig = {
   description: ["e18e presets for Renovate"],
   extends: [
     `github>OrbisK/renovate-config-e18e:abandonment#${version}`,
-    // `github>OrbisK/renovate-config-e18e:recommendations#${version}`,
+    `github>OrbisK/renovate-config-e18e:recommendations#${version}`,
     `github>OrbisK/renovate-config-e18e:replacements#${version}`,
-    `github>OrbisK/renovate-config-e18e:community-notes#${version}`,
   ],
 };
 
-writeFileSync(
-  new URL("../community-notes.json", import.meta.url),
-  JSON.stringify(communityNotes, null, 2) + "\n",
-);
 writeFileSync(
   new URL("../abandonment.json", import.meta.url),
   JSON.stringify(abandonment, null, 2) + "\n",
@@ -188,6 +160,6 @@ writeFileSync(
   new URL("../default.json", import.meta.url),
   JSON.stringify(defaultConfig, null, 2) + "\n",
 );
-console.log(`Generated community-notes.json with ${moduleNames.length} packages`);
 console.log(`Generated abandonment.json with ${moduleNames.length} packages`);
+console.log(`Generated recommendations.json with ${moduleNames.length} packages`);
 console.log(`Generated replacements.json with ${replacements.packageRules.length} replacements`);
