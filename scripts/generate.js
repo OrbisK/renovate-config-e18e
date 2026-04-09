@@ -39,6 +39,32 @@ const recommendations = {
   ],
 };
 
+const communityNotes = {
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  description: [
+    "Add community notes column to PR body for e18e replaceable packages",
+  ],
+  packageRules: [
+    {
+      description:
+        "Add community notes column linking to e18e replacement docs",
+      matchDatasources: ["npm"],
+      matchPackageNames: moduleNames,
+      prBodyColumns: [
+        "Package",
+        "Type",
+        "Update",
+        "Change",
+        "Community Notes",
+      ],
+      prBodyDefinitions: {
+        "Community Notes":
+          "[Replacement docs](https://e18e.dev/docs/replacements/{{{depName}}})",
+      },
+    },
+  ],
+};
+
 const replacements = {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   description: ["Replace e18e replaceable packages with recommended alternatives"],
@@ -136,9 +162,14 @@ const defaultConfig = {
     `github>OrbisK/renovate-config-e18e:abandonment#${version}`,
     `github>OrbisK/renovate-config-e18e:recommendations#${version}`,
     `github>OrbisK/renovate-config-e18e:replacements#${version}`,
+    `github>OrbisK/renovate-config-e18e:community-notes#${version}`,
   ],
 };
 
+writeFileSync(
+  new URL("../community-notes.json", import.meta.url),
+  JSON.stringify(communityNotes, null, 2) + "\n",
+);
 writeFileSync(
   new URL("../abandonment.json", import.meta.url),
   JSON.stringify(abandonment, null, 2) + "\n",
@@ -155,5 +186,6 @@ writeFileSync(
   new URL("../default.json", import.meta.url),
   JSON.stringify(defaultConfig, null, 2) + "\n",
 );
+console.log(`Generated community-notes.json with ${moduleNames.length} packages`);
 console.log(`Generated abandonment.json with ${moduleNames.length} packages`);
 console.log(`Generated replacements.json with ${replacements.packageRules.length} replacements`);
