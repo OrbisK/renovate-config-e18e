@@ -12,10 +12,10 @@ replacements:
 
 Example:
 
-```ts
-import * as pkg from 'empathic' // [!code ++]
-import findCacheDirectory from 'find-cache-directory' // [!code --]
-
-findCacheDirectory({ name: 'foo' }) // [!code --]
-pkg.cache('foo') // [!code ++]
+```diff
++ import * as pkg from 'empathic'
+- import findCacheDirectory from 'find-cache-directory'
+  
+- findCacheDirectory({ name: 'foo' })
++ pkg.cache('foo')
 ```

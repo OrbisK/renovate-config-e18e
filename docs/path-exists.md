@@ -10,15 +10,15 @@ Use [`fs/promises.access`](https://nodejs.org/docs/latest/api/fs.html#fspromises
 
 <!-- prettier-ignore -->
 
-```ts
-import pathExists from 'path-exists' // [!code --]
-import { access } from 'node:fs/promises' // [!code ++]
-
-const exists = await pathExists('/etc/passwd') // [!code --]
-const exists = await access('/etc/passwd').then( // [!code ++]
-  () => true, // [!code ++]
-  () => false // [!code ++]
-) // [!code ++]
+```diff
+- import pathExists from 'path-exists'
++ import { access } from 'node:fs/promises'
+  
+- const exists = await pathExists('/etc/passwd')
++ const exists = await access('/etc/passwd').then(
++   () => true,
++   () => false
++ )
 ```
 
 ## Sync `fs.existsSync` (native, Node.js)
@@ -26,23 +26,23 @@ const exists = await access('/etc/passwd').then( // [!code ++]
 Added in v0.1.21: synchronous path/file existence check via [
 `fs.existsSync`](https://nodejs.org/docs/latest/api/fs.html#fsexistssyncpath).
 
-```ts
-import pathExists from 'path-exists' // [!code --]
-import { existsSync } from 'node:fs' // [!code ++]
-
-const exists = await pathExists('/etc/passwd') // [!code --]
-const exists = existsSync('/etc/passwd') // [!code ++]
+```diff
+- import pathExists from 'path-exists'
++ import { existsSync } from 'node:fs'
+  
+- const exists = await pathExists('/etc/passwd')
++ const exists = existsSync('/etc/passwd')
 ```
 
 ## Bun
 
 [`Bun.file()`](https://bun.sh/reference/bun/BunFile) returns a BunFile with an `.exists()` method.
 
-```ts
-import pathExists from 'path-exists' // [!code --]
-
-const path = '/path/to/package.json'
-const exists = await pathExists(path) // [!code --]
-const file = Bun.file(path) // [!code ++]
-const exists = await file.exists() // boolean [!code ++]
+```diff
+  - import pathExists from 'path-exists'
+    
+    const path = '/path/to/package.json'
+  - const exists = await pathExists(path)
+  + const file = Bun.file(path)
++   const exists = await file.exists()
 ```

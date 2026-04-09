@@ -11,9 +11,9 @@ most cases, prefer native options.
 
 Use the built-in `stream` module ([Node Streams docs](https://nodejs.org/api/stream.html)).
 
-```ts
-import { Duplex, Readable, Transform, Writable } from 'readable-stream' // [!code --]
-import { Duplex, Readable, Transform, Writable } from 'node:stream' // [!code ++]
+```diff
+- import { Duplex, Readable, Transform, Writable } from 'readable-stream'
++ import { Duplex, Readable, Transform, Writable } from 'node:stream'
 ```
 
 ## Web Streams (native, browsers and Node.js 16.5.0+)

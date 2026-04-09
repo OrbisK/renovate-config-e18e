@@ -12,17 +12,17 @@ replacements:
 
 For example:
 
-```ts
-import { DOMParser, XMLSerializer } from 'xmldom' // [!code --]
-import { DOMParser, XMLSerializer } from '@xmldom/xmldom' // [!code ++]
-
-const doc = new DOMParser().parseFromString(source, 'text/xml')
-const xml = new XMLSerializer().serializeToString(doc)
+```diff
+- import { DOMParser, XMLSerializer } from 'xmldom'
++ import { DOMParser, XMLSerializer } from '@xmldom/xmldom'
+  
+  const doc = new DOMParser().parseFromString(source, 'text/xml')
+  const xml = new XMLSerializer().serializeToString(doc)
 ```
 
 CommonJS:
 
-```ts
-const { DOMParser, XMLSerializer } = require('xmldom') // [!code --]
-const { DOMParser, XMLSerializer } = require('@xmldom/xmldom') // [!code ++]
+```diff
+- const { DOMParser, XMLSerializer } = require('xmldom')
++ const { DOMParser, XMLSerializer } = require('@xmldom/xmldom')
 ```

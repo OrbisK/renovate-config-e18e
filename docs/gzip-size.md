@@ -11,40 +11,40 @@ use [gzipSync](https://nodejs.org/api/zlib.html#zlibgzipsync) which exist inside
 
 ### Synchronous
 
-```ts
-import { gzipSizeSync } from 'gzip-size' // [!code --]
-import { gzipSync } from 'node:zlib' // [!code ++]
-
-const text = 'Lorem ipsum dolor sil amet'
-
-console.log(gzipSizeSync(text)) // [!code --]
-console.log(gzipSync(text).length) // [!code ++]
+```diff
+- import { gzipSizeSync } from 'gzip-size'
++ import { gzipSync } from 'node:zlib'
+  
+  const text = 'Lorem ipsum dolor sil amet'
+  
+- console.log(gzipSizeSync(text))
++ console.log(gzipSync(text).length)
 ```
 
 ### Asynchronous
 
-```ts
-import { gzipSize } from 'gzip-size' // [!code --]
-import { gzipSync } from 'node:zlib' // [!code ++]
-import { promisify } from 'node:util' // [!code ++]
-
-const gzipAsync = promisify(gzip) // [!code ++]
-
-const text = 'Lorem ipsum dolor sil amet'
-
-console.log(await gzipSize(text)) // [!code --]
-console.log((await gzipAsync(text)).length) // [!code ++]
+```diff
+- import { gzipSize } from 'gzip-size'
++ import { gzipSync } from 'node:zlib'
++ import { promisify } from 'node:util'
+  
++ const gzipAsync = promisify(gzip)
+  
+  const text = 'Lorem ipsum dolor sil amet'
+  
+- console.log(await gzipSize(text))
++ console.log((await gzipAsync(text)).length)
 ```
 
 ### Calculating from a file
 
-```ts
-import { gzipSizeFromFileSync } from 'gzip-size' // [!code --]
-import { gzipSync } from 'node:zlib' // [!code ++]
-import { readFileSync } from 'node:fs' // [!code ++]
-
-const path = '/path/to/file'
-
-console.log(gzipSizeFromFileSync(path)) // [!code --]
-console.log(gzipSync(readFileSync(path)).length) // [!code ++]
+```diff
+- import { gzipSizeFromFileSync } from 'gzip-size'
++ import { gzipSync } from 'node:zlib'
++ import { readFileSync } from 'node:fs'
+  
+  const path = '/path/to/file'
+  
+- console.log(gzipSizeFromFileSync(path))
++ console.log(gzipSync(readFileSync(path)).length)
 ```

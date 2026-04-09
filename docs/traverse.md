@@ -12,15 +12,15 @@ replacements:
 `traverse`](https://github.com/ljharb/js-traverse) with no dependencies. It offers a drop‑in compatible build as well as
 a modern API.
 
-```ts
-import traverse from 'traverse' // [!code --]
-import traverse from 'neotraverse' // [!code ++]
-
-const obj = [5, 6, -3, [7, 8, -2, 1], { f: 10, g: -13 }]
-
-traverse(obj).forEach(function (x) {
-  if (x < 0) this.update(x + 128)
-})
-
-console.log(obj)
+```diff
+- import traverse from 'traverse'
++ import traverse from 'neotraverse'
+  
+  const obj = [5, 6, -3, [7, 8, -2, 1], { f: 10, g: -13 }]
+  
+  traverse(obj).forEach(function (x) {
+    if (x < 0) this.update(x + 128)
+  })
+  
+  console.log(obj)
 ```

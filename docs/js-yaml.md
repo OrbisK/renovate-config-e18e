@@ -15,33 +15,33 @@ compliance, comment/AST support, and no deps.
 
 Parse (load):
 
-```ts
-import yaml from 'js-yaml' // [!code --]
-import { parse } from 'yaml' // [!code ++]
-
-const obj = yaml.load(src) // [!code --]
-const obj = parse(src) // [!code ++]
+```diff
+- import yaml from 'js-yaml'
++ import { parse } from 'yaml'
+  
+- const obj = yaml.load(src)
++ const obj = parse(src)
 ```
 
 Stringify (dump):
 
-```ts
-import yaml from 'js-yaml' // [!code --]
-import { stringify } from 'yaml' // [!code ++]
-
-const text = yaml.dump(obj) // [!code --]
-const text = stringify(obj) // [!code ++]
+```diff
+- import yaml from 'js-yaml'
++ import { stringify } from 'yaml'
+  
+- const text = yaml.dump(obj)
++ const text = stringify(obj)
 ```
 
 Multi-document:
 
-```ts
-import yaml from 'js-yaml' // [!code --]
-import { parseAllDocuments } from 'yaml' // [!code ++]
-
-const out: any[] = [] // [!code --]
-yaml.loadAll(src, (d) => out.push(d)) // [!code --]
-const out = parseAllDocuments(src).map((d) => d.toJSON()) // [!code ++]
+```diff
+- import yaml from 'js-yaml'
++ import { parseAllDocuments } from 'yaml'
+  
+- const out: any[] = []
+- yaml.loadAll(src, (d) => out.push(d))
++ const out = parseAllDocuments(src).map((d) => d.toJSON())
 ```
 
 ## Bun `YAML` API
@@ -51,10 +51,10 @@ since [v1.2.21](https://bun.com/blog/release-notes/bun-v1.2.21#native-yaml-suppo
 
 Example:
 
-```ts
-import yaml from 'js-yaml' // [!code --]
-import { YAML } from 'bun' // [!code ++]
-
-yaml.load(src) // [!code --]
-YAML.parse(src) // [!code ++]
+```diff
+- import yaml from 'js-yaml'
++ import { YAML } from 'bun'
+  
+- yaml.load(src)
++ YAML.parse(src)
 ```

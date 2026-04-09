@@ -8,23 +8,22 @@ replacements:
 
 ## `milliparsec`
 
-[`milliparsec`](https://github.com/tinyhttp/milliparsec) is a lightweight alternative to [
-`body-parser`](https://github.com/expressjs/body-parser) with a smaller footprint.
+[`milliparsec`](https://github.com/tinyhttp/milliparsec) is a lightweight alternative to [`body-parser`](https://github.com/expressjs/body-parser) with a smaller footprint.
 
 Example:
 
-```ts
-import bodyParser from 'body-parser' // [!code --]
-import {json, urlencoded} from 'milliparsec' // [!code ++]
-import express from 'express'
-
-const app = express()
-
-app.use(bodyParser.json()) // [!code --]
-app.use(bodyParser.urlencoded({extended: true})) // [!code --]
-
-app.use(json()) // [!code ++]
-app.use(urlencoded()) // [!code ++]
+```diff
+- import bodyParser from 'body-parser'
++ import {json, urlencoded} from 'milliparsec'
+  import express from 'express'
+  
+  const app = express()
+  
+- app.use(bodyParser.json())
+- app.use(bodyParser.urlencoded({extended: true}))
+  
++ app.use(json())
++ app.use(urlencoded())
 ```
 
 For API differences and feature comparison, see

@@ -20,19 +20,19 @@ Example:
 
 <!-- prettier-ignore -->
 
-```ts
-import express from 'express' // [!code --]
-import { H3, defineHandler, toNodeHandler } from 'h3' // [!code ++]
-import { createServer } from 'node:http' // [!code ++]
-
-const app = express() // [!code --]
-const app = new H3() // [!code ++]
-
-app.get('/', (req, res) => res.send('Hello world')) // [!code --]
-app.get('/', defineHandler(() => 'Hello world')) // [!code ++]
-
-app.listen(3000) // [!code --]
-createServer(toNodeHandler(app)).listen(3000) // [!code ++]
+```diff
+- import express from 'express'
++ import { H3, defineHandler, toNodeHandler } from 'h3'
++ import { createServer } from 'node:http'
+  
+- const app = express()
++ const app = new H3()
+  
+- app.get('/', (req, res) => res.send('Hello world'))
++ app.get('/', defineHandler(() => 'Hello world'))
+  
+- app.listen(3000)
++ createServer(toNodeHandler(app)).listen(3000)
 ```
 
 ## `tinyhttp`
@@ -42,16 +42,16 @@ many Express middlewares.
 
 Example:
 
-```ts
-import express from 'express' // [!code --]
-import { App } from '@tinyhttp/app' // [!code ++]
-
-const app = express() // [!code --]
-const app = new App() // [!code ++]
-
-app.get('/', (req, res) => res.send('Hello world'))
-
-app.listen(3000)
+```diff
+- import express from 'express'
++ import { App } from '@tinyhttp/app'
+  
+- const app = express()
++ const app = new App()
+  
+  app.get('/', (req, res) => res.send('Hello world'))
+  
+  app.listen(3000)
 ```
 
 ## `hono`
@@ -60,17 +60,17 @@ app.listen(3000)
 
 Example:
 
-```ts
-import express from 'express' // [!code --]
-import { Hono } from 'hono' // [!code ++]
-
-const app = express() // [!code --]
-const app = new Hono() // [!code ++]
-
-app.get('/', (req, res) => res.send('Hello world')) // [!code --]
-app.get('/', (context) => context.text('Hello world')) // [!code ++]
-
-export default app // [!code ++]
+```diff
+- import express from 'express'
++ import { Hono } from 'hono'
+  
+- const app = express()
++ const app = new Hono()
+  
+- app.get('/', (req, res) => res.send('Hello world'))
++ app.get('/', (context) => context.text('Hello world'))
+  
++ export default app
 ```
 
 ## `elysia`
@@ -80,15 +80,15 @@ optimized for the Bun runtime.
 
 Example:
 
-```ts
-import express from 'express' // [!code --]
-import { Elysia } from 'elysia' // [!code ++]
-
-const app = express() // [!code --]
-const app = new Elysia() // [!code ++]
-
-app.get('/', (req, res) => res.send('Hello world')) // [!code --]
-app.get('/', () => 'Hello world') // [!code ++]
-
-app.listen(3000)
+```diff
+- import express from 'express'
++ import { Elysia } from 'elysia'
+  
+- const app = express()
++ const app = new Elysia()
+  
+- app.get('/', (req, res) => res.send('Hello world'))
++ app.get('/', () => 'Hello world')
+  
+  app.listen(3000)
 ```

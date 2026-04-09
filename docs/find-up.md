@@ -15,24 +15,24 @@ The main difference is that `empathic` is _synchronous_, so you should no longer
 
 Example:
 
-```ts
-import * as find from 'empathic/find' // [!code ++]
-import { findUp } from 'find-up' // [!code --]
-
-await findUp('package.json') // [!code --]
-find.up('package.json') // [!code ++]
+```diff
++ import * as find from 'empathic/find'
+- import { findUp } from 'find-up'
+  
+- await findUp('package.json')
++ find.up('package.json')
 ```
 
 ### `findUpMultiple`
 
 When finding multiple files, you can use `find.any`:
 
-```ts
-import * as find from 'empathic/find' // [!code ++]
-import { findUpMultiple } from 'find-up' // [!code --]
-
-const files = await findUpMultiple(['package.json', 'tsconfig.json']) // [!code --]
-const files = find.any(['package.json', 'tsconfig.json']) // [!code ++]
+```diff
++ import * as find from 'empathic/find'
+- import { findUpMultiple } from 'find-up'
+  
+- const files = await findUpMultiple(['package.json', 'tsconfig.json'])
++ const files = find.any(['package.json', 'tsconfig.json'])
 ```
 
 ### Options
@@ -43,12 +43,12 @@ The `type` option can be replaced by using the equivalent function.
 
 For example, finding a file:
 
-```ts
-import * as find from 'empathic/find' // [!code ++]
-import { findUp } from 'find-up' // [!code --]
-
-await findUp('package.json', { type: 'file' }) // [!code --]
-find.file('package.json') // [!code ++]
+```diff
++ import * as find from 'empathic/find'
+- import { findUp } from 'find-up'
+  
+- await findUp('package.json', { type: 'file' })
++ find.file('package.json')
 ```
 
 #### `cwd`
@@ -65,16 +65,16 @@ This option is replaced by `last`:
 
 <!-- eslint-skip -->
 
-```ts
-import { findUp } from 'find-up' // [!code --]
-import * as find from 'empathic/find' // [!code ++]
-
-await findUp( // [!code --]
-find.file( // [!code ++]
-  'package.json',
-  { stopAt: '/some/dir' }, // [!code --]
-  { last: '/some/dir' }, // [!code ++]
-)
+```diff
+- import { findUp } from 'find-up'
++ import * as find from 'empathic/find'
+  
+- await findUp(
++ find.file(
+    'package.json',
+-   { stopAt: '/some/dir' },
++   { last: '/some/dir' },
+  )
 ```
 
 ## `pkg-types`
@@ -82,10 +82,10 @@ find.file( // [!code ++]
 [`pkg-types`](https://github.com/unjs/pkg-types) provides utilities for reading and writing package.json, tsconfig.json,
 and other configuration files with TypeScript support.
 
-```ts
-import { findUp } from 'find-up' // [!code --]
-import { readPackageJSON } from 'pkg-types' // [!code ++]
-
-const packagePath = await findUp('package.json') // [!code --]
-const packageJson = await readPackageJSON() // [!code ++]
+```diff
+- import { findUp } from 'find-up'
++ import { readPackageJSON } from 'pkg-types'
+  
+- const packagePath = await findUp('package.json')
++ const packageJson = await readPackageJSON()
 ```

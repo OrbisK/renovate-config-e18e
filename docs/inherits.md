@@ -14,32 +14,32 @@ Example:
 
 <!-- prettier-ignore -->
 
-```js
-import EventEmitter from 'node:events'
-import inherits from 'inherits' // [!code --]
-
-function MyStream() { // [!code --]
-  EventEmitter.call(this) // [!code --]
-} // [!code --]
-
-MyStream.prototype.write = function (data) { // [!code --]
-  this.emit('data', data) // [!code --]
-} // [!code --]
-
-inherits(MyStream, EventEmitter) // [!code --]
-
-class MyStream extends EventEmitter { // [!code ++]
-  write(data) { // [!code ++]
-    this.emit('data', data) // [!code ++]
-  } // [!code ++]
-} // [!code ++]
-
-const stream = new MyStream()
-
-stream.on('data', (data) => {
-  console.log(`Received data: "${data}"`)
-})
-stream.write('Hello world!')
+```diff
+  import EventEmitter from 'node:events'
+- import inherits from 'inherits'
+  
+- function MyStream() {
+-   EventEmitter.call(this)
+- }
+  
+- MyStream.prototype.write = function (data) {
+-   this.emit('data', data)
+- }
+  
+- inherits(MyStream, EventEmitter)
+  
++ class MyStream extends EventEmitter {
++   write(data) {
++     this.emit('data', data)
++   }
++ }
+  
+  const stream = new MyStream()
+  
+  stream.on('data', (data) => {
+    console.log(`Received data: "${data}"`)
+  })
+  stream.write('Hello world!')
 ```
 
 ## `utils.inherits` (native, since Node.js v5.0.0)
@@ -49,11 +49,11 @@ legacy Node.js api.
 
 Example:
 
-```js
-import inherits from 'inherits' // [!code --]
-import { inherits } from 'node:util' // [!code ++]
-
-inherits(Target, Base)
+```diff
+- import inherits from 'inherits'
++ import { inherits } from 'node:util'
+  
+  inherits(Target, Base)
 ```
 
 ## `Object.create` (native)
@@ -65,17 +65,17 @@ Example:
 
 <!-- prettier-ignore -->
 
-```js
-import inherits from 'inherits' // [!code --]
-
-inherits(Target, Base) // [!code --]
-
-Target.prototype = Object.create(Base.prototype, { // [!code ++]
-  constructor: { // [!code ++]
-    value: Target, // [!code ++]
-    enumerable: false, // [!code ++]
-    writable: true, // [!code ++]
-    configurable: true // [!code ++]
-  } // [!code ++]
-}) // [!code ++]
+```diff
+- import inherits from 'inherits'
+  
+- inherits(Target, Base)
+  
++ Target.prototype = Object.create(Base.prototype, {
++   constructor: {
++     value: Target,
++     enumerable: false,
++     writable: true,
++     configurable: true
++   }
++ })
 ```

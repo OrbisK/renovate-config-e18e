@@ -8,14 +8,14 @@ description: Modern alternatives to the duplexer package
 
 <!-- prettier-ignore -->
 
-```js
-import duplexer from 'duplexer' // [!code --]
-import { Duplex } from 'node:stream' // [!code ++]
-
-duplexer(writableStream, readableStream) // [!code --]
-
-Duplex.from({ // [!code ++]
-  writable: writableStream, // [!code ++]
-  readable: readableStream // [!code ++]
-}) // [!code ++]
+```diff
+- import duplexer from 'duplexer'
++ import { Duplex } from 'node:stream'
+  
+- duplexer(writableStream, readableStream)
+  
++ Duplex.from({
++   writable: writableStream,
++   readable: readableStream
++ })
 ```

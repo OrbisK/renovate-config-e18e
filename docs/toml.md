@@ -15,12 +15,12 @@ spec compliance, comment/AST support, and no deps.
 
 Parse (load):
 
-```ts
-import toml from 'toml' // [!code --]
-import { parse } from 'smol-toml' // [!code ++]
-
-const obj = toml.parse(src) // [!code --]
-const obj = parse(src) // [!code ++]
+```diff
+- import toml from 'toml'
++ import { parse } from 'smol-toml'
+  
+- const obj = toml.parse(src)
++ const obj = parse(src)
 ```
 
 Stringify:
@@ -37,10 +37,10 @@ const text = stringify(obj)
 
 Example:
 
-```ts
-import toml from 'toml' // [!code --]
-import { TOML } from 'bun' // [!code ++]
-
-toml.parse(src) // [!code --]
-TOML.parse(src) // [!code ++]
+```diff
+- import toml from 'toml'
++ import { TOML } from 'bun'
+  
+- toml.parse(src)
++ TOML.parse(src)
 ```

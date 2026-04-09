@@ -19,11 +19,11 @@ Good for standard web URLs (http/https/ws/wss/file/mailto, etc.).
 
 Example:
 
-```ts
-import * as URI from 'uri-js' // [!code --]
-
-URI.resolve('https://a/b/c/d?q', '../../g') // [!code --]
-new URL('../../g', 'https://a/b/c/d?q').href // [!code ++]
+```diff
+- import * as URI from 'uri-js'
+  
+- URI.resolve('https://a/b/c/d?q', '../../g')
++ new URL('../../g', 'https://a/b/c/d?q').href
 ```
 
 > [!NOTE]
@@ -35,17 +35,17 @@ new URL('../../g', 'https://a/b/c/d?q').href // [!code ++]
 [`uri-js-replace`](https://github.com/andreinwald/uri-js-replace) is a drop-in, zero-dependency replacement for `uri-js`
 with the same API and no deprecation warnings.
 
-```ts
-import * as URI from 'uri-js' // [!code --]
-import * as URI from 'uri-js-replace' // [!code ++]
-
-const parsed = URI.parse('uri://user:pass@example.com:123/one/two?q=a#f')
-const out = URI.serialize({
-  scheme: 'http',
-  host: 'example.com',
-  fragment: 'footer'
-})
-const norm = URI.normalize('URI://www.example.org/red%09ros\xE9#red')
+```diff
+- import * as URI from 'uri-js'
++ import * as URI from 'uri-js-replace'
+  
+  const parsed = URI.parse('uri://user:pass@example.com:123/one/two?q=a#f')
+  const out = URI.serialize({
+    scheme: 'http',
+    host: 'example.com',
+    fragment: 'footer'
+  })
+  const norm = URI.normalize('URI://www.example.org/red%09ros\xE9#red')
 ```
 
 ## `fast-uri`
@@ -53,12 +53,12 @@ const norm = URI.normalize('URI://www.example.org/red%09ros\xE9#red')
 [`fast-uri`](https://github.com/fastify/fast-uri) is a zero-dependency, high-performance RFC 3986 URI toolbox (
 parse/serialize/resolve/equal) with options similar to `uri-js`.
 
-```ts
-import * as uri from 'uri-js' // [!code --]
-import * as uri from 'fast-uri' // [!code ++]
-
-uri.parse('uri://user:pass@example.com:123/one/two.three?q1=a1#a')
-uri.serialize({ scheme: 'http', host: 'example.com', fragment: 'footer' })
-uri.resolve('uri://a/b/c/d?q', '../../g')
-uri.equal('example://a/b/%7Bfoo%7D', 'eXAMPLE://a/./b/../b/%63/%7bfoo%7d')
+```diff
+- import * as uri from 'uri-js'
++ import * as uri from 'fast-uri'
+  
+  uri.parse('uri://user:pass@example.com:123/one/two.three?q1=a1#a')
+  uri.serialize({ scheme: 'http', host: 'example.com', fragment: 'footer' })
+  uri.resolve('uri://a/b/c/d?q', '../../g')
+  uri.equal('example://a/b/%7Bfoo%7D', 'eXAMPLE://a/./b/../b/%63/%7bfoo%7d')
 ```

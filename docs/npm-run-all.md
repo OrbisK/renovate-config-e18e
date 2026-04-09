@@ -29,13 +29,13 @@ Another option is [concurrently](https://github.com/open-cli-tools/concurrently)
 parallel with colored output and process control. It uses a slightly different syntax but works well for replacing the
 `--parallel` use case.
 
-```json
-{
-  "scripts": {
-    "dev": "npm-run-all --parallel \"watch-*\" start", // [!code --]
-    "dev": "concurrently \"npm:watch-*\" \"npm:start\"" // [!code ++]
+```diff
+  {
+    "scripts": {
+-     "dev": "npm-run-all --parallel \"watch-*\" start",
++     "dev": "concurrently \"npm:watch-*\" \"npm:start\""
+    }
   }
-}
 ```
 
 ## `wireit`
@@ -77,22 +77,22 @@ If you are using bun you can use [`bun run --parallel`](https://bun.com/docs/run
 
 ### Parallel
 
-```json
-{
-  "scripts": {
-    "dev": "npm-run-all --parallel \"dev:*\"", // [!code --]
-    "dev": "bun run --parallel dev:*" // [!code ++]
+```diff
+  {
+    "scripts": {
+-     "dev": "npm-run-all --parallel \"dev:*\"",
++     "dev": "bun run --parallel dev:*"
+    }
   }
-}
 ```
 
 ### Sequential
 
-```json
-{
-  "scripts": {
-    "build": "run-s clean lint compile", // [!code --]
-    "build": "bun run --sequential clean lint compile" // [!code ++]
+```diff
+  {
+    "scripts": {
+-     "build": "run-s clean lint compile",
++     "build": "bun run --sequential clean lint compile"
+    }
   }
-}
 ```

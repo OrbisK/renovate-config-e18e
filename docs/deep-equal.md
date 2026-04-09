@@ -14,15 +14,15 @@ you don’t need browser support.
 
 Example:
 
-```ts
-import equal from 'deep-equal' // [!code --]
-import { isDeepStrictEqual } from 'node:util' // [!code ++]
-
-const a = { foo: 'bar' }
-const b = { foo: 'bar' }
-
-equal(a, b) // true [!code --]
-isDeepStrictEqual(a, b) // true [!code ++]
+```diff
+  - import equal from 'deep-equal'
+  + import { isDeepStrictEqual } from 'node:util'
+    
+    const a = { foo: 'bar' }
+    const b = { foo: 'bar' }
+    
+-   equal(a, b)
++   isDeepStrictEqual(a, b)
 ```
 
 ## `dequal`
@@ -31,13 +31,13 @@ isDeepStrictEqual(a, b) // true [!code ++]
 
 Example:
 
-```ts
-import equal from 'deep-equal' // [!code --]
-import dequal from 'dequal' // [!code ++]
-
-const a = { foo: 'bar' }
-const b = { foo: 'bar' }
-
-equal(a, b) // true [!code --]
-dequal(a, b) // true [!code ++]
+```diff
+  - import equal from 'deep-equal'
+  + import dequal from 'dequal'
+    
+    const a = { foo: 'bar' }
+    const b = { foo: 'bar' }
+    
+-   equal(a, b)
++   dequal(a, b)
 ```
