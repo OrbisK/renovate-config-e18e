@@ -8,7 +8,7 @@ export default defineConfig({
     all: true,
     execute(config) {
         const newVersion = config.state.newVersion
-        const pattern = /(OrbisK\/renovate-config-e18e[^#]*#)[^\s"]+/g
+        const pattern = /(OrbisK\/renovate-config-e18e[^#\s]*#)[^\s"]+/g
         const files = [
             ...readdirSync('.').filter(f => f.endsWith('.json') && f !== 'package.json'),
             'README.md',
