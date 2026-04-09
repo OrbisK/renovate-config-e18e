@@ -5,6 +5,18 @@ const moduleNames = preferredReplacements.moduleReplacements
   .map((r) => r.moduleName)
   .sort();
 
+const modulesByDocPath = new Map();
+for (const r of preferredReplacements.moduleReplacements) {
+  if (!modulesByDocPath.has(r.docPath)) {
+    modulesByDocPath.set(r.docPath, []);
+  }
+  modulesByDocPath.get(r.docPath).push(r.moduleName);
+}
+const sortedDocPaths = [...modulesByDocPath.keys()].sort();
+for (const docPath of sortedDocPaths) {
+  modulesByDocPath.get(docPath).sort();
+}
+
 const { version } = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url), "utf-8"),
 );
@@ -26,29 +38,25 @@ const abandonment = {
 const recommendations = {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   description: ["Add e18e replacement recommendations to PR body"],
-  packageRules: [
-    {
-      description: "Add e18e replacement recommendations to PR body",
-      matchDatasources: ["npm"],
-      matchPackageNames: moduleNames,
-      matchUpdateTypes: ["!replacement"],
-      prBodyColumns: [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
-      prBodyDefinitions: {
-        "Community Notes":
-          "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/{{{depName}}})",
-      },
-      prBodyNotes: [
-        `{{#unless (includes prBodyColumns "Community Notes")}}> [!WARNING]
-> **This package has a recommended replacement.** Check the [e18e replacement guide for \`{{{depName}}}\`](https://e18e.dev/docs/replacements/{{{depName}}}) to find modern, lighter alternatives.{{/unless}}`,
-      ],
+  packageRules: sortedDocPaths.map((docPath) => ({
+    description: "Add e18e replacement recommendations to PR body",
+    matchDatasources: ["npm"],
+    matchPackageNames: modulesByDocPath.get(docPath),
+    matchUpdateTypes: ["!replacement"],
+    prBodyColumns: [
+      "Package",
+      "Change",
+      "Age",
+      "Confidence",
+      "Community Notes",
+    ],
+    prBodyDefinitions: {
+      "Community Notes": `[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/${docPath})`,
     },
-  ],
+    prBodyNotes: [
+      `{{#unless (includes prBodyColumns "Community Notes")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for \`{{{depName}}}\`](https://e18e.dev/docs/replacements/${docPath}) to find modern, lighter alternatives.{{/unless}}`,
+    ],
+  })),
 };
 
 const replacements = {
@@ -168,5 +176,5 @@ writeFileSync(
   JSON.stringify(defaultConfig, null, 2) + "\n",
 );
 console.log(`Generated abandonment.json with ${moduleNames.length} packages`);
-console.log(`Generated recommendations.json with ${moduleNames.length} packages`);
+console.log(`Generated recommendations.json with ${recommendations.packageRules.length} rules for ${moduleNames.length} packages`);
 console.log(`Generated replacements.json with ${replacements.packageRules.length} replacements`);
