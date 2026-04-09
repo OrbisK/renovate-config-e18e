@@ -68,7 +68,6 @@ const replacements = {
       matchDatasources: ["npm"],
       matchPackageNames: ["glob"],
       replacementName: "tinyglobby",
-      replacementVersion: "0.2.12",
       prBodyNotes: [
         `> [!WARNING]
 > **The [e18e](https://e18e.dev) community recommends replacing \`glob\` with a modern alternative.**
