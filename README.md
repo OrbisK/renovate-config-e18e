@@ -25,6 +25,16 @@ Add the preset to your Renovate config (`renovate.json`):
 It is recommended to pin to a specific version tag to avoid unexpected changes when the package list is updated. You can
 find available versions on the [releases page](https://github.com/OrbisK/renovate-config-e18e/releases).
 
+```diff
+ {
+   "extends": [
+     "config:best-practices",
+-    "github>OrbisK/renovate-config-e18e"
++    "github>OrbisK/renovate-config-e18e#0.0.18"
+   ]
+ }
+```
+
 ## Individual presets
 
 The default preset extends `recommendations` and `replacements`. You can also use them individually:
