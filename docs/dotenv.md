@@ -1,0 +1,66 @@
+---
+description: Native Node.js alternatives to the dotenv package for loading and managing .env files in Node.js
+replacements:
+  - parseEnv
+---
+
+# Replacements for `dotenv`
+
+## `--env-file` / `--env-file-if-exists` (native, Node.js)
+
+[`--env-file`](https://nodejs.org/dist/latest-v20.x/docs/api/cli.html#--env-fileconfig) (Node.js v20.6.0+) and [`--env-file-if-exists`](https://nodejs.org/docs/latest-v22.x/api/cli.html#--env-file-if-existsfile) (Node.js v22.9.0+) can be passed as command-line flags to load environment variables from a specified file.
+
+`--env-file` throws if the file is missing. If the file may be absent, use `--env-file-if-exists`.
+
+```bash
+node --env-file=.env index.js
+```
+
+Also supported by:
+
+- [tsx](https://github.com/privatenumber/tsx)
+- [Bun](https://bun.sh/docs/runtime/env#manually-specifying-env-files)
+- [Deno](https://docs.deno.com/runtime/reference/env_variables/#.env-file)
+
+Remove dotenv preload:
+
+```ts
+import 'dotenv/config' // [!code --]
+// No import needed when using --env-file
+```
+
+Remove explicit dotenv config:
+
+```ts
+import dotenv from 'dotenv' // [!code --]
+
+dotenv.config({ path: '.env' }) // [!code --]
+// No runtime configuration needed
+```
+
+In package.json scripts:
+
+```json
+{
+  "scripts": {
+    "start": "node index.js", // [!code --]
+    "start": "node --env-file=.env index.js" // [!code ++]
+  }
+}
+```
+
+## Node.js `parseEnv`
+
+[`parseEnv`](https://nodejs.org/docs/latest-v22.x/api/util.html#utilparseenvcontent) (Node.js v20.12.0+) can be used to parse a `.env` string into an object without loading it into `process.env`.
+
+```ts
+import { parse } from 'dotenv' // [!code --]
+import { parseEnv } from 'node:util' // [!code ++]
+
+const envContent = '...'
+
+const env = parse(envContent) // [!code --]
+const env = parseEnv(envContent) // [!code ++]
+```
+
+If the `.env` is a Node.js Buffer, convert it to a string first with `.toString()`.
