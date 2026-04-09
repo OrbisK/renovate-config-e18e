@@ -160,7 +160,7 @@ const defaultConfig = {
   description: ["e18e presets for Renovate"],
   extends: [
     `github>OrbisK/renovate-config-e18e:abandonment#${version}`,
-    `github>OrbisK/renovate-config-e18e:recommendations#${version}`,
+    // `github>OrbisK/renovate-config-e18e:recommendations#${version}`,
     `github>OrbisK/renovate-config-e18e:replacements#${version}`,
     `github>OrbisK/renovate-config-e18e:community-notes#${version}`,
   ],
