@@ -32,6 +32,13 @@ const recommendations = {
       matchDatasources: ["npm"],
       matchPackageNames: moduleNames,
       matchUpdateTypes: ["!replacement"],
+      prBodyColumns: [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
       prBodyDefinitions: {
         "Community Notes":
           "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/{{{depName}}})",
