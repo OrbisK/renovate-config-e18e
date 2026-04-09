@@ -100,7 +100,7 @@ workflow then automatically creates a GitHub Release with auto-generated release
 ## Roadmap
 
 - [ ] Test grouped PRs
-- [ ] Publish replacements docs as separate package
+- [ ] Publish replacements docs as separate package (replace ./docs)
 - [ ] Check if automerge is disabled for replacements
 
 ## Renovate wishlist
