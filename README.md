@@ -35,7 +35,7 @@ The default preset extends all three presets below. You can also use them indivi
 |------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `github>OrbisK/renovate-config-e18e:abandonment`     | Marks e18e replaceable packages as abandoned using [`abandonmentThreshold`](https://docs.renovatebot.com/configuration-options/#abandonmentthreshold) and adds an `e18e` label |
 | `github>OrbisK/renovate-config-e18e:recommendations` | Adds replacement recommendations to PR bodies (see [below](#recommendations-preset))                                                                                         |
-| `github>OrbisK/renovate-config-e18e:replacements`    | Replaces packages with recommended alternatives using [`replacementName`](https://docs.renovatebot.com/configuration-options/#packagerulesreplacementname) and embeds the migration guide in the PR body |
+| `github>OrbisK/renovate-config-e18e:replacements`    | Replaces packages with recommended alternatives using [`replacementName`](https://docs.renovatebot.com/configuration-options/#packagerulesreplacementname), opens a [**draft PR**](https://docs.renovatebot.com/configuration-options/#draftpr) with an embedded migration guide |
 
 ### Using individual presets
 
@@ -86,8 +86,10 @@ which provides a curated list of npm packages that have preferred modern alterna
   warning callout when the column is not in [
   `prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns).
 - **Replacements**: Uses Renovate's [
-  `replacementName`](https://docs.renovatebot.com/configuration-options/#packagerulesreplacementname) to open PRs that
-  swap packages (e.g. `glob` -> `tinyglobby`) with an embedded migration guide.
+  `replacementName`](https://docs.renovatebot.com/configuration-options/#packagerulesreplacementname) to open [**draft
+  PRs**](https://docs.renovatebot.com/configuration-options/#draftpr) that swap packages (e.g. `glob` -> `tinyglobby`)
+  with an embedded migration guide. PRs are drafts because they require manual changes to imports and usage beyond the
+  dependency swap.
 
 ## Regenerating the config
 
