@@ -412,6 +412,9 @@
         "utf8",
         "xmldom"
       ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
       "prBodyColumns": [
         "Package",
         "Type",

@@ -31,6 +31,7 @@ const recommendations = {
       description: "Add e18e replacement guide link to PR body",
       matchDatasources: ["npm"],
       matchPackageNames: moduleNames,
+      matchUpdateTypes: ["!replacement"],
       prBodyNotes: [
         `> [!WARNING]
 > **This package has a recommended replacement.** Check the [e18e replacement guide for \`{{{depName}}}\`](https://e18e.dev/docs/replacements/{{{depName}}}) to find modern, lighter alternatives.`,
@@ -50,6 +51,7 @@ const communityNotes = {
         "Add community notes column linking to e18e replacement docs",
       matchDatasources: ["npm"],
       matchPackageNames: moduleNames,
+      matchUpdateTypes: ["!replacement"],
       prBodyColumns: [
         "Package",
         "Type",
