@@ -1,11 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": [
-    "Mark e18e replaceable packages as abandoned"
+    "Add e18e replacement recommendations to PR body"
   ],
   "packageRules": [
     {
-      "description": "Mark e18e replaceable packages as abandoned",
+      "description": "Add e18e replacement guide link to PR body",
       "matchDatasources": [
         "npm"
       ],
@@ -412,9 +412,8 @@
         "utf8",
         "xmldom"
       ],
-      "abandonmentThreshold": "1 second",
-      "addLabels": [
-        "e18e"
+      "prBodyNotes": [
+        "> [!CAUTION]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/{{{depName}}}) to find modern, lighter alternatives."
       ]
     }
   ]

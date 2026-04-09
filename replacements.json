@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "Replace e18e replaceable packages with recommended alternatives"
+  ],
+  "packageRules": [
+    {
+      "description": "Replace glob with tinyglobby",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "glob"
+      ],
+      "replacementName": "tinyglobby",
+      "replacementVersion": "0.2.12",
+      "prBodyNotes": [
+        "## Replacements for `glob`\n\n### `tinyglobby`\n\n[`tinyglobby`](https://github.com/SuperchupuDev/tinyglobby) provides a similar API.\n\nExample:\n\n```ts\nimport { glob } from 'glob' // [!code --]\nimport { glob } from 'tinyglobby' // [!code ++]\n\nconst files = await glob('**/*.ts')\n```\n\nMost options available to `glob` are available in `tinyglobby`, read more at the [tinyglobby documentation](https://superchupu.dev/tinyglobby/documentation).\n\n### `fs.glob` (native, since Node 22.x)\n\n[`fs.glob`](https://nodejs.org/api/fs.html#fspromisesglobpattern-options) is built into modern versions of Node.\n\nExample:\n\n```ts\nimport { glob } from 'glob' // [!code --]\nimport { glob } from 'node:fs/promises' // [!code ++]\n\nconst files = await glob('src/**/*.ts', { // [!code --]\nconst files = await Array.fromAsync(glob('src/**/*.ts', { // [!code ++]\n  cwd,\n}) // [!code --]\n})) // [!code ++]\n```\n\nYou can also iterate over the results asynchronously:\n\n```ts\nfor await (const result of glob('src/**/*.ts', { cwd })) {\n  // result is an individual path\n  console.log(result)\n}\n```\n\n> [!NOTE]\n> Node's built-in `glob` is more minimal and does not support negation patterns or fine-grained options like setting a max depth out of the box.\n\n### `fdir`\n\n[`fdir`](https://github.com/thecodrr/fdir/) offers similar functionality but through a different API (and `tinyglobby` is actually built on top of it).\n\nExample:\n\n```ts\nimport { fdir } from 'fdir' // [!code ++]\nimport { glob } from 'glob' // [!code --]\n\nconst files = new fdir() // [!code ++]\n  .withBasePath() // [!code ++]\n  .glob('src/**/*.ts') // [!code ++]\n  .crawl(cwd) // [!code ++]\n  .withPromise() // [!code ++]\nconst files = await glob('src/**/*.ts', { cwd, maxDepth: 6 }) // [!code --]\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/glob)*"
+      ]
+    }
+  ]
+}
