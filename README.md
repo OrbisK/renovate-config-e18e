@@ -98,3 +98,16 @@ pnpm release
 
 This will prompt for a version, update `package.json`, create a commit and tag, and push to the remote. A GitHub Actions
 workflow then automatically creates a GitHub Release with auto-generated release notes.
+
+## Roadmap
+
+- [ ] Test grouped PRs
+- [ ] Publish replacements docs as separate package
+- [ ] Check if automerge is disabled for replacements
+
+## Renovate wishlist
+
+Features we'd like to see in Renovate to improve this preset:
+
+- [ ] Engine match support for dependency replacements, recommend replacements based on the project's Node.js version
+- [ ] Allow replacements to remove a dependency without specifying a replacement package (remove when available natively)
