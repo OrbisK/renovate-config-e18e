@@ -27,15 +27,15 @@ Add the preset to your Renovate config (`renovate.json`):
 It is recommended to pin to a specific version tag to avoid unexpected changes when the package list is updated. You can
 find available versions on the [releases page](https://github.com/OrbisK/renovate-config-e18e/releases).
 
-## Individual presets
+#0.0.12 Individual presets
 
 The default preset extends all three presets below. You can also use them individually:
 
 | Preset                                               | Description                                                                                                                                                                                              |
 |------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `github>OrbisK/renovate-config-e18e:abandonment`     | Marks e18e replaceable packages as abandoned using [`abandonmentThreshold`](https://docs.renovatebot.com/configuration-options/#abandonmentthreshold) and adds an `e18e` label                           |
-| `github>OrbisK/renovate-config-e18e:recommendations` | Adds replacement recommendations to PR bodies (see [below](#recommendations-preset))                                                                                                                     |
-| `github>OrbisK/renovate-config-e18e:replacements`    | Replaces packages with recommended alternatives using [`replacementName`](https://docs.renovatebot.com/configuration-options/#packagerulesreplacementname) and embeds the migration guide in the PR body |
+| `github>OrbisK/renovate-config-e18e:abandonment`     | Marks e18e replaceable packages as abandoned using [`abandonmentThreshold`](https://docs.renovatebot.com/configuration-options/#0.0.12 and adds an `e18e` label                           |
+| `github>OrbisK/renovate-config-e18e:recommendations` | Adds replacement recommendations to PR bodies (see [below](#0.0.12                                                                                                                     |
+| `github>OrbisK/renovate-config-e18e:replacements`    | Replaces packages with recommended alternatives using [`replacementName`](https://docs.renovatebot.com/configuration-options/#0.0.12 and embeds the migration guide in the PR body |
 
 ### Using individual presets
 
@@ -50,7 +50,7 @@ To use only specific presets, reference them directly instead of the default:
 }
 ```
 
-### Recommendations preset
+#0.0.12 Recommendations preset
 
 The recommendations preset provides two ways to surface e18e replacement info in PRs:
 
@@ -71,7 +71,7 @@ The recommendations preset provides two ways to surface e18e replacement info in
 Both are automatically skipped for PRs with `updateType: "replacement"`, since the `replacements` preset already
 provides a detailed migration guide.
 
-## How it works
+#0.0.12 How it works
 
 The presets are generated from the [`module-replacements`](https://www.npmjs.com/package/module-replacements) package,
 which provides a curated list of npm packages that have preferred modern alternatives (e.g. `axios` -> native `fetch`,
