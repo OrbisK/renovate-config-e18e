@@ -1,7 +1,5 @@
 ---
 description: Native Node.js alternatives to the dotenv package for loading and managing .env files in Node.js
-replacements:
-  - parseEnv
 ---
 
 # Replacements for `dotenv`

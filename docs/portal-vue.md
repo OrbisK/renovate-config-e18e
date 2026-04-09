@@ -1,7 +1,5 @@
 ---
 description: Modern alternatives to the `portal-vue` package for making portals in Vue applications
-replacements:
-  - Teleport
 ---
 
 # Replacements for `portal-vue`

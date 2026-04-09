@@ -1,7 +1,5 @@
 ---
 description: Native alternatives to the collection-map package
-replacements:
-  - thisArg
 ---
 
 # Replacements for `collection-map`

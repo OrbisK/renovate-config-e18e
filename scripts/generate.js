@@ -27,6 +27,25 @@ for (const file of readdirSync(docsDir).filter(f => f.endsWith(".md") && f !== "
   docData.set(docPath, { replacements: data.replacements, content });
 }
 
+async function fetchLatestVersion(packageName) {
+  const res = await fetch(`https://registry.npmjs.org/${packageName}/latest`);
+  if (!res.ok) {
+    console.warn(`Warning: could not fetch ${packageName} (${res.status}), skipping`);
+    return null;
+  }
+  const { version } = await res.json();
+  return version;
+}
+
+const replacementNames = [...new Set([...docData.values()].map((d) => d.replacements[0]))];
+const latestVersions = new Map();
+await Promise.all(
+  replacementNames.map(async (name) => {
+    const ver = await fetchLatestVersion(name);
+    if (ver) latestVersions.set(name, ver);
+  }),
+);
+
 const { version } = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url), "utf-8"),
 );
@@ -73,7 +92,7 @@ const replacements = {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   description: ["Replace e18e replaceable packages with recommended alternatives"],
   packageRules: sortedDocPaths
-    .filter((docPath) => docData.has(docPath))
+    .filter((docPath) => docData.has(docPath) && latestVersions.has(docData.get(docPath).replacements[0]))
     .map((docPath) => {
       const { replacements: reps, content } = docData.get(docPath);
       const migrateBody = content.replace(/^(#{1,5}) /gm, "$1# ");
@@ -82,6 +101,7 @@ const replacements = {
         matchDatasources: ["npm"],
         matchPackageNames: modulesByDocPath.get(docPath),
         replacementName: reps[0],
+        replacementVersion: latestVersions.get(reps[0]),
         prBodyNotes: [
           `> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing \`{{{depName}}}\` with a modern alternative.**\n> See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n${migrateBody}\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/${docPath})*\n\n</details>`,
         ],
