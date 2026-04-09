@@ -4,9 +4,7 @@
 > This preset is **experimental and work in progress**. It exists to test the current limits of Renovate presets with
 > an [e18e](https://e18e.dev/) focus.
 
-A [Renovate](https://docs.renovatebot.com/) shared config preset for [e18e](https://e18e.dev/) replaceable packages. It
-marks them as abandoned, adds replacement recommendations to PR bodies, and can automatically replace packages with
-modern alternatives.
+A [Renovate](https://docs.renovatebot.com/) shared config preset for [e18e](https://e18e.dev/) replaceable packages. It adds replacement recommendations to PR bodies and can automatically replace packages with modern alternatives.
 
 The package list is auto-generated from the [`module-replacements`](https://www.npmjs.com/package/module-replacements)
 package.
@@ -29,7 +27,7 @@ find available versions on the [releases page](https://github.com/OrbisK/renovat
 
 ## Individual presets
 
-The default preset extends all three presets below. You can also use them individually:
+The default preset extends `recommendations` and `replacements`. You can also use them individually:
 
 | Preset                                               | Description                                                                                                                                                                                                                                                                      |
 |------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
