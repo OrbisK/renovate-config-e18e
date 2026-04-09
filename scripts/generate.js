@@ -59,7 +59,7 @@ const communityNotes = {
       ],
       prBodyDefinitions: {
         "Community Notes":
-          "[Replacement docs](https://e18e.dev/docs/replacements/{{{depName}}})",
+          "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/{{{depName}}})",
       },
     },
   ],
