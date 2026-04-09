@@ -112,6 +112,7 @@ workflow then automatically creates a GitHub Release with auto-generated release
 - [ ] Test grouped PRs
 - [ ] Publish replacements docs as separate package (replace ./docs)
 - [ ] Check if automerge is disabled for replacements
+- [ ] Migrate to e18e org
 
 ## Renovate wishlist
 
