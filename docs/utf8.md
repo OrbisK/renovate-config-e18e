@@ -8,8 +8,7 @@ Modern Node and browsers provide native UTF-8 APIs, so this dependency is rarely
 
 ## TextEncoder/TextDecoder (native)
 
-The built-in [`TextEncoder`](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder) and [
-`TextDecoder`](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder) APIs provide a native way to handle UTF-8
+The built-in [`TextEncoder`](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder) and [ `TextDecoder`](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder) APIs provide a native way to handle UTF-8
 encoding and decoding.
 
 ```ts

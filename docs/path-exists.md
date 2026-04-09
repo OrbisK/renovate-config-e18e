@@ -23,8 +23,7 @@ Use [`fs/promises.access`](https://nodejs.org/docs/latest/api/fs.html#fspromises
 
 ## Sync `fs.existsSync` (native, Node.js)
 
-Added in v0.1.21: synchronous path/file existence check via [
-`fs.existsSync`](https://nodejs.org/docs/latest/api/fs.html#fsexistssyncpath).
+Added in v0.1.21: synchronous path/file existence check via [ `fs.existsSync`](https://nodejs.org/docs/latest/api/fs.html#fsexistssyncpath).
 
 ```diff
 - import pathExists from 'path-exists'

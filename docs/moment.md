@@ -68,8 +68,7 @@ Example:
 
 ## `Date` (native)
 
-For simple use cases, native JavaScript [
-`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) and [
+For simple use cases, native JavaScript [ `Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) and [
 `Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) APIs may be sufficient:
 
 <!-- prettier-ignore -->

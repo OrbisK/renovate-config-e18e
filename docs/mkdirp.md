@@ -6,8 +6,7 @@ description: Modern alternatives to the mkdirp and make-dir packages for recursi
 
 ## Recursive `fs.mkdir` (native, since Node.js v10.12.0)
 
-Node.js v10.12.0 and up supports the `recursive` option in the [
-`fs.mkdir`](https://nodejs.org/api/fs.html#fsmkdirpath-options-callback) function, which allows parent directories to be
+Node.js v10.12.0 and up supports the `recursive` option in the [ `fs.mkdir`](https://nodejs.org/api/fs.html#fsmkdirpath-options-callback) function, which allows parent directories to be
 created automatically.
 
 Example migration from [`mkdirp`](https://github.com/isaacs/node-mkdirp):

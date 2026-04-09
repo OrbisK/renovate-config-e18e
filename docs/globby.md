@@ -8,8 +8,7 @@ replacements:
 
 ## `tinyglobby`
 
-[`globby`](https://github.com/sindresorhus/globby) is a convenience wrapper around [
-`fast-glob`](https://github.com/mrmlnc/fast-glob).
+[`globby`](https://github.com/sindresorhus/globby) is a convenience wrapper around [ `fast-glob`](https://github.com/mrmlnc/fast-glob).
 
 You can follow roughly the same migration process as documented in the [`fast-glob`](./fast-glob.md) replacement guide,
 since `globby` is built on top of it and the main differences are its extra conveniences.

@@ -31,8 +31,7 @@ smaller.
 
 ## Unicode RegExp (native)
 
-If your target runtime supports ES2024 Unicode property sets, you can use the native [
-`\p{RGI_Emoji}`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Unicode_character_class_escape)
+If your target runtime supports ES2024 Unicode property sets, you can use the native [ `\p{RGI_Emoji}`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Unicode_character_class_escape)
 property in a regular expression. This relies on the engine's built‑in Unicode handling.
 
 ```diff

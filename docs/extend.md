@@ -8,8 +8,7 @@ replacements:
 
 ## `structuredClone` (native)
 
-If you only need to deep clone an object, you can use [
-`structuredClone`](https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone):
+If you only need to deep clone an object, you can use [ `structuredClone`](https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone):
 
 ```diff
   - import extend from 'extend'

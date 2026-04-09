@@ -72,8 +72,7 @@ upgrades your existing `npm run` experience instead of providing a separate CLI.
 
 ## `bun run --parallel` / `bun run --sequential`
 
-If you are using bun you can use [`bun run --parallel`](https://bun.com/docs/runtime#param-parallel) and [
-`bun run --sequential`](https://bun.com/docs/runtime#param-sequential).
+If you are using bun you can use [`bun run --parallel`](https://bun.com/docs/runtime#param-parallel) and [ `bun run --sequential`](https://bun.com/docs/runtime#param-sequential).
 
 ### Parallel
 

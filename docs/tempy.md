@@ -7,8 +7,7 @@ description: Modern alternatives to the temp and tempy packages for creating tem
 ## `fs.mkdtemp` (native, since Node.js v14.x)
 
 Node.js has the [`fs.mkdtemp`](https://nodejs.org/api/fs.html#fsmkdtempprefix-options-callback) function for creating a
-unique temporary directory. Directory cleanup can be done by passing `{recursive: true}` to [
-`fs.rm`](https://nodejs.org/api/fs.html#fsrmpath-options-callback).
+unique temporary directory. Directory cleanup can be done by passing `{recursive: true}` to [ `fs.rm`](https://nodejs.org/api/fs.html#fsrmpath-options-callback).
 
 Example:
 
@@ -44,8 +43,7 @@ Example:
 
 ## Deno
 
-Deno provides built-in [`Deno.makeTempDir`](https://docs.deno.com/api/deno/~/Deno.makeTempDir) and [
-`Deno.makeTempFile`](https://docs.deno.com/api/deno/~/Deno.makeTempFile) for creating unique temporary directories and
+Deno provides built-in [`Deno.makeTempDir`](https://docs.deno.com/api/deno/~/Deno.makeTempDir) and [ `Deno.makeTempFile`](https://docs.deno.com/api/deno/~/Deno.makeTempFile) for creating unique temporary directories and
 files in the system temp directory (or a custom `dir`). You can also set `prefix` and `suffix`. Both return the full
 path and require `--allow-write`.
 

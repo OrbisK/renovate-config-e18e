@@ -23,8 +23,7 @@ Example:
 
 ## `nanoexec`
 
-If you prefer a very thin wrapper over `child_process.spawn` (including full spawn options and optional shell), [
-`nanoexec`](https://github.com/fabiospampinato/nanoexec) is another light alternative. Its `stdout`/`stderr` are
+If you prefer a very thin wrapper over `child_process.spawn` (including full spawn options and optional shell), [ `nanoexec`](https://github.com/fabiospampinato/nanoexec) is another light alternative. Its `stdout`/`stderr` are
 Buffers.
 
 Example:

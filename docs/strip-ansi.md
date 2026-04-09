@@ -23,8 +23,7 @@ be used to strip ANSI escape codes from a string.
 
 ## Deno
 
-Deno implements the Node `util` API, and also provides [
-`util.stripVTControlCharacters`](https://docs.deno.com/api/node/util/~/stripVTControlCharacters). The usage is
+Deno implements the Node `util` API, and also provides [ `util.stripVTControlCharacters`](https://docs.deno.com/api/node/util/~/stripVTControlCharacters). The usage is
 identical:
 
 ```diff
@@ -39,8 +38,7 @@ identical:
 
 ### Using Node‑compatible API
 
-Bun also implements Node’s [
-`util.stripVTControlCharacters`](https://bun.sh/reference/node/util/stripVTControlCharacters) through its Node compat
+Bun also implements Node’s [ `util.stripVTControlCharacters`](https://bun.sh/reference/node/util/stripVTControlCharacters) through its Node compat
 layer:
 
 ```diff
@@ -53,8 +51,7 @@ layer:
 
 ### Using Bun's native API (>=1.2.21)
 
-Since Bun v1.2.21, you can use the built-in [
-`Bun.stripANSI`](https://bun.com/blog/release-notes/bun-v1.2.21#bun-stripansi-simd-accelerated-ansi-escape-removal)
+Since Bun v1.2.21, you can use the built-in [ `Bun.stripANSI`](https://bun.com/blog/release-notes/bun-v1.2.21#bun-stripansi-simd-accelerated-ansi-escape-removal)
 method.
 
 ```diff

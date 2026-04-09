@@ -31,10 +31,10 @@ find available versions on the [releases page](https://github.com/OrbisK/renovat
 
 The default preset extends all three presets below. You can also use them individually:
 
-| Preset                                               | Description                                                                                                                                                                                              |
-|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `github>OrbisK/renovate-config-e18e:abandonment`     | Marks e18e replaceable packages as abandoned using [`abandonmentThreshold`](https://docs.renovatebot.com/configuration-options/#abandonmentthreshold) and adds an `e18e` label |
-| `github>OrbisK/renovate-config-e18e:recommendations` | Adds replacement recommendations to PR bodies (see [below](#recommendations-preset))                                                                                         |
+| Preset                                               | Description                                                                                                                                                                                                                                                                      |
+|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `github>OrbisK/renovate-config-e18e:abandonment`     | Marks e18e replaceable packages as abandoned using [`abandonmentThreshold`](https://docs.renovatebot.com/configuration-options/#abandonmentthreshold) and adds an `e18e` label                                                                                                   |
+| `github>OrbisK/renovate-config-e18e:recommendations` | Adds replacement recommendations to PR bodies (see [below](#recommendations-preset))                                                                                                                                                                                             |
 | `github>OrbisK/renovate-config-e18e:replacements`    | Replaces packages with recommended alternatives using [`replacementName`](https://docs.renovatebot.com/configuration-options/#packagerulesreplacementname), opens a [**draft PR**](https://docs.renovatebot.com/configuration-options/#draftpr) with an embedded migration guide |
 
 ### Using individual presets
@@ -55,8 +55,7 @@ To use only specific presets, reference them directly instead of the default:
 The recommendations preset provides two ways to surface e18e replacement info in PRs:
 
 1. **"Community Notes" column** — a shields.io badge in the PR body table linking to the e18e replacement docs. To
-   enable it, add `"Community Notes"` to your [
-   `prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns):
+   enable it, add `"Community Notes"` to your [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns):
 
     ```json
     {
@@ -77,19 +76,9 @@ The presets are generated from the [`module-replacements`](https://www.npmjs.com
 which provides a curated list of npm packages that have preferred modern alternatives (e.g. `axios` -> native `fetch`,
 `chalk` -> built-in Node.js styling).
 
-- **Abandonment**: Renovate's [
-  `abandonmentThreshold`](https://docs.renovatebot.com/configuration-options/#abandonmentthreshold) marks these packages
-  as abandoned in Renovate's UI.
-- **Recommendations**: Defines a [
-  `prBodyDefinitions`](https://docs.renovatebot.com/configuration-options/#prbodydefinitions) entry for a "Community
-  Notes" column, and falls back to a [`prBodyNotes`](https://docs.renovatebot.com/configuration-options/#prbodynotes)
-  warning callout when the column is not in [
-  `prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns).
-- **Replacements**: Uses Renovate's [
-  `replacementName`](https://docs.renovatebot.com/configuration-options/#packagerulesreplacementname) to open [**draft
-  PRs**](https://docs.renovatebot.com/configuration-options/#draftpr) that swap packages (e.g. `glob` -> `tinyglobby`)
-  with an embedded migration guide. PRs are drafts because they require manual changes to imports and usage beyond the
-  dependency swap.
+- **Abandonment**: Renovate's [`abandonmentThreshold`](https://docs.renovatebot.com/configuration-options/#abandonmentthreshold) marks these packages as abandoned in Renovate's UI.
+- **Recommendations**: Defines a [`prBodyDefinitions`](https://docs.renovatebot.com/configuration-options/#prbodydefinitions) entry for a "Community Notes" column, and falls back to a [`prBodyNotes`](https://docs.renovatebot.com/configuration-options/#prbodynotes) warning callout when the column is not in [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns).
+- **Replacements**: Uses Renovate's [`replacementName`](https://docs.renovatebot.com/configuration-options/#packagerulesreplacementname) to open [**draft PRs**](https://docs.renovatebot.com/configuration-options/#draftpr) that swap packages (e.g. `glob` -> `tinyglobby`) with an embedded migration guide. PRs are drafts because they require manual changes to imports and usage beyond the dependency swap.
 
 ## Regenerating the config
 

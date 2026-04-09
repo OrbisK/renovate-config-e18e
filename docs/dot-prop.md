@@ -10,8 +10,7 @@ replacements:
 
 ## `dlv` and `dset`
 
-[`dlv`](https://github.com/developit/dlv) gets nested values with default fallbacks and [
-`dset`](https://github.com/lukeed/dset) sets nested values with automatic intermediate object creation.
+[`dlv`](https://github.com/developit/dlv) gets nested values with default fallbacks and [ `dset`](https://github.com/lukeed/dset) sets nested values with automatic intermediate object creation.
 
 ```diff
 - import { getProperty, setProperty } from 'dot-prop'

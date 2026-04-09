@@ -8,8 +8,7 @@ replacements:
 
 ## `jsx-ast-utils-x`
 
-[`jsx-ast-utils-x`](https://github.com/eslinter/jsx-ast-utils-x) is a zero‑dependency alternative to [
-`jsx-ast-utils`](https://github.com/jsx-eslint/jsx-ast-utils) that aims to maintain API compatibility while reducing
+[`jsx-ast-utils-x`](https://github.com/eslinter/jsx-ast-utils-x) is a zero‑dependency alternative to [ `jsx-ast-utils`](https://github.com/jsx-eslint/jsx-ast-utils) that aims to maintain API compatibility while reducing
 package size.
 
 ```diff
