@@ -1,14 +1,16 @@
 ---
 description: Modern alternatives to the eslint-plugin-vitest package for Vitest-specific linting rules
 replacements:
-  - @vitest/eslint-plugin
+  - "@vitest/eslint-plugin"
 ---
 
 # Replacements for `eslint-plugin-vitest`
 
 ## `@vitest/eslint-plugin`
 
-[`@vitest/eslint-plugin`](https://github.com/vitest-dev/eslint-plugin-vitest) is the same project as `eslint-plugin-vitest` but re-published under a different name. `eslint-plugin-vitest` is no longer maintained because the [original maintainer has lost access to their old npm account](https://github.com/vitest-dev/eslint-plugin-vitest/issues/537).
+[`@vitest/eslint-plugin`](https://github.com/vitest-dev/eslint-plugin-vitest) is the same project as
+`eslint-plugin-vitest` but re-published under a different name. `eslint-plugin-vitest` is no longer maintained because
+the [original maintainer has lost access to their old npm account](https://github.com/vitest-dev/eslint-plugin-vitest/issues/537).
 
 ```ts
 import vitest from '@vitest/eslint-plugin' // [!code ++]

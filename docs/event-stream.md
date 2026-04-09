@@ -28,6 +28,7 @@ const lines = createInterface({ input: createReadStream('file.txt') }) // [!code
 ## `es.map()` replacement
 
 <!-- prettier-ignore -->
+
 ```ts
 import es from 'event-stream' // [!code --]
 

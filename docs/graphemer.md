@@ -8,7 +8,9 @@ replacements:
 
 ## `Intl.Segmenter` (native)
 
-[`Intl.Segmenter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter) is the modern native JavaScript API for text segmentation, available in Node.js 16+, Chrome 87+, Safari 14.1+, and Firefox 132+.
+[`Intl.Segmenter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter) is
+the modern native JavaScript API for text segmentation, available in Node.js 16+, Chrome 87+, Safari 14.1+, and Firefox
+132+.
 
 ```ts
 import GraphemeSplitter from 'grapheme-splitter' // [!code --]
@@ -25,7 +27,8 @@ const count = [...segmenter.segment(text)].length // [!code ++]
 
 ## `unicode-segmenter`
 
-[`unicode-segmenter`](https://github.com/cometkim/unicode-segmenter) is a lightweight, fast alternative with zero dependencies and excellent browser compatibility.
+[`unicode-segmenter`](https://github.com/cometkim/unicode-segmenter) is a lightweight, fast alternative with zero
+dependencies and excellent browser compatibility.
 
 ```ts
 import GraphemeSplitter from 'grapheme-splitter' // [!code --]

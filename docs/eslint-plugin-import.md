@@ -8,11 +8,14 @@ replacements:
 
 ## `eslint-plugin-import-x`
 
-[`eslint-plugin-import-x`](https://github.com/un-ts/eslint-plugin-import-x) is a modern fork of [`eslint-plugin-import`](https://github.com/import-js/eslint-plugin-import). `import-x` focuses on faster module resolution via a Rust-based resolver, a smaller dependency footprint
+[`eslint-plugin-import-x`](https://github.com/un-ts/eslint-plugin-import-x) is a modern fork of [
+`eslint-plugin-import`](https://github.com/import-js/eslint-plugin-import). `import-x` focuses on faster module
+resolution via a Rust-based resolver, a smaller dependency footprint
 
 ### Flat config
 
 <!-- prettier-ignore -->
+
 ```ts
 import importPlugin from 'eslint-plugin-import' // [!code --]
 import { createNodeResolver, importX } from 'eslint-plugin-import-x' // [!code ++]

@@ -1,14 +1,15 @@
 ---
 description: Modern alternatives to the eslint-plugin-react package for React/JSX-specific linting rules
 replacements:
-  - @eslint-react/eslint-plugin
+  - '@eslint-react/eslint-plugin'
 ---
 
 # Replacements for `eslint-plugin-react`
 
 ## `@eslint-react/eslint-plugin`
 
-[`@eslint-react/eslint-plugin`](https://github.com/Rel1cx/eslint-react) is not a drop-in replacement, but a feature‑rich alternative that covers many of the same (and additional) rules.
+[`@eslint-react/eslint-plugin`](https://github.com/Rel1cx/eslint-react) is not a drop-in replacement, but a feature‑rich
+alternative that covers many of the same (and additional) rules.
 
 Flat config example:
 
@@ -35,4 +36,6 @@ export default [
 ```
 
 > [!NOTE]
-> `@eslint-react/eslint-plugin` is not a drop‑in replacement. Use [their migration guide](https://eslint-react.xyz/docs/migration) to map rules/options and automate changes where possible.
+> `@eslint-react/eslint-plugin` is not a drop‑in replacement.
+> Use [their migration guide](https://eslint-react.xyz/docs/migration) to map rules/options and automate changes where
+> possible.

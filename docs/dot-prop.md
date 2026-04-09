@@ -10,7 +10,8 @@ replacements:
 
 ## `dlv` and `dset`
 
-[`dlv`](https://github.com/developit/dlv) gets nested values with default fallbacks and [`dset`](https://github.com/lukeed/dset) sets nested values with automatic intermediate object creation.
+[`dlv`](https://github.com/developit/dlv) gets nested values with default fallbacks and [
+`dset`](https://github.com/lukeed/dset) sets nested values with automatic intermediate object creation.
 
 ```ts
 import { getProperty, setProperty } from 'dot-prop' // [!code --]
@@ -26,7 +27,8 @@ dset(obj, 'foo.bar.baz', 'value') // [!code ++]
 
 ## `object-path`
 
-[`object-path`](https://github.com/mariocasciaro/object-path) provides get/set/has/delete operations plus array methods like push, insert, and empty.
+[`object-path`](https://github.com/mariocasciaro/object-path) provides get/set/has/delete operations plus array methods
+like push, insert, and empty.
 
 ```ts
 import { deleteProperty, getProperty, hasProperty, setProperty } from 'dot-prop' // [!code --]

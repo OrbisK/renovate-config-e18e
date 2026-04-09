@@ -7,7 +7,8 @@ replacements:
 
 # Replacements for `uri-js`
 
-[`uri-js`](https://github.com/garycourt/uri-js) is unmaintained and triggers deprecation warnings on modern Node.js ([due to `punycode`](https://github.com/garycourt/uri-js/pull/95)).
+[`uri-js`](https://github.com/garycourt/uri-js) is unmaintained and triggers deprecation warnings on modern
+Node.js ([due to `punycode`](https://github.com/garycourt/uri-js/pull/95)).
 
 ## `URL` (native)
 
@@ -26,11 +27,13 @@ new URL('../../g', 'https://a/b/c/d?q').href // [!code ++]
 ```
 
 > [!NOTE]
-> [WHATWG URL](https://url.spec.whatwg.org/) differs from [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986) in some details and may not cover arbitrary custom schemes/URNs.
+> [WHATWG URL](https://url.spec.whatwg.org/) differs from [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986) in
+> some details and may not cover arbitrary custom schemes/URNs.
 
 ## `uri-js-replace`
 
-[`uri-js-replace`](https://github.com/andreinwald/uri-js-replace) is a drop-in, zero-dependency replacement for `uri-js` with the same API and no deprecation warnings.
+[`uri-js-replace`](https://github.com/andreinwald/uri-js-replace) is a drop-in, zero-dependency replacement for `uri-js`
+with the same API and no deprecation warnings.
 
 ```ts
 import * as URI from 'uri-js' // [!code --]
@@ -47,7 +50,8 @@ const norm = URI.normalize('URI://www.example.org/red%09ros\xE9#red')
 
 ## `fast-uri`
 
-[`fast-uri`](https://github.com/fastify/fast-uri) is a zero-dependency, high-performance RFC 3986 URI toolbox (parse/serialize/resolve/equal) with options similar to `uri-js`.
+[`fast-uri`](https://github.com/fastify/fast-uri) is a zero-dependency, high-performance RFC 3986 URI toolbox (
+parse/serialize/resolve/equal) with options similar to `uri-js`.
 
 ```ts
 import * as uri from 'uri-js' // [!code --]

@@ -8,7 +8,9 @@ replacements:
 
 ## `cpx2`
 
-[`cpx`](https://github.com/mysticatea/cpx) is unmaintained. [`cpx2`](https://github.com/bcomnes/cpx2) is an actively maintained fork that keeps the same CLI bin name (`cpx`), so it works as a drop-in replacement for CLI usage. For the Node API, switch your import to `cpx2`.
+[`cpx`](https://github.com/mysticatea/cpx) is unmaintained. [`cpx2`](https://github.com/bcomnes/cpx2) is an actively
+maintained fork that keeps the same CLI bin name (`cpx`), so it works as a drop-in replacement for CLI usage. For the
+Node API, switch your import to `cpx2`.
 
 ```sh
 npm i -D cpx # [!code --]

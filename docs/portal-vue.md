@@ -8,9 +8,11 @@ replacements:
 
 ## Vue `Teleport` API
 
-Since Vue 3, the [Teleport](https://vuejs.org/guide/built-ins/teleport.html) component has been introduced which replaces portal-vue for most use cases, especially modals and overlays.
+Since Vue 3, the [Teleport](https://vuejs.org/guide/built-ins/teleport.html) component has been introduced which
+replaces portal-vue for most use cases, especially modals and overlays.
 
-`<Teleport>` only moves DOM nodes to an existing target — it does not manage destinations, layouts, or component structure.
+`<Teleport>` only moves DOM nodes to an existing target — it does not manage destinations, layouts, or component
+structure.
 
 ```html
 <!-- Using a modal -->

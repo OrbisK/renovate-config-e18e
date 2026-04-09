@@ -26,7 +26,8 @@ const formatted = dayjs().format('YYYY-MM-DD') // [!code ++]
 
 ## `date-fns`
 
-[date-fns](https://github.com/date-fns/date-fns) offers tree-shakable functions for working with native JavaScript dates.
+[date-fns](https://github.com/date-fns/date-fns) offers tree-shakable functions for working with native JavaScript
+dates.
 
 Example:
 
@@ -46,7 +47,8 @@ const lastWeek = subWeeks(new Date(), 1) // [!code ++]
 
 ## `luxon`
 
-[Luxon](https://github.com/moment/luxon) is created by a Moment.js maintainer and offers powerful internationalization support.
+[Luxon](https://github.com/moment/luxon) is created by a Moment.js maintainer and offers powerful internationalization
+support.
 
 Example:
 
@@ -66,9 +68,12 @@ const tomorrow = DateTime.now().plus({ days: 1 }) // [!code ++]
 
 ## `Date` (native)
 
-For simple use cases, native JavaScript [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) and [`Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) APIs may be sufficient:
+For simple use cases, native JavaScript [
+`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) and [
+`Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) APIs may be sufficient:
 
 <!-- prettier-ignore -->
+
 ```ts
 import moment from 'moment' // [!code --]
 

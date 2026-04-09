@@ -11,7 +11,7 @@ description: Native Node.js alternatives to the buf-compare package for buffer c
 Example:
 
 ```ts
-import { Buffer } from 'node:buffer'
+import {Buffer} from 'node:buffer'
 import bufCompare from 'buf-compare' // [!code --]
 
 const buf1 = Buffer.from('303')

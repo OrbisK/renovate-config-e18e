@@ -20,7 +20,8 @@ await ezSpawn.async('ls -l') // [!code --]
 await x('ls', ['-l']) // [!code ++]
 ```
 
-Alternatively, you can use [`args-tokenizer`](https://github.com/TrySound/args-tokenizer/) to convert a shell string to a command and arguments:
+Alternatively, you can use [`args-tokenizer`](https://github.com/TrySound/args-tokenizer/) to convert a shell string to
+a command and arguments:
 
 ```ts
 import ezSpawn from '@jsdevtools/ez-spawn' // [!code --]

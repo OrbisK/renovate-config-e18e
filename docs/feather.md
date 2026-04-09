@@ -14,6 +14,7 @@ replacements:
 Example:
 
 <!-- prettier-ignore -->
+
 ```js
 import feather from 'feather-icons' // [!code --]
 import { icons } from 'lucide' // [!code ++]
@@ -24,11 +25,13 @@ icons.x.toSvg({ class: 'icon icon-x' }) // [!code ++]
 
 ## `lucide-react` for `react-feather`
 
-[`lucide-react`](https://lucide.dev/guide/packages/lucide-react) provides React components for the Lucide icon set and is the natural replacement for `react-feather`.
+[`lucide-react`](https://lucide.dev/guide/packages/lucide-react) provides React components for the Lucide icon set and
+is the natural replacement for `react-feather`.
 
 Example:
 
 <!-- prettier-ignore -->
+
 ```jsx
 import { Camera, ArrowRight } from 'react-feather' // [!code --]
 import { Camera, ArrowRight } from 'lucide-react' // [!code ++]
@@ -44,4 +47,5 @@ export function Header() {
 ```
 
 > [!NOTE]
-> Lucide provides information on the [comparison](https://lucide.dev/guide/comparison#lucide-vs-feather-icons) of it vs feather-icons
+> Lucide provides information on the [comparison](https://lucide.dev/guide/comparison#lucide-vs-feather-icons) of it vs
+> feather-icons

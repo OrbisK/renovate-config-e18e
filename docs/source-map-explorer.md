@@ -10,7 +10,8 @@ replacements:
 
 ## `rollup-plugin-visualizer`
 
-[`rollup-plugin-visualizer`](https://github.com/btd/rollup-plugin-visualizer) allows you to visualize rollup, rolldown, and vite bundles
+[`rollup-plugin-visualizer`](https://github.com/btd/rollup-plugin-visualizer) allows you to visualize rollup, rolldown,
+and vite bundles
 
 ### Rollup (`rollup.config.js`)
 
@@ -59,7 +60,8 @@ export default defineConfig({
 
 ## `sonda`
 
-[`sonda`](https://github.com/filipsobol/sonda) allows you to visualize vite, rollup, rolldown, esbuild, webpack, and rspack bundles
+[`sonda`](https://github.com/filipsobol/sonda) allows you to visualize vite, rollup, rolldown, esbuild, webpack, and
+rspack bundles
 
 Example:
 

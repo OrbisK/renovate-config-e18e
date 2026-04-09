@@ -12,6 +12,7 @@ replacements:
 For simple cases:
 
 <!-- prettier-ignore -->
+
 ```ts
 import sortObj from 'sort-object' // [!code --]
 
@@ -26,6 +27,7 @@ const sorted = Object.fromEntries( // [!code ++]
 Replicating `sortBy` (function returns an ordered key list):
 
 <!-- prettier-ignore -->
+
 ```ts
 import sortObj from 'sort-object' // [!code --]
 
@@ -51,7 +53,8 @@ const sorted = Object.fromEntries( // [!code ++]
 
 ## `sort-object-keys`
 
-[`sort-object-keys`](https://github.com/keithamus/sort-object-keys) is zero‑dependency and matches common `sort-object` use cases (custom order array or comparator).
+[`sort-object-keys`](https://github.com/keithamus/sort-object-keys) is zero‑dependency and matches common `sort-object`
+use cases (custom order array or comparator).
 
 ```ts
 import sortObj from 'sort-object' // [!code --]

@@ -8,7 +8,9 @@ replacements:
 
 ## `util.isDeepStrictEqual` (native, since Node.js v9.0.0)
 
-Node.js has a builtin function [`isDeepStrictEqual`](https://nodejs.org/api/util.html#utilisdeepstrictequalval1-val2-options). Consider using that if you don’t need browser support.
+Node.js has a builtin function [
+`isDeepStrictEqual`](https://nodejs.org/api/util.html#utilisdeepstrictequalval1-val2-options). Consider using that if
+you don’t need browser support.
 
 Example:
 

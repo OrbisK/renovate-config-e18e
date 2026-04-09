@@ -8,7 +8,8 @@ replacements:
 
 ## `eslint-plugin-n`
 
-[`eslint-plugin-n`](https://github.com/eslint-community/eslint-plugin-n) is a direct fork which is actively maintained. It has new features, bugfixes and updated dependencies.
+[`eslint-plugin-n`](https://github.com/eslint-community/eslint-plugin-n) is a direct fork which is actively maintained.
+It has new features, bugfixes and updated dependencies.
 
 ```ts
 import nPlugin from 'eslint-plugin-n' // [!code ++]

@@ -33,6 +33,7 @@ const derivedKey = await deriveKey('password', salt)
 ## `crypto.pbkdf2` (native, since Node.js v0.5.5)
 
 <!-- prettier-ignore -->
+
 ```ts
 import pbkdf2 from 'pbkdf2' // [!code --]
 import * as crypto from 'node:crypto' // [!code ++]

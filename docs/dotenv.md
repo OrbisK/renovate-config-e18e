@@ -8,7 +8,9 @@ replacements:
 
 ## `--env-file` / `--env-file-if-exists` (native, Node.js)
 
-[`--env-file`](https://nodejs.org/dist/latest-v20.x/docs/api/cli.html#--env-fileconfig) (Node.js v20.6.0+) and [`--env-file-if-exists`](https://nodejs.org/docs/latest-v22.x/api/cli.html#--env-file-if-existsfile) (Node.js v22.9.0+) can be passed as command-line flags to load environment variables from a specified file.
+[`--env-file`](https://nodejs.org/dist/latest-v20.x/docs/api/cli.html#--env-fileconfig) (Node.js v20.6.0+) and [
+`--env-file-if-exists`](https://nodejs.org/docs/latest-v22.x/api/cli.html#--env-file-if-existsfile) (Node.js v22.9.0+)
+can be passed as command-line flags to load environment variables from a specified file.
 
 `--env-file` throws if the file is missing. If the file may be absent, use `--env-file-if-exists`.
 
@@ -51,7 +53,8 @@ In package.json scripts:
 
 ## Node.js `parseEnv`
 
-[`parseEnv`](https://nodejs.org/docs/latest-v22.x/api/util.html#utilparseenvcontent) (Node.js v20.12.0+) can be used to parse a `.env` string into an object without loading it into `process.env`.
+[`parseEnv`](https://nodejs.org/docs/latest-v22.x/api/util.html#utilparseenvcontent) (Node.js v20.12.0+) can be used to
+parse a `.env` string into an object without loading it into `process.env`.
 
 ```ts
 import { parse } from 'dotenv' // [!code --]

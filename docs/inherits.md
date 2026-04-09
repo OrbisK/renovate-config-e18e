@@ -13,6 +13,7 @@ ES6 classes `extends` syntax is a native way to implement prototype inheritance.
 Example:
 
 <!-- prettier-ignore -->
+
 ```js
 import EventEmitter from 'node:events'
 import inherits from 'inherits' // [!code --]
@@ -43,7 +44,8 @@ stream.write('Hello world!')
 
 ## `utils.inherits` (native, since Node.js v5.0.0)
 
-[`utils.inherits`](https://nodejs.org/docs/latest/api/util.html#utilinheritsconstructor-superconstructor) is a native legacy Node.js api.
+[`utils.inherits`](https://nodejs.org/docs/latest/api/util.html#utilinheritsconstructor-superconstructor) is a native
+legacy Node.js api.
 
 Example:
 
@@ -56,11 +58,13 @@ inherits(Target, Base)
 
 ## `Object.create` (native)
 
-[`Object.create`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create) allows you to implement inheritance.
+[`Object.create`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create) allows
+you to implement inheritance.
 
 Example:
 
 <!-- prettier-ignore -->
+
 ```js
 import inherits from 'inherits' // [!code --]
 

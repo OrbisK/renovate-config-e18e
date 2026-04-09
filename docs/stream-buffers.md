@@ -6,7 +6,8 @@ description: Modern alternatives to the stream-buffers package for buffering and
 
 ## Utility Consumers (native, Node.js)
 
-Since Node.js ≥ 16.7.0 [Utility Consumers](https://nodejs.org/api/webstreams.html#webstreams_utility_consumers) let you consume a Readable stream fully into memory (`Buffer`/`string`/`JSON`/`Blob`/`ArrayBuffer`).
+Since Node.js ≥ 16.7.0 [Utility Consumers](https://nodejs.org/api/webstreams.html#webstreams_utility_consumers) let you
+consume a Readable stream fully into memory (`Buffer`/`string`/`JSON`/`Blob`/`ArrayBuffer`).
 
 Example:
 
@@ -61,6 +62,7 @@ rs.push(null) // [!code ++]
 Control chunk size and frequency example:
 
 <!-- prettier-ignore -->
+
 ```ts
 import streamBuffers from 'stream-buffers' // [!code --]
 import { Readable } from 'node:stream' // [!code ++]

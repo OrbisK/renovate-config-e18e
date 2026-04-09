@@ -9,7 +9,8 @@ replacements:
 
 ## `import.meta.resolve` (native)
 
-[`import.meta.resolve`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta/resolve) is built into browsers and Node.js (>= 20).
+[`import.meta.resolve`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta/resolve)
+is built into browsers and Node.js (>= 20).
 
 Example:
 

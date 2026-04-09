@@ -6,11 +6,13 @@ replacements:
 
 # Replacements for `mockdate`
 
-`mockdate` is mainly used in tests, and modern test runners already include built-in APIs for mocking time without pulling in an extra dependency.
+`mockdate` is mainly used in tests, and modern test runners already include built-in APIs for mocking time without
+pulling in an extra dependency.
 
 ## `vitest`
 
-[`vitest`](https://vitest.dev/guide/mocking.html#mock-the-current-date) provides `vi.useFakeTimers()` and `vi.setSystemTime()` for mocking the current date during tests.
+[`vitest`](https://vitest.dev/guide/mocking.html#mock-the-current-date) provides `vi.useFakeTimers()` and
+`vi.setSystemTime()` for mocking the current date during tests.
 
 ```ts
 import MockDate from 'mockdate' // [!code --]
@@ -30,7 +32,8 @@ test('freeze date', () => {
 
 ## `node:test`
 
-[`node:test`](https://nodejs.org/en/learn/test-runner/mocking#time) supports mocking time via `mock.timers` since node 20.4.0 and later.
+[`node:test`](https://nodejs.org/en/learn/test-runner/mocking#time) supports mocking time via `mock.timers` since node
+20.4.0 and later.
 
 ```ts
 import MockDate from 'mockdate' // [!code --]

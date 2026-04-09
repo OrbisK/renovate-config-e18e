@@ -10,7 +10,8 @@ replacements:
 
 ## `npm-run-all2`
 
-[npm-run-all2](https://github.com/bcomnes/npm-run-all2) is an actively maintained fork with important fixes, dependency updates.
+[npm-run-all2](https://github.com/bcomnes/npm-run-all2) is an actively maintained fork with important fixes, dependency
+updates.
 
 ```json
 {
@@ -24,7 +25,9 @@ The commands remain the same: `npm-run-all`, `run-s`, and `run-p`.
 
 ## `concurrently`
 
-Another option is [concurrently](https://github.com/open-cli-tools/concurrently), which focuses on running scripts in parallel with colored output and process control. It uses a slightly different syntax but works well for replacing the `--parallel` use case.
+Another option is [concurrently](https://github.com/open-cli-tools/concurrently), which focuses on running scripts in
+parallel with colored output and process control. It uses a slightly different syntax but works well for replacing the
+`--parallel` use case.
 
 ```json
 {
@@ -37,7 +40,9 @@ Another option is [concurrently](https://github.com/open-cli-tools/concurrently)
 
 ## `wireit`
 
-For more advanced workflows, consider [Wireit](https://github.com/google/wireit). It integrates directly into `package.json` to add caching, dependency graphs, watch mode, and incremental builds. Unlike `npm-run-all`, Wireit upgrades your existing `npm run` experience instead of providing a separate CLI.
+For more advanced workflows, consider [Wireit](https://github.com/google/wireit). It integrates directly into
+`package.json` to add caching, dependency graphs, watch mode, and incremental builds. Unlike `npm-run-all`, Wireit
+upgrades your existing `npm run` experience instead of providing a separate CLI.
 
 ```json
 {
@@ -67,7 +72,8 @@ For more advanced workflows, consider [Wireit](https://github.com/google/wireit)
 
 ## `bun run --parallel` / `bun run --sequential`
 
-If you are using bun you can use [`bun run --parallel`](https://bun.com/docs/runtime#param-parallel) and [`bun run --sequential`](https://bun.com/docs/runtime#param-sequential).
+If you are using bun you can use [`bun run --parallel`](https://bun.com/docs/runtime#param-parallel) and [
+`bun run --sequential`](https://bun.com/docs/runtime#param-sequential).
 
 ### Parallel
 

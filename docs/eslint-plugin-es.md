@@ -8,7 +8,8 @@ replacements:
 
 ## `eslint-plugin-es-x`
 
-[eslint-plugin-es-x](https://github.com/eslint-community/eslint-plugin-es-x) is a direct fork which is actively maintained. It has new features, bugfixes and updated dependencies.
+[eslint-plugin-es-x](https://github.com/eslint-community/eslint-plugin-es-x) is a direct fork which is actively
+maintained. It has new features, bugfixes and updated dependencies.
 
 ```ts
 import { FlatCompat } from '@eslint/eslintrc' // [!code --]

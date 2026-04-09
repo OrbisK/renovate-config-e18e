@@ -8,7 +8,8 @@ replacements:
 
 ## `structuredClone` (native)
 
-If you only need to deep clone an object, you can use [`structuredClone`](https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone):
+If you only need to deep clone an object, you can use [
+`structuredClone`](https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone):
 
 ```ts
 import extend from 'extend' // [!code --]
@@ -19,7 +20,8 @@ structuredClone(config) // true [!code ++]
 
 ## Spread syntax
 
-If you need to merge two shallow objects, you can use [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals):
+If you need to merge two shallow objects, you can
+use [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals):
 
 ```ts
 const obj1 = { foo: 'bar', x: 42 }

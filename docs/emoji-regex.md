@@ -8,7 +8,8 @@ replacements:
 
 ## `emoji-regex-xs`
 
-[`emoji-regex-xs`](https://github.com/slevithan/emoji-regex-xs) offers the same API and features whilst being 98% smaller.
+[`emoji-regex-xs`](https://github.com/slevithan/emoji-regex-xs) offers the same API and features whilst being 98%
+smaller.
 
 ```ts
 import emojiRegex from 'emoji-regex' // [!code --]
@@ -30,7 +31,9 @@ for (const match of text.matchAll(regex)) {
 
 ## Unicode RegExp (native)
 
-If your target runtime supports ES2024 Unicode property sets, you can use the native [`\p{RGI_Emoji}`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Unicode_character_class_escape) property in a regular expression. This relies on the engine's built‑in Unicode handling.
+If your target runtime supports ES2024 Unicode property sets, you can use the native [
+`\p{RGI_Emoji}`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Unicode_character_class_escape)
+property in a regular expression. This relies on the engine's built‑in Unicode handling.
 
 ```ts
 import emojiRegex from 'emoji-regex' // [!code --]

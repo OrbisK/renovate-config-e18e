@@ -6,7 +6,8 @@ description: Modern alternatives to the fs-extra package for working with the fi
 
 ## `fs` and `fs/promises` (native, Node.js)
 
-Modern Node.js includes built-in `fs` and `fs/promises` APIs that cover what [`fs-extra`](https://github.com/jprichardson/node-fs-extra) historically provided.
+Modern Node.js includes built-in `fs` and `fs/promises` APIs that cover what [
+`fs-extra`](https://github.com/jprichardson/node-fs-extra) historically provided.
 
 ```js
 import fsExtra from 'fs-extra' // [!code --]
@@ -63,6 +64,7 @@ fs.mkdirSync(dir, { recursive: true }) // [!code ++]
 ### `pathExists`
 
 <!-- prettier-ignore -->
+
 ```js
 await fsExtra.pathExists(path) // [!code --]
 await fsPromises.access(path).then(() => true, () => false) // [!code ++]

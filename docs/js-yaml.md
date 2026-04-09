@@ -10,7 +10,8 @@ replacements:
 
 ## `yaml`
 
-[`yaml`](https://github.com/eemeli/yaml) is a well maintained YAML 1.2/1.1 parser/stringifier with better spec compliance, comment/AST support, and no deps.
+[`yaml`](https://github.com/eemeli/yaml) is a well maintained YAML 1.2/1.1 parser/stringifier with better spec
+compliance, comment/AST support, and no deps.
 
 Parse (load):
 
@@ -45,7 +46,8 @@ const out = parseAllDocuments(src).map((d) => d.toJSON()) // [!code ++]
 
 ## Bun `YAML` API
 
-[Native YAML parsing](https://bun.com/docs/runtime/yaml) is supported in Bun since [v1.2.21](https://bun.com/blog/release-notes/bun-v1.2.21#native-yaml-support).
+[Native YAML parsing](https://bun.com/docs/runtime/yaml) is supported in Bun
+since [v1.2.21](https://bun.com/blog/release-notes/bun-v1.2.21#native-yaml-support).
 
 Example:
 

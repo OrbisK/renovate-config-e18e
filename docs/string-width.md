@@ -8,7 +8,8 @@ replacements:
 
 ## `fast-string-width`
 
-[`fast-string-width`](https://github.com/fabiospampinato/fast-string-width) is a drop‑in replacement for `string-width` that’s faster and smaller.
+[`fast-string-width`](https://github.com/fabiospampinato/fast-string-width) is a drop‑in replacement for `string-width`
+that’s faster and smaller.
 
 ```ts
 import stringWidth from 'string-width' // [!code --]

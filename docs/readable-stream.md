@@ -4,7 +4,8 @@ description: Modern alternatives to the readable-stream package for working with
 
 # Replacements for `readable-stream`
 
-[`readable-stream`](https://github.com/nodejs/readable-stream) mirrors Node’s core streams and works in browsers. In most cases, prefer native options.
+[`readable-stream`](https://github.com/nodejs/readable-stream) mirrors Node’s core streams and works in browsers. In
+most cases, prefer native options.
 
 ## `node:stream` (native, since Node.js v0.9.4)
 
@@ -17,7 +18,11 @@ import { Duplex, Readable, Transform, Writable } from 'node:stream' // [!code ++
 
 ## Web Streams (native, browsers and Node.js 16.5.0+)
 
-Use the [Web Streams API (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) in browsers and modern Node. It’s global in Node 18+ ([Node Web Streams docs](https://nodejs.org/api/webstreams.html)); on 16.5–17.x import from `stream/web` ([details](https://nodejs.org/api/webstreams.html#streamweb-the-web-streams-api)). Interop with Node streams is available via [Readable.toWeb](https://nodejs.org/api/stream.html#streamreadabletowebstreamreadable-options) and [Writable.fromWeb](https://nodejs.org/api/stream.html#streamwritablefromwebwritablestream-options).
+Use the [Web Streams API (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) in browsers and modern
+Node. It’s global in Node 18+ ([Node Web Streams docs](https://nodejs.org/api/webstreams.html)); on 16.5–17.x import
+from `stream/web` ([details](https://nodejs.org/api/webstreams.html#streamweb-the-web-streams-api)). Interop with Node
+streams is available via [Readable.toWeb](https://nodejs.org/api/stream.html#streamreadabletowebstreamreadable-options)
+and [Writable.fromWeb](https://nodejs.org/api/stream.html#streamwritablefromwebwritablestream-options).
 
 Example: convert a Web ReadableStream (from fetch) to a Node stream and pipe it to a file.
 

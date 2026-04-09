@@ -48,4 +48,5 @@ const packageJson = packageJsonPath // [!code ++]
 ```
 
 > [!NOTE]
-> This is of course a more manual way to read the `package.json` file, so one of the other options may be more attractive.
+> This is of course a more manual way to read the `package.json` file, so one of the other options may be more
+> attractive.

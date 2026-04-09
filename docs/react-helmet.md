@@ -8,7 +8,8 @@ replacements:
 
 ## Support for Document Metadata (native, since React 19)
 
-[Support for Document Metadata](https://react.dev/blog/2024/12/05/react-19#support-for-metadata-tags) is available since React 19
+[Support for Document Metadata](https://react.dev/blog/2024/12/05/react-19#support-for-metadata-tags) is available since
+React 19
 
 Example:
 
@@ -32,6 +33,7 @@ function BlogPost({ post }) {
 Example:
 
 <!-- prettier-ignore -->
+
 ```jsx
 import { Helmet } from 'react-helmet' // [!code --]
 import { Helmet, HelmetProvider } from 'react-helmet-async' // [!code ++]

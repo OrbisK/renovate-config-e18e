@@ -6,7 +6,8 @@ description: Native Node.js alternatives to the buffer-equal-constant-time packa
 
 ## `crypto.timingSafeEqual` (native)
 
-You can use the [`timingSafeEqual`](https://nodejs.org/api/crypto.html#cryptotimingsafeequala-b) function from the `node:crypto` module.
+You can use the [`timingSafeEqual`](https://nodejs.org/api/crypto.html#cryptotimingsafeequala-b) function from the
+`node:crypto` module.
 
 Example:
 

@@ -6,7 +6,8 @@ description: Native Node.js alternatives to the gzip-size for calculating gzippe
 
 ## `gzipSync` (native, since Node.js 9.4.0)
 
-To calculate the gzipped size of a string or an `ArrayBuffer`, you can use [gzipSync](https://nodejs.org/api/zlib.html#zlibgzipsync) which exist inside the `zlib` module:
+To calculate the gzipped size of a string or an `ArrayBuffer`, you can
+use [gzipSync](https://nodejs.org/api/zlib.html#zlibgzipsync) which exist inside the `zlib` module:
 
 ### Synchronous
 

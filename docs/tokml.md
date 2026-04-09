@@ -1,7 +1,7 @@
 ---
 description: Modern replacements for the tokml package for converting GeoJSON to KML
 replacements:
-  - @placemarkio/tokml
+  - "@placemarkio/tokml"
 ---
 
 # Replacements for `tokml`

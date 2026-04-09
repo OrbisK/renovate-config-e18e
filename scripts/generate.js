@@ -1,4 +1,5 @@
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, readdirSync, writeFileSync } from "node:fs";
+import matter from "gray-matter";
 import { preferredReplacements } from "module-replacements";
 
 const moduleNames = preferredReplacements.moduleReplacements
@@ -15,6 +16,15 @@ for (const r of preferredReplacements.moduleReplacements) {
 const sortedDocPaths = [...modulesByDocPath.keys()].sort();
 for (const docPath of sortedDocPaths) {
   modulesByDocPath.get(docPath).sort();
+}
+
+const docsDir = new URL("../docs", import.meta.url);
+const docData = new Map();
+for (const file of readdirSync(docsDir).filter(f => f.endsWith(".md") && f !== "README.md")) {
+  const docPath = file.replace(".md", "");
+  const { data, content } = matter(readFileSync(new URL(file, docsDir + "/"), "utf-8"));
+  if (!data.replacements?.length) continue;
+  docData.set(docPath, { replacements: data.replacements, content });
 }
 
 const { version } = JSON.parse(
@@ -62,90 +72,21 @@ const recommendations = {
 const replacements = {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   description: ["Replace e18e replaceable packages with recommended alternatives"],
-  packageRules: [
-    {
-      description: "Replace glob with tinyglobby",
-      matchDatasources: ["npm"],
-      matchPackageNames: ["glob"],
-      replacementName: "tinyglobby",
-      prBodyNotes: [
-        `> [!WARNING]
-> **The [e18e](https://e18e.dev) community recommends replacing \`glob\` with a modern alternative.**
-> See the full migration guide below.
-
-<details><summary>Migration guide from e18e</summary>
-
-## Replacements for \`glob\`
-
-### \`tinyglobby\`
-
-[\`tinyglobby\`](https://github.com/SuperchupuDev/tinyglobby) provides a similar API.
-
-Example:
-
-\`\`\`diff
-- import { glob } from 'glob'
-+ import { glob } from 'tinyglobby'
-
-const files = await glob('**/*.ts')
-\`\`\`
-
-Most options available to \`glob\` are available in \`tinyglobby\`, read more at the [tinyglobby documentation](https://superchupu.dev/tinyglobby/documentation).
-
-### \`fs.glob\` (native, since Node 22.x)
-
-[\`fs.glob\`](https://nodejs.org/api/fs.html#fspromisesglobpattern-options) is built into modern versions of Node.
-
-Example:
-
-\`\`\`diff
-- import { glob } from 'glob'
-+ import { glob } from 'node:fs/promises'
-
-- const files = await glob('src/**/*.ts', {
-+ const files = await Array.fromAsync(glob('src/**/*.ts', {
-    cwd,
-- })
-+ }))
-\`\`\`
-
-You can also iterate over the results asynchronously:
-
-\`\`\`ts
-for await (const result of glob('src/**/*.ts', { cwd })) {
-  // result is an individual path
-  console.log(result)
-}
-\`\`\`
-
-> [!NOTE]
-> Node's built-in \`glob\` is more minimal and does not support negation patterns or fine-grained options like setting a max depth out of the box.
-
-### \`fdir\`
-
-[\`fdir\`](https://github.com/thecodrr/fdir/) offers similar functionality but through a different API (and \`tinyglobby\` is actually built on top of it).
-
-Example:
-
-\`\`\`diff
-+ import { fdir } from 'fdir'
-- import { glob } from 'glob'
-
-+ const files = new fdir()
-+   .withBasePath()
-+   .glob('src/**/*.ts')
-+   .crawl(cwd)
-+   .withPromise()
-- const files = await glob('src/**/*.ts', { cwd, maxDepth: 6 })
-\`\`\`
-
----
-*Source: [e18e module replacements](https://e18e.dev/docs/replacements/glob)*
-
-</details>`,
-      ],
-    },
-  ],
+  packageRules: sortedDocPaths
+    .filter((docPath) => docData.has(docPath))
+    .map((docPath) => {
+      const { replacements: reps, content } = docData.get(docPath);
+      const migrateBody = content.replace(/^(#{1,5}) /gm, "$1# ");
+      return {
+        description: `Replace with ${reps[0]}`,
+        matchDatasources: ["npm"],
+        matchPackageNames: modulesByDocPath.get(docPath),
+        replacementName: reps[0],
+        prBodyNotes: [
+          `> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing \`{{{depName}}}\` with a modern alternative.**\n> See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n${migrateBody}\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/${docPath})*\n\n</details>`,
+        ],
+      };
+    }),
 };
 
 const defaultConfig = {

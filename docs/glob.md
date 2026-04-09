@@ -20,7 +20,8 @@ import { glob } from 'tinyglobby' // [!code ++]
 const files = await glob('**/*.ts')
 ```
 
-Most options available to `glob` are available in `tinyglobby`, read more at the [tinyglobby documentation](https://superchupu.dev/tinyglobby/documentation).
+Most options available to `glob` are available in `tinyglobby`, read more at
+the [tinyglobby documentation](https://superchupu.dev/tinyglobby/documentation).
 
 ## `fs.glob` (native, since Node 22.x)
 
@@ -51,11 +52,13 @@ for await (const result of glob('src/**/*.ts', { cwd })) {
 ```
 
 > [!NOTE]
-> Node's built-in `glob` is more minimal and does not support negation patterns or fine-grained options like setting a max depth out of the box.
+> Node's built-in `glob` is more minimal and does not support negation patterns or fine-grained options like setting a
+> max depth out of the box.
 
 ## `fdir`
 
-[`fdir`](https://github.com/thecodrr/fdir/) offers similar functionality but through a different API (and `tinyglobby` is actually built on top of it).
+[`fdir`](https://github.com/thecodrr/fdir/) offers similar functionality but through a different API (and `tinyglobby`
+is actually built on top of it).
 
 Example:
 

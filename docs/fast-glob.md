@@ -8,7 +8,8 @@ replacements:
 
 ## `tinyglobby`
 
-[`tinyglobby`](https://github.com/SuperchupuDev/tinyglobby) is a modern, lightweight alternative that provides similar functionality with better performance.
+[`tinyglobby`](https://github.com/SuperchupuDev/tinyglobby) is a modern, lightweight alternative that provides similar
+functionality with better performance.
 
 Example:
 
@@ -26,4 +27,5 @@ const files = await glob('**/*.ts', { // [!code ++]
 })
 ```
 
-Most options from `fast-glob` have direct equivalents in `tinyglobby`. Check the [tinyglobby documentation](https://superchupu.dev/tinyglobby/migration) for the complete list of supported options.
+Most options from `fast-glob` have direct equivalents in `tinyglobby`. Check
+the [tinyglobby documentation](https://superchupu.dev/tinyglobby/migration) for the complete list of supported options.

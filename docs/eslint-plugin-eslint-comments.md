@@ -1,14 +1,15 @@
 ---
 description: Modern alternatives to the eslint-plugin-eslint-comments package for ESLint comment linting
 replacements:
-  - @eslint-community/eslint-plugin-eslint-comments
+  - "@eslint-community/eslint-plugin-eslint-comments"
 ---
 
 # Replacements for `eslint-plugin-eslint-comments`
 
 ## `@eslint-community/eslint-plugin-eslint-comments`
 
-[`@eslint-community/eslint-plugin-eslint-comments`](https://github.com/eslint-community/eslint-plugin-eslint-comments) is the actively maintained successor with updated dependencies, flat config support, and continued development.
+[`@eslint-community/eslint-plugin-eslint-comments`](https://github.com/eslint-community/eslint-plugin-eslint-comments)
+is the actively maintained successor with updated dependencies, flat config support, and continued development.
 
 ```ts
 import eslintComments from 'eslint-plugin-eslint-comments' // [!code --]

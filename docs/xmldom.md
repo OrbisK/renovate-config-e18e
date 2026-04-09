@@ -1,7 +1,7 @@
 ---
 description: Modern alternatives to the xmldom package for XML DOM parsing and serialization
 replacements:
-  - @xmldom/xmldom
+  - '@xmldom/xmldom'
 ---
 
 # Replacements for `xmldom`

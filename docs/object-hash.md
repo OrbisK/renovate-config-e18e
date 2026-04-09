@@ -8,7 +8,9 @@ replacements:
 
 ## `ohash`
 
-[`ohash`](https://github.com/unjs/ohash) is actively maintained and provides hashing, stable serialization, equality checks, and diffs. It uses stable serialization + SHA-256, returning Base64URL by default. Its serializer was originally based on `object-hash`.
+[`ohash`](https://github.com/unjs/ohash) is actively maintained and provides hashing, stable serialization, equality
+checks, and diffs. It uses stable serialization + SHA-256, returning Base64URL by default. Its serializer was originally
+based on `object-hash`.
 
 Example:
 
@@ -22,7 +24,8 @@ const h = hash(obj) // [!code ++]
 
 ## Web Crypto
 
-Use the standard `SubtleCrypto.digest` available in modern runtimes. Pair it with a stable serializer (e.g., [`safe-stable-stringify`](https://github.com/BridgeAR/safe-stable-stringify)) to ensure deterministic key ordering.
+Use the standard `SubtleCrypto.digest` available in modern runtimes. Pair it with a stable serializer (e.g., [
+`safe-stable-stringify`](https://github.com/BridgeAR/safe-stable-stringify)) to ensure deterministic key ordering.
 
 Example:
 
@@ -40,7 +43,8 @@ const h = Array.from(new Uint8Array(buf)) // [!code ++]
 
 ## Bun `CryptoHasher`
 
-Bun provides a native incremental hasher (e.g., SHA-256). Combine it with a stable serializer for object hashing. For fast non-crypto fingerprints, see [`Bun.hash`](https://bun.com/reference/bun/hash).
+Bun provides a native incremental hasher (e.g., SHA-256). Combine it with a stable serializer for object hashing. For
+fast non-crypto fingerprints, see [`Bun.hash`](https://bun.com/reference/bun/hash).
 
 Docs: https://bun.com/reference/bun/CryptoHasher
 

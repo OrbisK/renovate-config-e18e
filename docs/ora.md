@@ -9,7 +9,8 @@ replacements:
 
 ## `nanospinner`
 
-[`nanospinner`](https://github.com/usmanyunusov/nanospinner) provides simple start/success/error/warning methods with one dependency (`picocolors`).
+[`nanospinner`](https://github.com/usmanyunusov/nanospinner) provides simple start/success/error/warning methods with
+one dependency (`picocolors`).
 
 ```ts
 import ora from 'ora' // [!code --]
@@ -27,7 +28,8 @@ spinner.error('Error!') // [!code ++]
 
 ## `picospinner`
 
-[`picospinner`](https://github.com/tinylibs/picospinner) has zero dependencies with support for custom symbols, frames, and colors through Node.js built-in styling.
+[`picospinner`](https://github.com/tinylibs/picospinner) has zero dependencies with support for custom symbols, frames,
+and colors through Node.js built-in styling.
 
 ```ts
 import ora from 'ora' // [!code --]

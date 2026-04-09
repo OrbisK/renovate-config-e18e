@@ -79,7 +79,8 @@ find.file( // [!code ++]
 
 ## `pkg-types`
 
-[`pkg-types`](https://github.com/unjs/pkg-types) provides utilities for reading and writing package.json, tsconfig.json, and other configuration files with TypeScript support.
+[`pkg-types`](https://github.com/unjs/pkg-types) provides utilities for reading and writing package.json, tsconfig.json,
+and other configuration files with TypeScript support.
 
 ```ts
 import { findUp } from 'find-up' // [!code --]

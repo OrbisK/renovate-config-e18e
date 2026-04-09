@@ -8,7 +8,8 @@ replacements:
 
 ## `package-manager-detector`
 
-[`package-manager-detector`](https://github.com/antfu-collective/package-manager-detector) is a lightweight alternative for detecting the package manager being used in a project.
+[`package-manager-detector`](https://github.com/antfu-collective/package-manager-detector) is a lightweight alternative
+for detecting the package manager being used in a project.
 
 ### Key differences
 
@@ -28,6 +29,8 @@ const pm = result?.name // [!code ++]
 ```
 
 > [!NOTE]
-> `package-manager-detector` returns an object with `name` and `agent` properties, while `detect-package-manager` returns a string directly.
+> `package-manager-detector` returns an object with `name` and `agent` properties, while `detect-package-manager`
+> returns a string directly.
 
-Both packages can detect npm, yarn, pnpm, and bun package managers in your project by analyzing lock files. Additionally, `package-manager-detector` also supports deno.
+Both packages can detect npm, yarn, pnpm, and bun package managers in your project by analyzing lock files.
+Additionally, `package-manager-detector` also supports deno.

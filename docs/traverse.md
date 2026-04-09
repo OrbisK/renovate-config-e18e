@@ -8,7 +8,9 @@ replacements:
 
 ## `neotraverse`
 
-[`neotraverse`](https://github.com/puruvj/neotraverse) is a TypeScript rewrite of [`traverse`](https://github.com/ljharb/js-traverse) with no dependencies. It offers a drop‑in compatible build as well as a modern API.
+[`neotraverse`](https://github.com/puruvj/neotraverse) is a TypeScript rewrite of [
+`traverse`](https://github.com/ljharb/js-traverse) with no dependencies. It offers a drop‑in compatible build as well as
+a modern API.
 
 ```ts
 import traverse from 'traverse' // [!code --]

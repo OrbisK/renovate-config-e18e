@@ -8,9 +8,11 @@ replacements:
 
 ## `jose`
 
-[`jose`](https://github.com/panva/jose) implements the full JOSE standard (JWK, JWS, JWE, JWT, JWKS) using the Web Crypto API
+[`jose`](https://github.com/panva/jose) implements the full JOSE standard (JWK, JWS, JWE, JWT, JWKS) using the Web
+Crypto API
 
-Compared to `jsonwebtoken`, it works everywhere globalThis.crypto is available: Node.js 18+, Deno, Bun, Cloudflare Workers, and browsers.
+Compared to `jsonwebtoken`, it works everywhere globalThis.crypto is available: Node.js 18+, Deno, Bun, Cloudflare
+Workers, and browsers.
 
 ```ts
 import jwt from 'jsonwebtoken' // [!code --]

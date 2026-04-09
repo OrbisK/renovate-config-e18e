@@ -10,7 +10,8 @@ replacements:
 
 ## `smol-toml`
 
-[`smol-toml`](https://github.com/squirrelchat/smol-toml) is a well maintained TOML v1.1.0 parser/stringifier with full spec compliance, comment/AST support, and no deps.
+[`smol-toml`](https://github.com/squirrelchat/smol-toml) is a well maintained TOML v1.1.0 parser/stringifier with full
+spec compliance, comment/AST support, and no deps.
 
 Parse (load):
 

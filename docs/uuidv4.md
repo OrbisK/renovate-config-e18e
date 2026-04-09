@@ -6,7 +6,8 @@ description: Native alternatives to the uuidv4 package for UUID v4 generation
 
 ## `crypto.randomUUID` (native)
 
-You can use [`crypto.randomUUID`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) for UUID v4 generation.
+You can use [`crypto.randomUUID`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) for UUID v4
+generation.
 
 Example:
 

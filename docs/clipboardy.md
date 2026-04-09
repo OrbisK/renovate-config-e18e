@@ -21,7 +21,8 @@ await clipboard.readText() // [!code ++]
 ```
 
 > [!NOTE]
-> `writeSync()` and `readSync()` do not have any equivalent in `tinyclip`, we recommend you migrate to their async versions.
+> `writeSync()` and `readSync()` do not have any equivalent in `tinyclip`, we recommend you migrate to their async
+> versions.
 
 ## Clipboard API (native, browser)
 

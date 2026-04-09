@@ -7,11 +7,14 @@ replacements:
 
 # Fetch-based HTTP clients (shared)
 
-This page contains the common, recommended alternatives and examples for fetch based HTTP clients used by `axios`, `node-fetch`, and `cross-fetch` replacement docs.
+This page contains the common, recommended alternatives and examples for fetch based HTTP clients used by `axios`,
+`node-fetch`, and `cross-fetch` replacement docs.
 
 ## `fetch` API (native)
 
-The native [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) API is available in Node.js (since v18.x) and all modern browsers. For many use cases it replaces `axios`/`node-fetch`/`cross-fetch` without adding dependencies.
+The native [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) API is available in Node.js (since
+v18.x) and all modern browsers. For many use cases it replaces `axios`/`node-fetch`/`cross-fetch` without adding
+dependencies.
 
 Example:
 
@@ -30,7 +33,8 @@ await fetch('https://api.example.com/data', {
 
 ## `ofetch`
 
-[`ofetch`](https://github.com/unjs/ofetch) is a small fetch wrapper with automatic JSON parsing, request/response interceptors, and retry support.
+[`ofetch`](https://github.com/unjs/ofetch) is a small fetch wrapper with automatic JSON parsing, request/response
+interceptors, and retry support.
 
 Example:
 
@@ -45,7 +49,8 @@ const created = await api('/items', { method: 'POST', body: { name: 'A' } })
 
 ## `ky`
 
-[`ky`](https://github.com/sindresorhus/ky) is a lightweight HTTP client built on top of the Fetch API. It adds convenience features like timeouts, hooks (interceptors), and a simpler API surface.
+[`ky`](https://github.com/sindresorhus/ky) is a lightweight HTTP client built on top of the Fetch API. It adds
+convenience features like timeouts, hooks (interceptors), and a simpler API surface.
 
 Example:
 

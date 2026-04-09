@@ -9,6 +9,7 @@ description: Native Node.js alternatives to the split package for splitting stre
 Example:
 
 <!-- prettier-ignore -->
+
 ```js
 import split from 'split' // [!code --]
 import { createInterface } from 'node:readline' // [!code ++]
