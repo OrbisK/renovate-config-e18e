@@ -50,7 +50,13 @@ const replacements = {
       replacementName: "tinyglobby",
       replacementVersion: "0.2.12",
       prBodyNotes: [
-        `## Replacements for \`glob\`
+        `> [!WARNING]
+> **The [e18e](https://e18e.dev) community recommends replacing \`glob\` with a modern alternative.**
+> See the full migration guide below.
+
+<details><summary>Migration guide from e18e</summary>
+
+## Replacements for \`glob\`
 
 ### \`tinyglobby\`
 
@@ -58,9 +64,9 @@ const replacements = {
 
 Example:
 
-\`\`\`ts
-import { glob } from 'glob' // [!code --]
-import { glob } from 'tinyglobby' // [!code ++]
+\`\`\`diff
+- import { glob } from 'glob'
++ import { glob } from 'tinyglobby'
 
 const files = await glob('**/*.ts')
 \`\`\`
@@ -73,15 +79,15 @@ Most options available to \`glob\` are available in \`tinyglobby\`, read more at
 
 Example:
 
-\`\`\`ts
-import { glob } from 'glob' // [!code --]
-import { glob } from 'node:fs/promises' // [!code ++]
+\`\`\`diff
+- import { glob } from 'glob'
++ import { glob } from 'node:fs/promises'
 
-const files = await glob('src/**/*.ts', { // [!code --]
-const files = await Array.fromAsync(glob('src/**/*.ts', { // [!code ++]
-  cwd,
-}) // [!code --]
-})) // [!code ++]
+- const files = await glob('src/**/*.ts', {
++ const files = await Array.fromAsync(glob('src/**/*.ts', {
+    cwd,
+- })
++ }))
 \`\`\`
 
 You can also iterate over the results asynchronously:
@@ -102,20 +108,22 @@ for await (const result of glob('src/**/*.ts', { cwd })) {
 
 Example:
 
-\`\`\`ts
-import { fdir } from 'fdir' // [!code ++]
-import { glob } from 'glob' // [!code --]
+\`\`\`diff
++ import { fdir } from 'fdir'
+- import { glob } from 'glob'
 
-const files = new fdir() // [!code ++]
-  .withBasePath() // [!code ++]
-  .glob('src/**/*.ts') // [!code ++]
-  .crawl(cwd) // [!code ++]
-  .withPromise() // [!code ++]
-const files = await glob('src/**/*.ts', { cwd, maxDepth: 6 }) // [!code --]
++ const files = new fdir()
++   .withBasePath()
++   .glob('src/**/*.ts')
++   .crawl(cwd)
++   .withPromise()
+- const files = await glob('src/**/*.ts', { cwd, maxDepth: 6 })
 \`\`\`
 
 ---
-*Source: [e18e module replacements](https://e18e.dev/docs/replacements/glob)*`,
+*Source: [e18e module replacements](https://e18e.dev/docs/replacements/glob)*
+
+</details>`,
       ],
     },
   ],
