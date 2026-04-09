@@ -102,7 +102,7 @@ const replacements = {
         matchPackageNames: modulesByDocPath.get(docPath),
         replacementName: reps[0],
         replacementVersion: latestVersions.get(reps[0]),
-        draftPr: true,
+        draftPR: true,
         prBodyNotes: [
           `> [!CAUTION]\n> **The [e18e](https://e18e.dev) community recommends replacing \`{{{depName}}}\` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n${migrateBody}\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/${docPath})*\n\n</details>`,
         ],
