@@ -22,15 +22,15 @@ Add the preset to your Renovate config (`renovate.json`):
 
 It is recommended to pin to a specific version tag to avoid unexpected changes when the package list is updated. You can find available versions on the [releases page](https://github.com/OrbisK/renovate-config-e18e/releases).
 
-#0.0.9 Individual presets
+#0.0.10 Individual presets
 
 The default preset extends all three presets below. You can also use them individually:
 
 | Preset | Description |
 |--------|-------------|
-| `github>OrbisK/renovate-config-e18e:abandonment` | Marks e18e replaceable packages as abandoned using [`abandonmentThreshold`](https://docs.renovatebot.com/configuration-options/#0.0.9 and adds an `e18e` label |
+| `github>OrbisK/renovate-config-e18e:abandonment` | Marks e18e replaceable packages as abandoned using [`abandonmentThreshold`](https://docs.renovatebot.com/configuration-options/#0.0.10 and adds an `e18e` label |
 | `github>OrbisK/renovate-config-e18e:recommendations` | Adds a warning callout to PR bodies with a link to the [e18e replacement guide](https://e18e.dev/docs/replacements/) |
-| `github>OrbisK/renovate-config-e18e:replacements` | Replaces packages with recommended alternatives using [`replacementName`](https://docs.renovatebot.com/configuration-options/#0.0.9 and embeds the migration guide in the PR body |
+| `github>OrbisK/renovate-config-e18e:replacements` | Replaces packages with recommended alternatives using [`replacementName`](https://docs.renovatebot.com/configuration-options/#0.0.10 and embeds the migration guide in the PR body |
 
 ## How it works
 
