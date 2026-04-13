@@ -134,3 +134,4 @@ Features we'd like to see in Renovate to improve this preset:
 - [ ] Engine match support for dependency replacements, recommend replacements based on the project's Node.js version
 - [ ] Allow replacements to remove a dependency without specifying a replacement package (remove when available natively)
 - [ ] Mergeable `prBodyColumns` or an option to append a column to the defaults
+- [ ] `renovate-config-validator` should support subpresets
