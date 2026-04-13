@@ -2,7 +2,9 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { preferredReplacements } from 'module-replacements'
 import {
   buildAbandonmentConfig,
+  buildColumnsConfig,
   buildDefaultConfig,
+  buildMergeConfidenceConfig,
   buildRecommendationsConfig,
   buildReplacementNameMap,
   buildReplacementsConfig,
@@ -45,6 +47,12 @@ const replacementsConfig = buildReplacementsConfig(
   urlById,
   docContent,
 )
+const columns = buildColumnsConfig()
+const mergeConfidence = buildMergeConfidenceConfig(
+  sortedUrlIds,
+  modulesByUrlId,
+  urlById,
+)
 const defaultConfig = buildDefaultConfig(version)
 
 writeFileSync(
@@ -60,6 +68,14 @@ writeFileSync(
   `${JSON.stringify(replacementsConfig, null, 2)}\n`,
 )
 writeFileSync(
+  new URL('../columns.json', import.meta.url),
+  `${JSON.stringify(columns, null, 2)}\n`,
+)
+writeFileSync(
+  new URL('../mergeConfidence.json', import.meta.url),
+  `${JSON.stringify(mergeConfidence, null, 2)}\n`,
+)
+writeFileSync(
   new URL('../default.json', import.meta.url),
   `${JSON.stringify(defaultConfig, null, 2)}\n`,
 )
@@ -70,4 +86,10 @@ console.log(
 )
 console.log(
   `Generated replacements.json with ${replacementsConfig.packageRules.length} replacements`,
+)
+console.log(
+  `Generated columns.json with ${columns['community-notes'].packageRules.length} rules`,
+)
+console.log(
+  `Generated mergeConfidence.json with ${mergeConfidence['age-confidence'].packageRules.length} rules per sub-preset`,
 )

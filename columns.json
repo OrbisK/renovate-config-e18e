@@ -1,0 +1,32 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "prBodyColumns presets with e18e Community Notes"
+  ],
+  "community-notes": {
+    "description": [
+      "Default Renovate columns with e18e Community Notes"
+    ],
+    "packageRules": [
+      {
+        "description": "Add Community Notes to default prBodyColumns",
+        "matchDatasources": [
+          "npm"
+        ],
+        "matchUpdateTypes": [
+          "patch",
+          "minor",
+          "major"
+        ],
+        "prBodyColumns": [
+          "Package",
+          "Type",
+          "Update",
+          "Change",
+          "Pending",
+          "Community Notes"
+        ]
+      }
+    ]
+  }
+}

@@ -39,11 +39,14 @@ find available versions on the [releases page](https://github.com/OrbisK/renovat
 
 The default preset extends `recommendations` and `replacements`. You can also use them individually:
 
-| Preset                                               | Description                                                                                                                                                                                                                                                                      |
-|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `github>OrbisK/renovate-config-e18e:abandonment`     | Marks e18e replaceable packages as abandoned using [`abandonmentThreshold`](https://docs.renovatebot.com/configuration-options/#abandonmentthreshold) and adds an `e18e` label                                                                                                   |
-| `github>OrbisK/renovate-config-e18e:recommendations` | Adds replacement recommendations to PR bodies (see [below](#recommendations-preset))                                                                                                                                                                                             |
-| `github>OrbisK/renovate-config-e18e:replacements`    | Replaces packages with recommended alternatives using [`replacementName`](https://docs.renovatebot.com/configuration-options/#packagerulesreplacementname), opens a [**draft PR**](https://docs.renovatebot.com/configuration-options/#draftpr) with an embedded migration guide |
+| Preset | Description |
+|---|---|
+| `github>OrbisK/renovate-config-e18e:abandonment` | Marks e18e replaceable packages as abandoned using [`abandonmentThreshold`](https://docs.renovatebot.com/configuration-options/#abandonmentthreshold) and adds an `e18e` label |
+| `github>OrbisK/renovate-config-e18e:recommendations` | Adds replacement recommendations to PR bodies (see [below](#recommendations-preset)) |
+| `github>OrbisK/renovate-config-e18e:replacements` | Replaces packages with recommended alternatives using [`replacementName`](https://docs.renovatebot.com/configuration-options/#packagerulesreplacementname), opens a [**draft PR**](https://docs.renovatebot.com/configuration-options/#draftpr) with an embedded migration guide |
+| `github>OrbisK/renovate-config-e18e:columns:community-notes` | Adds a "Community Notes" column to the default [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns) for patch, minor and major updates |
+| `github>OrbisK/renovate-config-e18e:mergeConfidence:age-confidence` | Like `columns:community-notes` with columns matching [`mergeConfidence:age-confidence-badges`](https://docs.renovatebot.com/presets-mergeConfidence/#mergeconfidenceage-confidence-badges) |
+| `github>OrbisK/renovate-config-e18e:mergeConfidence:all-badges` | Like `columns:community-notes` with columns matching [`mergeConfidence:all-badges`](https://docs.renovatebot.com/presets-mergeConfidence/#mergeconfidenceall-badges) |
 
 ### Using individual presets
 
@@ -62,8 +65,18 @@ To use only specific presets, reference them directly instead of the default:
 
 The recommendations preset provides two ways to surface e18e replacement info in PRs:
 
-1. **"Community Notes" column** — a shields.io badge in the PR body table linking to the e18e replacement docs. To
-   enable it, add `"Community Notes"` to your [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns):
+1. **"Community Notes" column** — a shields.io badge in the PR body table linking to the e18e replacement docs. To enable it, use the `columns:community-notes` preset:
+
+    ```json
+    {
+      "extends": [
+        "github>OrbisK/renovate-config-e18e",
+        "github>OrbisK/renovate-config-e18e:columns:community-notes"
+      ]
+    }
+    ```
+
+    Or add `"Community Notes"` to your own [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns) manually:
 
     ```json
     {
@@ -72,11 +85,13 @@ The recommendations preset provides two ways to surface e18e replacement info in
     }
     ```
 
-2. **Warning callout** — a `[!WARNING]` note added to the PR body with a link to the e18e replacement guide. This is the
-   default behavior when the "Community Notes" column is not configured.
+2. **Warning callout** — a `[!WARNING]` note added to the PR body with a link to the e18e replacement guide. This is the default behavior when the "Community Notes" column is not configured.
 
 Both are automatically skipped for PRs with `updateType: "replacement"`, since the `replacements` preset already
 provides a detailed migration guide.
+
+> [!NOTE]
+> Renovate's [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns) does **not** merge — it overrides. If you set `prBodyColumns` yourself or use presets that set it (e.g. [Merge Confidence](https://docs.renovatebot.com/merge-confidence/)), you need to include `"Community Notes"` in your column list manually.
 
 ## How it works
 
@@ -86,6 +101,7 @@ which provides a curated list of npm packages that have preferred modern alterna
 
 - **Abandonment**: Renovate's [`abandonmentThreshold`](https://docs.renovatebot.com/configuration-options/#abandonmentthreshold) marks these packages as abandoned in Renovate's UI.
 - **Recommendations**: Defines a [`prBodyDefinitions`](https://docs.renovatebot.com/configuration-options/#prbodydefinitions) entry for a "Community Notes" column, and falls back to a [`prBodyNotes`](https://docs.renovatebot.com/configuration-options/#prbodynotes) warning callout when the column is not in [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns).
+- **Columns**: Provides [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns) presets that include the "Community Notes" column. Since `prBodyColumns` does not merge, these presets define the full column list.
 - **Replacements**: Uses Renovate's [`replacementName`](https://docs.renovatebot.com/configuration-options/#packagerulesreplacementname) to open [**draft PRs**](https://docs.renovatebot.com/configuration-options/#draftpr) that swap packages (e.g. `glob` -> `tinyglobby`) with an embedded migration guide. PRs are drafts because they require manual changes to imports and usage beyond the dependency swap.
 
 ## Regenerating the config
@@ -120,3 +136,4 @@ Features we'd like to see in Renovate to improve this preset:
 
 - [ ] Engine match support for dependency replacements, recommend replacements based on the project's Node.js version
 - [ ] Allow replacements to remove a dependency without specifying a replacement package (remove when available natively)
+- [ ] Mergeable `prBodyColumns` or an option to append a column to the defaults
