@@ -162,7 +162,8 @@
       ],
       "matchPackageNames": [
         "chalk",
-        "cli-color"
+        "cli-color",
+        "colors"
       ],
       "matchUpdateTypes": [
         "!replacement"
@@ -179,6 +180,60 @@
       },
       "prBodyNotes": [
         "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/chalk) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "clean-webpack-plugin"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/clean-webpack-plugin)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/clean-webpack-plugin) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "clipboard",
+        "clipboard-copy",
+        "clipboardy",
+        "copy-text-to-clipboard",
+        "copy-to-clipboard"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/clipboardy)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/clipboardy) to find modern, lighter alternatives.{{/unless}}"
       ]
     },
     {
@@ -204,6 +259,31 @@
       },
       "prBodyNotes": [
         "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/core-util-is) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "cosmiconfig"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/cosmiconfig)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/cosmiconfig) to find modern, lighter alternatives.{{/unless}}"
       ]
     },
     {
@@ -262,7 +342,33 @@
         "npm"
       ],
       "matchPackageNames": [
-        "deep-equal"
+        "debug"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/debug)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/debug) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "deep-equal",
+        "deep-equal-json"
       ],
       "matchUpdateTypes": [
         "!replacement"
@@ -304,6 +410,32 @@
       },
       "prBodyNotes": [
         "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/depcheck) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "detect-package-manager",
+        "preferred-pm"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/detect-package-manager)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/detect-package-manager) to find modern, lighter alternatives.{{/unless}}"
       ]
     },
     {
@@ -357,6 +489,31 @@
       },
       "prBodyNotes": [
         "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/dotenv) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "duplexer"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/duplexer)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/duplexer) to find modern, lighter alternatives.{{/unless}}"
       ]
     },
     {
@@ -540,6 +697,31 @@
         "npm"
       ],
       "matchPackageNames": [
+        "event-stream"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/event-stream)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/event-stream) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
         "execa"
       ],
       "matchUpdateTypes": [
@@ -565,8 +747,34 @@
         "npm"
       ],
       "matchPackageNames": [
+        "express"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/express)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/express) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
         "@jsdevtools/ez-spawn",
-        "ez-spawn"
+        "ez-spawn",
+        "ezspawn"
       ],
       "matchUpdateTypes": [
         "!replacement"
@@ -641,9 +849,16 @@
         "npm"
       ],
       "matchPackageNames": [
+        "@supabase/node-fetch",
         "axios",
         "cross-fetch",
-        "node-fetch"
+        "gaxios",
+        "isomorphic-fetch",
+        "node-fetch",
+        "request",
+        "retry-request",
+        "teeny-request",
+        "whatwg-fetch"
       ],
       "matchUpdateTypes": [
         "!replacement"
@@ -820,6 +1035,31 @@
         "npm"
       ],
       "matchPackageNames": [
+        "get-stream"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/get-stream)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/get-stream) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
         "glob"
       ],
       "matchUpdateTypes": [
@@ -870,31 +1110,7 @@
         "npm"
       ],
       "matchPackageNames": [
-        "grapheme-splitter"
-      ],
-      "matchUpdateTypes": [
-        "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
-      "prBodyDefinitions": {
-        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/grapheme)"
-      },
-      "prBodyNotes": [
-        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/grapheme) to find modern, lighter alternatives.{{/unless}}"
-      ]
-    },
-    {
-      "description": "Add e18e replacement recommendations to PR body",
-      "matchDatasources": [
-        "npm"
-      ],
-      "matchPackageNames": [
+        "grapheme-splitter",
         "graphemer"
       ],
       "matchUpdateTypes": [
@@ -912,6 +1128,56 @@
       },
       "prBodyNotes": [
         "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/graphemer) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "gzip-size"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/gzip-size)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/gzip-size) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "inherits"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/inherits)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/inherits) to find modern, lighter alternatives.{{/unless}}"
       ]
     },
     {
@@ -945,7 +1211,8 @@
         "npm"
       ],
       "matchPackageNames": [
-        "is-builtin-module"
+        "is-builtin-module",
+        "is-core-module"
       ],
       "matchUpdateTypes": [
         "!replacement"
@@ -1517,6 +1784,31 @@
         "npm"
       ],
       "matchPackageNames": [
+        "node-telegram-bot-api"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/node-telegram-bot-api)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/node-telegram-bot-api) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
         "npm-run-all"
       ],
       "matchUpdateTypes": [
@@ -1667,32 +1959,8 @@
         "npm"
       ],
       "matchPackageNames": [
-        "ezspawn"
-      ],
-      "matchUpdateTypes": [
-        "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
-      "prBodyDefinitions": {
-        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/process-exec)"
-      },
-      "prBodyNotes": [
-        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/process-exec) to find modern, lighter alternatives.{{/unless}}"
-      ]
-    },
-    {
-      "description": "Add e18e replacement recommendations to PR body",
-      "matchDatasources": [
-        "npm"
-      ],
-      "matchPackageNames": [
-        "qs"
+        "qs",
+        "querystring"
       ],
       "matchUpdateTypes": [
         "!replacement"
@@ -1709,6 +1977,31 @@
       },
       "prBodyNotes": [
         "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/qs) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "react-helmet"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/react-helmet)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/react-helmet) to find modern, lighter alternatives.{{/unless}}"
       ]
     },
     {
@@ -1817,6 +2110,31 @@
         "npm"
       ],
       "matchPackageNames": [
+        "resolve"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/resolve)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/resolve) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
         "rimraf"
       ],
       "matchUpdateTypes": [
@@ -1842,6 +2160,7 @@
         "npm"
       ],
       "matchPackageNames": [
+        "randomatic",
         "shortid"
       ],
       "matchUpdateTypes": [
@@ -1884,6 +2203,56 @@
       },
       "prBodyNotes": [
         "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/sort-object) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "split"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/split)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/split) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "stream-buffers"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/stream-buffers)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/stream-buffers) to find modern, lighter alternatives.{{/unless}}"
       ]
     },
     {
@@ -1942,6 +2311,7 @@
         "npm"
       ],
       "matchPackageNames": [
+        "temp",
         "tempy"
       ],
       "matchUpdateTypes": [
@@ -1959,6 +2329,58 @@
       },
       "prBodyNotes": [
         "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/tempy) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@ljharb/through",
+        "through"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/through)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/through) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@iarna/toml",
+        "toml"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/toml)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/toml) to find modern, lighter alternatives.{{/unless}}"
       ]
     },
     {
@@ -2034,6 +2456,56 @@
       },
       "prBodyNotes": [
         "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/utf8) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "uuidv4"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/uuidv4)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/uuidv4) to find modern, lighter alternatives.{{/unless}}"
+      ]
+    },
+    {
+      "description": "Add e18e replacement recommendations to PR body",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "wellknown"
+      ],
+      "matchUpdateTypes": [
+        "!replacement"
+      ],
+      "prBodyColumns": [
+        "Package",
+        "Change",
+        "Age",
+        "Confidence",
+        "Community Notes"
+      ],
+      "prBodyDefinitions": {
+        "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/wellknown)"
+      },
+      "prBodyNotes": [
+        "{{#unless (includes prBodyColumns \"Community Notes\")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for `{{{depName}}}`](https://e18e.dev/docs/replacements/wellknown) to find modern, lighter alternatives.{{/unless}}"
       ]
     },
     {

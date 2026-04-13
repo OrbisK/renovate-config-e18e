@@ -42,13 +42,44 @@
       ],
       "matchPackageNames": [
         "chalk",
-        "cli-color"
+        "cli-color",
+        "colors"
       ],
       "replacementName": "picocolors",
       "replacementVersion": "1.1.1",
       "draftPR": true,
       "prBodyNotes": [
         "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `chalk`\n\n### `styleText` (native)\n\nSince Node 20.x, you can use the [`styleText`](https://nodejs.org/api/util.html#utilstyletextformat-text-options)\nfunction from the `node:util` module to style text in the terminal.\n\nExample:\n\n```diff\n+ import {styleText} from 'node:util'\n- import chalk from 'chalk'\n  \n- console.log(`Hello ${chalk.blue('blue')} world!`)\n+ console.log(`Hello ${styleText('blue', 'blue')} world!`)\n```\n\nWhen using multiple styles, you can pass an array to `styleText`:\n\n```diff\n- console.log(`I am ${chalk.blue.bgRed('blue on red')}!`)\n+ console.log(`I am ${styleText(['blue', 'bgRed'], 'blue on red')}!`)\n```\n\n> [!NOTE]\n> `styleText` does not support RGB and hex colors (e.g. `#EFEFEF` or `255, 239, 235`). You can view the available styles\n> in the [Node documentation](https://nodejs.org/api/util.html#modifiers).\n\n### `picocolors`\n\n[`picocolors`](https://github.com/alexeyraspopov/picocolors) follows a similar API but without chaining:\n\n```diff\n- import chalk from 'chalk'\n+ import picocolors from 'picocolors'\n  \n- console.log(`Hello ${chalk.blue('blue')} world!`)\n+ console.log(`Hello ${picocolors.blue('blue')} world!`)\n  \n  // A chained example\n- console.log(chalk.blue.bgRed('blue on red'))\n+ console.log(picocolors.blue(picocolors.bgRed('blue on red')))\n```\n\n> [!NOTE]\n> `picocolors` currently does not support RGB and hex colors (e.g. `#EFEFEF` or `255, 239, 235`).\n\n### `ansis`\n\n[`ansis`](https://github.com/webdiscus/ansis/) supports a chaining syntax similar to chalk and supports both RGB, and\nhex colors.\n\nExample:\n\n```diff\n+ import ansis from 'ansis'\n- import chalk from 'chalk'\n  \n- console.log(`Hello ${chalk.blue('blue')} world!`)\n+ console.log(`Hello ${ansis.blue('blue')} world!`)\n```\n\nWhen using multiple styles, you can chain them just like in chalk:\n\n```diff\n- console.log(chalk.blue.bgRed('blue on red'))\n+ console.log(ansis.blue.bgRed('blue on red'))\n```\n\nSimilarly, you can use RGB and hex colors:\n\n```diff\n- console.log(chalk.rgb(239, 239, 239)('Hello world!'))\n+ console.log(ansis.rgb(239, 239, 239)('Hello world!'))\n```\n\n### Browser support\n\nWhile these libraries are primarily designed for terminal output, some projects may need colored output in browser\nenvironments.\n\nFollowing [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/console#styling_console_output), the\nnative approach is `%c` directive in `console.log`:\n\n```ts\nconsole.log(\n    'Hello %ce%c1%c8%ce',\n    'color: #ec8f5e;',\n    'color: #f2ca60;',\n    'color: #bece57;',\n    'color: #7bb560;',\n    'Ecosystem Performance'\n)\n```\n\nLibrary support:\n\n- [`ansis`](https://github.com/webdiscus/ansis#browser-compatibility-for-ansi-codes) - colors are supported in\n  _Chromium_ browsers\n- `picocolors` - strips colors in browser environments\n- `node:util` - is not available in browsers\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/chalk)*\n\n</details>"
+      ]
+    },
+    {
+      "description": "Replace with webpack",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "clean-webpack-plugin"
+      ],
+      "replacementName": "webpack",
+      "replacementVersion": "5.106.1",
+      "draftPR": true,
+      "prBodyNotes": [
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `clean-webpack-plugin`\n\n### `output.clean` (built-in, since webpack 5)\n\nExample:\n\n```diff\n- const { CleanWebpackPlugin } = require('clean-webpack-plugin')\n  \n  module.exports = {\n-   plugins: [new CleanWebpackPlugin()],\n+   output: { clean: true }\n  }\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/clean-webpack-plugin)*\n\n</details>"
+      ]
+    },
+    {
+      "description": "Replace with lilconfig",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "cosmiconfig"
+      ],
+      "replacementName": "lilconfig",
+      "replacementVersion": "3.1.3",
+      "draftPR": true,
+      "prBodyNotes": [
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `cosmiconfig`\n\n### `lilconfig`\n\n[`lilconfig`](https://github.com/antonk52/lilconfig) is a zero-dependency alternative to cosmiconfig with the same API\n\n> [!NOTE]\n> `lilconfig` does not support YAML files out of the box unless you provide custom loaders.\n\n#### Example\n\n```js\nimport { lilconfig, lilconfigSync } from 'lilconfig'\n\nconst options = {\n  searchPlaces: [\n    'package.json', // Will use \"myapp\" field\n    '.myapprc',\n    '.myapprc.json',\n    'myapp.config.js'\n  ]\n}\n\nawait lilconfig('myapp', options).search()\n\n// Sync version\nlilconfigSync('myapp', options).search()\n```\n\n#### Loading YAML files\n\n```js\nimport { lilconfig } from 'lilconfig'\nimport { parse } from 'yaml'\n\nconst yamlLoader = (filepath, content) => parse(content)\n\nconst options = {\n  searchPlaces: [\n    'package.json',\n    '.myapprc',\n    '.myapprc.yaml',\n    '.myapprc.yml',\n    'myapp.config.js'\n  ],\n  loaders: {\n    '.yaml': yamlLoader,\n    '.yml': yamlLoader,\n    noExt: yamlLoader\n  }\n}\n\nawait lilconfig('myapp', options).search()\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/cosmiconfig)*\n\n</details>"
       ]
     },
     {
@@ -67,12 +98,28 @@
       ]
     },
     {
+      "description": "Replace with obug",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "debug"
+      ],
+      "replacementName": "obug",
+      "replacementVersion": "2.1.1",
+      "draftPR": true,
+      "prBodyNotes": [
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `debug`\n\n### `obug`\n\n[`obug`](https://github.com/sxzz/obug) is a lightweight JavaScript debugging utility, forked from debug, featuring\nTypeScript and ESM support.\n\n`obug` v1 retains compatibility with debug, but drops support for older browsers and Node.js versions, making it a\ndrop-in replacement.\n\n`obug` v2 refactors some API imports and usage for better support of ESM and TypeScript, easier customization, and an\neven smaller package size.\n\n```diff\n- import debug from 'debug'\n+ import { createDebug } from 'obug'\n  \n- const logger = debug('name')\n+ const logger = createDebug('name')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/debug)*\n\n</details>"
+      ]
+    },
+    {
       "description": "Replace with dequal",
       "matchDatasources": [
         "npm"
       ],
       "matchPackageNames": [
-        "deep-equal"
+        "deep-equal",
+        "deep-equal-json"
       ],
       "replacementName": "dequal",
       "replacementVersion": "2.0.3",
@@ -90,10 +137,26 @@
         "depcheck"
       ],
       "replacementName": "knip",
-      "replacementVersion": "6.3.1",
+      "replacementVersion": "6.4.1",
       "draftPR": true,
       "prBodyNotes": [
         "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `depcheck`\n\n### `knip`\n\n[knip](https://github.com/webpro-nl/knip) is a more actively maintained and feature-rich alternative to [ `depcheck`](https://github.com/depcheck/depcheck). In most cases, knip works out of the box without any configuration -\njust run `npx knip`. For projects that need customization, you can create a configuration file.\n\nExample:\n\n```json\n{\n  \"$schema\": \"https://unpkg.com/knip@5/schema.json\",\n  \"ignoreDependencies\": [\"@types/*\", \"eslint-*\"]\n}\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/depcheck)*\n\n</details>"
+      ]
+    },
+    {
+      "description": "Replace with package-manager-detector",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "detect-package-manager",
+        "preferred-pm"
+      ],
+      "replacementName": "package-manager-detector",
+      "replacementVersion": "1.6.0",
+      "draftPR": true,
+      "prBodyNotes": [
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `detect-package-manager`\n\n### `package-manager-detector`\n\n[`package-manager-detector`](https://github.com/antfu-collective/package-manager-detector) is a lightweight alternative\nfor detecting the package manager being used in a project.\n\n#### Key differences\n\n- **Zero subdependencies** compared to 16 in `detect-package-manager`\n- **ESM-only**, while `detect-package-manager` is primarily CJS (with ESM support)\n- **Smaller bundle size** due to the lack of dependencies\n\n#### Migration example\n\n```diff\n- import { detect } from 'detect-package-manager'\n+ import { detect } from 'package-manager-detector'\n  \n- const pm = await detect()\n+ const result = await detect()\n+ const pm = result?.name\n```\n\n> [!NOTE]\n> `package-manager-detector` returns an object with `name` and `agent` properties, while `detect-package-manager`\n> returns a string directly.\n\nBoth packages can detect npm, yarn, pnpm, and bun package managers in your project by analyzing lock files.\nAdditionally, `package-manager-detector` also supports deno.\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/detect-package-manager)*\n\n</details>"
       ]
     },
     {
@@ -235,13 +298,29 @@
       ]
     },
     {
+      "description": "Replace with h3",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "express"
+      ],
+      "replacementName": "h3",
+      "replacementVersion": "2.0.1-rc.20",
+      "draftPR": true,
+      "prBodyNotes": [
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `express`\n\nExpress has been the industry standard for years, but the ecosystem has shifted toward ESM-first, type-safe, and\nruntime-agnostic frameworks that offer significantly better performance and developer experience.\n\n### `h3`\n\n[`h3`](https://github.com/h3js/h3) is a minimal H(TTP) framework built for high performance and portability.\n\nExample:\n\n<!-- prettier-ignore -->\n\n```diff\n- import express from 'express'\n+ import { H3, defineHandler, toNodeHandler } from 'h3'\n+ import { createServer } from 'node:http'\n  \n- const app = express()\n+ const app = new H3()\n  \n- app.get('/', (req, res) => res.send('Hello world'))\n+ app.get('/', defineHandler(() => 'Hello world'))\n  \n- app.listen(3000)\n+ createServer(toNodeHandler(app)).listen(3000)\n```\n\n### `tinyhttp`\n\n[`tinyhttp`](https://github.com/tinyhttp/tinyhttp) is designed to be a drop-in replacement remaining compatible with\nmany Express middlewares.\n\nExample:\n\n```diff\n- import express from 'express'\n+ import { App } from '@tinyhttp/app'\n  \n- const app = express()\n+ const app = new App()\n  \n  app.get('/', (req, res) => res.send('Hello world'))\n  \n  app.listen(3000)\n```\n\n### `hono`\n\n[`hono`](https://github.com/honojs/hono) is a small, simple, and fast web framework for the Edges.\n\nExample:\n\n```diff\n- import express from 'express'\n+ import { Hono } from 'hono'\n  \n- const app = express()\n+ const app = new Hono()\n  \n- app.get('/', (req, res) => res.send('Hello world'))\n+ app.get('/', (context) => context.text('Hello world'))\n  \n+ export default app\n```\n\n### `elysia`\n\nIf you are using Bun, [`elysia`](https://github.com/elysiajs/elysia) is often the best choice as it is specifically\noptimized for the Bun runtime.\n\nExample:\n\n```diff\n- import express from 'express'\n+ import { Elysia } from 'elysia'\n  \n- const app = express()\n+ const app = new Elysia()\n  \n- app.get('/', (req, res) => res.send('Hello world'))\n+ app.get('/', () => 'Hello world')\n  \n  app.listen(3000)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/express)*\n\n</details>"
+      ]
+    },
+    {
       "description": "Replace with tinyexec",
       "matchDatasources": [
         "npm"
       ],
       "matchPackageNames": [
         "@jsdevtools/ez-spawn",
-        "ez-spawn"
+        "ez-spawn",
+        "ezspawn"
       ],
       "replacementName": "tinyexec",
       "replacementVersion": "1.1.1",
@@ -286,9 +365,16 @@
         "npm"
       ],
       "matchPackageNames": [
+        "@supabase/node-fetch",
         "axios",
         "cross-fetch",
-        "node-fetch"
+        "gaxios",
+        "isomorphic-fetch",
+        "node-fetch",
+        "request",
+        "retry-request",
+        "teeny-request",
+        "whatwg-fetch"
       ],
       "replacementName": "ofetch",
       "replacementVersion": "1.5.1",
@@ -410,6 +496,7 @@
         "npm"
       ],
       "matchPackageNames": [
+        "grapheme-splitter",
         "graphemer"
       ],
       "replacementName": "unicode-segmenter",
@@ -480,6 +567,342 @@
       ]
     },
     {
+      "description": "Replace with es-toolkit",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "lodash",
+        "lodash-amd",
+        "lodash-compat",
+        "lodash-es",
+        "lodash-fp",
+        "lodash-node",
+        "lodash.add",
+        "lodash.after",
+        "lodash.ary",
+        "lodash.assign",
+        "lodash.assignin",
+        "lodash.assigninwith",
+        "lodash.assignwith",
+        "lodash.at",
+        "lodash.attempt",
+        "lodash.before",
+        "lodash.bind",
+        "lodash.bindall",
+        "lodash.bindkey",
+        "lodash.callback",
+        "lodash.camelcase",
+        "lodash.capitalize",
+        "lodash.castarray",
+        "lodash.ceil",
+        "lodash.chunk",
+        "lodash.clamp",
+        "lodash.clone",
+        "lodash.clonedeep",
+        "lodash.clonedeepwith",
+        "lodash.clonewith",
+        "lodash.compact",
+        "lodash.compose",
+        "lodash.concat",
+        "lodash.cond",
+        "lodash.conforms",
+        "lodash.conformsto",
+        "lodash.constant",
+        "lodash.contains",
+        "lodash.countby",
+        "lodash.create",
+        "lodash.createcallback",
+        "lodash.curry",
+        "lodash.curryright",
+        "lodash.debounce",
+        "lodash.deburr",
+        "lodash.defaults",
+        "lodash.defaultsdeep",
+        "lodash.defaultto",
+        "lodash.defer",
+        "lodash.delay",
+        "lodash.difference",
+        "lodash.differenceby",
+        "lodash.differencewith",
+        "lodash.divide",
+        "lodash.drop",
+        "lodash.dropright",
+        "lodash.droprightwhile",
+        "lodash.dropwhile",
+        "lodash.endswith",
+        "lodash.eq",
+        "lodash.escape",
+        "lodash.escaperegexp",
+        "lodash.every",
+        "lodash.fill",
+        "lodash.filter",
+        "lodash.find",
+        "lodash.findindex",
+        "lodash.findkey",
+        "lodash.findlast",
+        "lodash.findlastindex",
+        "lodash.findlastkey",
+        "lodash.findwhere",
+        "lodash.first",
+        "lodash.flatmap",
+        "lodash.flatmapdeep",
+        "lodash.flatmapdepth",
+        "lodash.flatten",
+        "lodash.flattendeep",
+        "lodash.flattendepth",
+        "lodash.flip",
+        "lodash.floor",
+        "lodash.flow",
+        "lodash.flowright",
+        "lodash.foreach",
+        "lodash.foreachright",
+        "lodash.forin",
+        "lodash.forinright",
+        "lodash.forown",
+        "lodash.forownright",
+        "lodash.frompairs",
+        "lodash.functions",
+        "lodash.functionsin",
+        "lodash.get",
+        "lodash.groupby",
+        "lodash.gt",
+        "lodash.gte",
+        "lodash.has",
+        "lodash.hasin",
+        "lodash.head",
+        "lodash.identity",
+        "lodash.includes",
+        "lodash.indexby",
+        "lodash.indexof",
+        "lodash.initial",
+        "lodash.inrange",
+        "lodash.intersection",
+        "lodash.intersectionby",
+        "lodash.intersectionwith",
+        "lodash.invert",
+        "lodash.invertby",
+        "lodash.invoke",
+        "lodash.invokemap",
+        "lodash.isarguments",
+        "lodash.isarray",
+        "lodash.isarraybuffer",
+        "lodash.isarraylike",
+        "lodash.isarraylikeobject",
+        "lodash.isboolean",
+        "lodash.isbuffer",
+        "lodash.isdate",
+        "lodash.iselement",
+        "lodash.isempty",
+        "lodash.isequal",
+        "lodash.isequalwith",
+        "lodash.iserror",
+        "lodash.isfinite",
+        "lodash.isfunction",
+        "lodash.isinteger",
+        "lodash.islength",
+        "lodash.ismap",
+        "lodash.ismatch",
+        "lodash.ismatchwith",
+        "lodash.isnan",
+        "lodash.isnative",
+        "lodash.isnil",
+        "lodash.isnull",
+        "lodash.isnumber",
+        "lodash.isobject",
+        "lodash.isobjectlike",
+        "lodash.isplainobject",
+        "lodash.isregexp",
+        "lodash.issafeinteger",
+        "lodash.isset",
+        "lodash.isstring",
+        "lodash.issymbol",
+        "lodash.istypedarray",
+        "lodash.isundefined",
+        "lodash.isweakmap",
+        "lodash.isweakset",
+        "lodash.iteratee",
+        "lodash.join",
+        "lodash.kebabcase",
+        "lodash.keyby",
+        "lodash.keys",
+        "lodash.keysin",
+        "lodash.last",
+        "lodash.lastindexof",
+        "lodash.lowercase",
+        "lodash.lowerfirst",
+        "lodash.lt",
+        "lodash.lte",
+        "lodash.map",
+        "lodash.mapkeys",
+        "lodash.mapvalues",
+        "lodash.matches",
+        "lodash.matchesproperty",
+        "lodash.max",
+        "lodash.maxby",
+        "lodash.mean",
+        "lodash.meanby",
+        "lodash.memoize",
+        "lodash.merge",
+        "lodash.mergewith",
+        "lodash.method",
+        "lodash.methodof",
+        "lodash.min",
+        "lodash.minby",
+        "lodash.mixin",
+        "lodash.modargs",
+        "lodash.multiply",
+        "lodash.negate",
+        "lodash.noop",
+        "lodash.now",
+        "lodash.nth",
+        "lodash.ntharg",
+        "lodash.omit",
+        "lodash.omitby",
+        "lodash.once",
+        "lodash.orderby",
+        "lodash.over",
+        "lodash.overargs",
+        "lodash.overevery",
+        "lodash.oversome",
+        "lodash.pad",
+        "lodash.padend",
+        "lodash.padleft",
+        "lodash.padright",
+        "lodash.padstart",
+        "lodash.pairs",
+        "lodash.parseint",
+        "lodash.partial",
+        "lodash.partialright",
+        "lodash.partition",
+        "lodash.pick",
+        "lodash.pickby",
+        "lodash.pluck",
+        "lodash.property",
+        "lodash.propertyof",
+        "lodash.pull",
+        "lodash.pullall",
+        "lodash.pullallwith",
+        "lodash.pullat",
+        "lodash.random",
+        "lodash.range",
+        "lodash.rangeright",
+        "lodash.rearg",
+        "lodash.reduce",
+        "lodash.reduceright",
+        "lodash.reescape",
+        "lodash.reevaluate",
+        "lodash.reinterpolate",
+        "lodash.reject",
+        "lodash.remove",
+        "lodash.repeat",
+        "lodash.replace",
+        "lodash.rest",
+        "lodash.restparam",
+        "lodash.result",
+        "lodash.reverse",
+        "lodash.round",
+        "lodash.sample",
+        "lodash.samplesize",
+        "lodash.set",
+        "lodash.setwith",
+        "lodash.shuffle",
+        "lodash.size",
+        "lodash.slice",
+        "lodash.snakecase",
+        "lodash.some",
+        "lodash.sortby",
+        "lodash.sortbyall",
+        "lodash.sortbyorder",
+        "lodash.sortedindex",
+        "lodash.sortedindexby",
+        "lodash.sortedindexof",
+        "lodash.sortedlastindex",
+        "lodash.sortedlastindexby",
+        "lodash.sortedlastindexof",
+        "lodash.sorteduniq",
+        "lodash.sorteduniqby",
+        "lodash.split",
+        "lodash.spread",
+        "lodash.startcase",
+        "lodash.startswith",
+        "lodash.stubarray",
+        "lodash.stubfalse",
+        "lodash.stubobject",
+        "lodash.stubstring",
+        "lodash.stubtrue",
+        "lodash.subtract",
+        "lodash.sum",
+        "lodash.sumby",
+        "lodash.support",
+        "lodash.tail",
+        "lodash.take",
+        "lodash.takeright",
+        "lodash.takerightwhile",
+        "lodash.takewhile",
+        "lodash.template",
+        "lodash.templatesettings",
+        "lodash.throttle",
+        "lodash.times",
+        "lodash.toarray",
+        "lodash.tofinite",
+        "lodash.tointeger",
+        "lodash.tolength",
+        "lodash.tolower",
+        "lodash.tonumber",
+        "lodash.topairs",
+        "lodash.topairsin",
+        "lodash.topath",
+        "lodash.toplainobject",
+        "lodash.tosafeinteger",
+        "lodash.tostring",
+        "lodash.toupper",
+        "lodash.transform",
+        "lodash.trim",
+        "lodash.trimend",
+        "lodash.trimleft",
+        "lodash.trimright",
+        "lodash.trimstart",
+        "lodash.trunc",
+        "lodash.truncate",
+        "lodash.unary",
+        "lodash.unescape",
+        "lodash.union",
+        "lodash.unionby",
+        "lodash.unionwith",
+        "lodash.uniqby",
+        "lodash.uniqueid",
+        "lodash.uniqwith",
+        "lodash.unset",
+        "lodash.unzip",
+        "lodash.unzipwith",
+        "lodash.update",
+        "lodash.updatewith",
+        "lodash.uppercase",
+        "lodash.upperfirst",
+        "lodash.values",
+        "lodash.valuesin",
+        "lodash.where",
+        "lodash.without",
+        "lodash.words",
+        "lodash.wrap",
+        "lodash.xor",
+        "lodash.xorby",
+        "lodash.xorwith",
+        "lodash.zip",
+        "lodash.zipobject",
+        "lodash.zipobjectdeep",
+        "lodash.zipwith",
+        "underscore"
+      ],
+      "replacementName": "es-toolkit",
+      "replacementVersion": "1.45.1",
+      "draftPR": true,
+      "prBodyNotes": [
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## `lodash` / `underscore`\n\n### You don’t (may not) need Lodash/Underscore\n\nHere you could read how to replace Lodash or Underscore in your project.\n\n[Website](https://you-dont-need.github.io/You-Dont-Need-Lodash-Underscore)\n\n### es-toolkit\n\n[es-toolkit](https://es-toolkit.dev/) is a utility library similar to lodash that is designed to replace lodash by\noffering a seamless compat layer. It supports tree shaking out of the box and offers better performances for modern\nJavaScript runtimes.\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/lodash-underscore)*\n\n</details>"
+      ]
+    },
+    {
       "description": "Replace with @materializecss/materialize",
       "matchDatasources": [
         "npm"
@@ -488,25 +911,25 @@
         "materialize-css"
       ],
       "replacementName": "@materializecss/materialize",
-      "replacementVersion": "2.3.2",
+      "replacementVersion": "2.3.3",
       "draftPR": true,
       "prBodyNotes": [
         "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `materialize-css`\n\n### `@materializecss/materialize`\n\n[`@materializecss/materialize`](https://github.com/materializecss/materialize) is a community-maintained fork of [ `Materialize`](https://github.com/Dogfalo/materialize). Acts as a practical replacement for the original materialize-css\npackage.\n\n### `@material/web`\n\n> [!NOTE]\n> The project is currently in maintenance mode pending new maintainers.\n\nModern Web Components implementing Material Design 3.\n\n[Project Page](https://github.com/material-components/material-web)\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/materialize-css)*\n\n</details>"
       ]
     },
     {
-      "description": "Replace with date-fns",
+      "description": "Replace with grammy",
       "matchDatasources": [
         "npm"
       ],
       "matchPackageNames": [
-        "moment"
+        "node-telegram-bot-api"
       ],
-      "replacementName": "date-fns",
-      "replacementVersion": "4.1.0",
+      "replacementName": "grammy",
+      "replacementVersion": "1.42.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `Moment.js`\n\n### `day.js`\n\n[Day.js](https://github.com/iamkun/dayjs/) provides a similar API to Moment.js with a much smaller footprint.\n\nExample:\n\n```diff\n- import moment from 'moment'\n+ import dayjs from 'dayjs'\n  \n- const now = moment()\n+ const now = dayjs()\n  \n- const formatted = moment().format('YYYY-MM-DD')\n+ const formatted = dayjs().format('YYYY-MM-DD')\n```\n\n### `date-fns`\n\n[date-fns](https://github.com/date-fns/date-fns) offers tree-shakable functions for working with native JavaScript\ndates.\n\nExample:\n\n```diff\n- import moment from 'moment'\n+ import { addDays, format, subWeeks } from 'date-fns'\n  \n- const formatted = moment().format('YYYY-MM-DD')\n+ const formatted = format(new Date(), 'yyyy-MM-dd')\n  \n- const tomorrow = moment().add(1, 'day')\n+ const tomorrow = addDays(new Date(), 1)\n  \n- const lastWeek = moment().subtract(1, 'week')\n+ const lastWeek = subWeeks(new Date(), 1)\n```\n\n### `luxon`\n\n[Luxon](https://github.com/moment/luxon) is created by a Moment.js maintainer and offers powerful internationalization\nsupport.\n\nExample:\n\n```diff\n- import moment from 'moment'\n+ import { DateTime } from 'luxon'\n  \n- const now = moment()\n+ const now = DateTime.now()\n  \n- const formatted = moment().format('YYYY-MM-DD')\n+ const formatted = DateTime.now().toFormat('yyyy-MM-dd')\n  \n- const tomorrow = moment().add(1, 'day')\n+ const tomorrow = DateTime.now().plus({ days: 1 })\n```\n\n### `Date` (native)\n\nFor simple use cases, native JavaScript [ `Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) and [\n`Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) APIs may be sufficient:\n\n<!-- prettier-ignore -->\n\n```diff\n- import moment from 'moment'\n  \n- const formatted = moment().format('YYYY-MM-DD')\n+ const formatted = new Date().toISOString().split('T')[0]\n  \n- const localized = moment().format('MMMM Do YYYY')\n+ const localized = new Intl.DateTimeFormat('en-US', {\n+   year: 'numeric',\n+   month: 'long',\n+   day: 'numeric'\n+ }).format(new Date())\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/moment)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `node-telegram-bot-api`\n\n### `grammy`\n\n[`grammy`](https://grammy.dev) is a modern library for creating telegram bots.\n\nExample:\n\n```ts\nimport { Bot } from 'grammy'\n\nconst bot = new Bot(process.env.TOKEN)\n\nbot.on('message', (ctx) => ctx.reply('Hi there!'))\n\nbot.start()\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/node-telegram-bot-api)*\n\n</details>"
       ]
     },
     {
@@ -575,13 +998,29 @@
         "npm"
       ],
       "matchPackageNames": [
-        "qs"
+        "qs",
+        "querystring"
       ],
       "replacementName": "fast-querystring",
       "replacementVersion": "1.1.2",
       "draftPR": true,
       "prBodyNotes": [
         "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `qs`\n\n### `URLSearchParams` (native)\n\n[`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) is built into browsers and Node.js (>=\n10). Use it when you don’t need nested objects or automatic array parsing. It preserves multiple values via `getAll`,\nand `toString()` gives you a URL-safe query string.\n\nExample:\n\n```diff\n- import qs from 'qs'\n  \n  const query = 'a=1&a=2&b=3'\n  \n- const obj = qs.parse(query)\n+ const sp = new URLSearchParams(query)\n+ const obj = Object.fromEntries(sp)\n+ const a = sp.getAll('a')\n```\n\n### `fast-querystring`\n\n[`fast-querystring`](https://github.com/anonrig/fast-querystring) is tiny and very fast. It handles flat key/value pairs\nand repeated keys as arrays; it does not support nested objects. Use it when you need arrays but not nesting.\n\nExample:\n\n```diff\n- import qs from 'qs'\n+ import fqs from 'fast-querystring'\n  \n- const obj = qs.parse('tag=a&tag=b')\n+ const obj = fqs.parse('tag=a&tag=b')\n  \n- const str = qs.stringify({ tag: ['a', 'b'], q: 'x y' })\n+ const str = fqs.stringify({ tag: ['a', 'b'], q: 'x y' })\n```\n\n### `picoquery`\n\n[`picoquery`](https://github.com/43081j/picoquery) supports nesting and arrays with a fast single‑pass parser and\nconfigurable syntax. v2.x and above are ESM‑only; v1.x is CommonJS and will be maintained with non‑breaking changes.\n`nestingSyntax: 'js'` offers the highest compatibility with `qs`, though you can pick other syntaxes for performance.\n\nExample:\n\n<!-- prettier-ignore -->\n\n```diff\n- import qs from 'qs'\n+ import { parse, stringify } from 'picoquery'\n  \n+ const opts = {\n+   nestingSyntax: 'js',\n+   arrayRepeat: true,\n+   arrayRepeatSyntax: 'bracket'\n+ }\n  \n- const obj = qs.parse('user[name]=foo&tags[]=bar&tags[]=baz')\n+ const obj = parse('user[name]=foo&tags[]=bar&tags[]=baz', opts)\n  \n- const str = qs.stringify(\n-   { user: { name: 'foo' }, tags: ['bar', 'baz'] },\n-   { arrayFormat: 'brackets' }\n- )\n+ const str = stringify({ user: { name: 'foo' }, tags: ['bar', 'baz'] }, opts)\n```\n\n### `neoqs`\n\n[`neoqs`](https://github.com/PuruVJ/neoqs) is a fork of `qs` without legacy polyfills, with TypeScript types included,\nand with both ESM and CommonJS builds (plus a legacy ES5 mode). Choose it when you want `qs`‑level compatibility with\nmodern packaging options.\n\nExample:\n\n```diff\n- import qs from 'qs'\n+ import * as qs from 'neoqs'\n  \n  const obj = qs.parse('a[b][c]=1&arr[]=2&arr[]=3')\n  const str = qs.stringify(obj, { arrayFormat: 'brackets' })\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/qs)*\n\n</details>"
+      ]
+    },
+    {
+      "description": "Replace with react",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "react-helmet"
+      ],
+      "replacementName": "react",
+      "replacementVersion": "19.2.5",
+      "draftPR": true,
+      "prBodyNotes": [
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `react-helmet`\n\n### Support for Document Metadata (native, since React 19)\n\n[Support for Document Metadata](https://react.dev/blog/2024/12/05/react-19#support-for-metadata-tags) is available since\nReact 19\n\nExample:\n\n```jsx\nfunction BlogPost({ post }) {\n  return (\n    <article>\n      <h1>{post.title}</h1>\n      <title>{post.title}</title>\n      <meta name=\"keywords\" content={post.keywords} />\n      <p>Eee equals em-see-squared...</p>\n    </article>\n  )\n}\n```\n\n### `react-helmet-async`\n\n[`react-helmet-async`](https://github.com/staylor/react-helmet-async) is a fork of `react-helmet`.\n\nExample:\n\n<!-- prettier-ignore -->\n\n```diff\n- import { Helmet } from 'react-helmet'\n+ import { Helmet, HelmetProvider } from 'react-helmet-async'\n  \n  const app = (\n+   <HelmetProvider>\n      <App>\n        <Helmet>\n          <title>Hello World</title>\n          <link rel=\"canonical\" href=\"https://e18e.dev/\" />\n        </Helmet>\n        <h1>Hello World</h1>\n      </App>\n+   </HelmetProvider>\n  )\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/react-helmet)*\n\n</details>"
       ]
     },
     {
@@ -630,6 +1069,21 @@
       ]
     },
     {
+      "description": "Replace with exsolve",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "resolve"
+      ],
+      "replacementName": "exsolve",
+      "replacementVersion": "1.0.8",
+      "draftPR": true,
+      "prBodyNotes": [
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `resolve`\n\n### `import.meta.resolve` (native)\n\n[`import.meta.resolve`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta/resolve)\nis built into browsers and Node.js (>= 20).\n\nExample:\n\n```ts\nconst path = import.meta.resolve('my-module')\n```\n\n### `exsolve`\n\n[`exsolve`](https://github.com/unjs/exsolve)\n\n```ts\nimport { resolveModulePath } from 'exsolve'\n\nconst path = resolveModulePath('my-module')\n```\n\n### `oxc-resolver`\n\n[`oxc-resolver`](https://github.com/oxc-project/oxc-resolver)\n\n```ts\nimport { ResolverFactory } from 'oxc-resolver'\n\nconst resolver = new ResolverFactory()\nconst { path } = resolver.sync(process.cwd(), 'my-module')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/resolve)*\n\n</details>"
+      ]
+    },
+    {
       "description": "Replace with premove",
       "matchDatasources": [
         "npm"
@@ -650,6 +1104,7 @@
         "npm"
       ],
       "matchPackageNames": [
+        "randomatic",
         "shortid"
       ],
       "replacementName": "nanoid",
@@ -690,6 +1145,22 @@
       ]
     },
     {
+      "description": "Replace with smol-toml",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@iarna/toml",
+        "toml"
+      ],
+      "replacementName": "smol-toml",
+      "replacementVersion": "1.6.1",
+      "draftPR": true,
+      "prBodyNotes": [
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `toml`\n\n`toml` appears to be unmaintained and has known spec-compliance issues.\n\n### `smol-toml`\n\n[`smol-toml`](https://github.com/squirrelchat/smol-toml) is a well maintained TOML v1.1.0 parser/stringifier with full\nspec compliance, comment/AST support, and no deps.\n\nParse (load):\n\n```diff\n- import toml from 'toml'\n+ import { parse } from 'smol-toml'\n  \n- const obj = toml.parse(src)\n+ const obj = parse(src)\n```\n\nStringify:\n\n```ts\nimport { stringify } from 'smol-toml'\n\nconst text = stringify(obj)\n```\n\n### Bun `TOML` API (native)\n\n[Native TOML parsing](https://bun.com/docs/runtime/toml#runtime-api) is supported in Bun.\n\nExample:\n\n```diff\n- import toml from 'toml'\n+ import { TOML } from 'bun'\n  \n- toml.parse(src)\n+ TOML.parse(src)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/toml)*\n\n</details>"
+      ]
+    },
+    {
       "description": "Replace with neotraverse",
       "matchDatasources": [
         "npm"
@@ -717,6 +1188,21 @@
       "draftPR": true,
       "prBodyNotes": [
         "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `uri-js`\n\n[`uri-js`](https://github.com/garycourt/uri-js) is unmaintained and triggers deprecation warnings on modern\nNode.js ([due to `punycode`](https://github.com/garycourt/uri-js/pull/95)).\n\n### `URL` (native)\n\nGood for standard web URLs (http/https/ws/wss/file/mailto, etc.).\n\n- MDN URL: https://developer.mozilla.org/en-US/docs/Web/API/URL\n- Node.js URL: https://nodejs.org/api/url.html#class-url\n\nExample:\n\n```diff\n- import * as URI from 'uri-js'\n  \n- URI.resolve('https://a/b/c/d?q', '../../g')\n+ new URL('../../g', 'https://a/b/c/d?q').href\n```\n\n> [!NOTE]\n> [WHATWG URL](https://url.spec.whatwg.org/) differs from [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986) in\n> some details and may not cover arbitrary custom schemes/URNs.\n\n### `uri-js-replace`\n\n[`uri-js-replace`](https://github.com/andreinwald/uri-js-replace) is a drop-in, zero-dependency replacement for `uri-js`\nwith the same API and no deprecation warnings.\n\n```diff\n- import * as URI from 'uri-js'\n+ import * as URI from 'uri-js-replace'\n  \n  const parsed = URI.parse('uri://user:pass@example.com:123/one/two?q=a#f')\n  const out = URI.serialize({\n    scheme: 'http',\n    host: 'example.com',\n    fragment: 'footer'\n  })\n  const norm = URI.normalize('URI://www.example.org/red%09ros\\xE9#red')\n```\n\n### `fast-uri`\n\n[`fast-uri`](https://github.com/fastify/fast-uri) is a zero-dependency, high-performance RFC 3986 URI toolbox (\nparse/serialize/resolve/equal) with options similar to `uri-js`.\n\n```diff\n- import * as uri from 'uri-js'\n+ import * as uri from 'fast-uri'\n  \n  uri.parse('uri://user:pass@example.com:123/one/two.three?q1=a1#a')\n  uri.serialize({ scheme: 'http', host: 'example.com', fragment: 'footer' })\n  uri.resolve('uri://a/b/c/d?q', '../../g')\n  uri.equal('example://a/b/%7Bfoo%7D', 'eXAMPLE://a/./b/../b/%63/%7bfoo%7d')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/uri-js)*\n\n</details>"
+      ]
+    },
+    {
+      "description": "Replace with betterknown",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "wellknown"
+      ],
+      "replacementName": "betterknown",
+      "replacementVersion": "1.2.0",
+      "draftPR": true,
+      "prBodyNotes": [
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `wellknown`\n\n### `betterknown`\n\n[`betterknown`](https://github.com/placemark/betterknown) is a maintained alternative for `wellknown` package.\n\nExample:\n\n```diff\n- import wellknown from 'wellknown'\n+ import { wktToGeoJSON, geoJSONToWkt } from 'betterknown'\n  \n- wellknown.parse('POINT(1 2)')\n+ wktToGeoJSON('POINT(1 2)')\n  \n- wellknown.stringify({\n+ geoJSONToWkt({\n    type: 'Point',\n    coordinates: [1, 2]\n  })\n  \n- wellknown.stringify({\n+ geoJSONToWkt({\n    type: 'Feature',\n    geometry: { type: 'Point', coordinates: [1, 2] },\n    properties: {}\n  })\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/wellknown)*\n\n</details>"
       ]
     },
     {
