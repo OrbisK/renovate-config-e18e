@@ -5,6 +5,8 @@
   "description": "",
   "scripts": {
     "generate": "node scripts/generate.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "release": "pnpm run generate && bumpp"
   },
   "keywords": [],
@@ -13,6 +15,7 @@
   "packageManager": "pnpm@10.33.0",
   "devDependencies": {
     "bumpp": "^11.0.1",
-    "module-replacements": "3.0.0-beta.4"
+    "module-replacements": "3.0.0-beta.4",
+    "vitest": "^4.1.4"
   }
 }

@@ -1,148 +1,51 @@
-import { readFileSync, readdirSync, writeFileSync } from "node:fs";
-import { preferredReplacements, resolveDocUrl } from "module-replacements";
+import { readFileSync, writeFileSync } from "node:fs";
+import { preferredReplacements } from "module-replacements";
+import {
+  groupModulesByUrlId,
+  buildReplacementNameMap,
+  loadDocContent,
+  fetchAllVersions,
+  buildAbandonmentConfig,
+  buildRecommendationsConfig,
+  buildReplacementsConfig,
+  buildDefaultConfig,
+} from "./lib.js";
 
 const { mappings, replacements: replacementDefs } = preferredReplacements;
 
 const moduleNames = Object.keys(mappings).sort();
-
-const modulesByUrlId = new Map();
-const urlById = new Map();
-for (const mapping of Object.values(mappings)) {
-  const urlId = mapping.url?.id;
-  if (!urlId) continue;
-  if (!modulesByUrlId.has(urlId)) {
-    modulesByUrlId.set(urlId, []);
-    urlById.set(urlId, mapping.url);
-  }
-  modulesByUrlId.get(urlId).push(mapping.moduleName);
-}
-const sortedUrlIds = [...modulesByUrlId.keys()].sort();
-for (const urlId of sortedUrlIds) {
-  modulesByUrlId.get(urlId).sort();
-}
-
-const urlIdToReplacementName = new Map();
-const seenUrlIds = new Set();
-for (const mapping of Object.values(mappings)) {
-  const urlId = mapping.url?.id;
-  if (!urlId || seenUrlIds.has(urlId)) continue;
-  seenUrlIds.add(urlId);
-  for (const rid of mapping.replacements) {
-    const rep = replacementDefs[rid];
-    if (rep?.type === "documented") {
-      urlIdToReplacementName.set(urlId, rep.replacementModule);
-      break;
-    }
-  }
-}
+const { modulesByUrlId, urlById, sortedUrlIds } =
+  groupModulesByUrlId(mappings);
+const urlIdToReplacementName = buildReplacementNameMap(
+  mappings,
+  replacementDefs,
+);
 
 const docsDir = new URL("../docs", import.meta.url);
-const docContent = new Map();
-for (const file of readdirSync(docsDir).filter(f => f.endsWith(".md") && f !== "README.md")) {
-  const urlId = file.replace(".md", "");
-  const raw = readFileSync(new URL(file, docsDir + "/"), "utf-8");
-  const content = raw.replace(/^---\n[\s\S]*?\n---\n?/, "");
-  docContent.set(urlId, content);
-}
-
-async function fetchLatestVersion(packageName) {
-  const res = await fetch(`https://registry.npmjs.org/${packageName}/latest`);
-  if (!res.ok) {
-    console.warn(`Warning: could not fetch ${packageName} (${res.status}), skipping`);
-    return null;
-  }
-  const { version } = await res.json();
-  return version;
-}
+const docContent = loadDocContent(docsDir);
 
 const replacementNames = [...new Set(urlIdToReplacementName.values())];
-const latestVersions = new Map();
-await Promise.all(
-  replacementNames.map(async (name) => {
-    const ver = await fetchLatestVersion(name);
-    if (ver) latestVersions.set(name, ver);
-  }),
-);
+const latestVersions = await fetchAllVersions(replacementNames);
 
 const { version } = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url), "utf-8"),
 );
 
-const abandonment = {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  description: ["Mark e18e replaceable packages as abandoned"],
-  packageRules: [
-    {
-      description: "Mark e18e replaceable packages as abandoned",
-      matchDatasources: ["npm"],
-      matchPackageNames: moduleNames,
-      abandonmentThreshold: "1 second", // 0 days is not supported
-      addLabels: ["e18e"],
-    },
-  ],
-};
-
-const recommendations = {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  description: ["Add e18e replacement recommendations to PR body"],
-  packageRules: sortedUrlIds.map((urlId) => {
-    const docUrl = resolveDocUrl(urlById.get(urlId));
-    return {
-      description: "Add e18e replacement recommendations to PR body",
-      matchDatasources: ["npm"],
-      matchPackageNames: modulesByUrlId.get(urlId),
-      matchUpdateTypes: ["!replacement"],
-      prBodyColumns: [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes",
-      ],
-      prBodyDefinitions: {
-        "Community Notes": `[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](${docUrl})`,
-      },
-      prBodyNotes: [
-        `{{#unless (includes prBodyColumns "Community Notes")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for \`{{{depName}}}\`](${docUrl}) to find modern, lighter alternatives.{{/unless}}`,
-      ],
-    };
-  }),
-};
-
-const replacementsConfig = {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  description: ["Replace e18e replaceable packages with recommended alternatives"],
-  packageRules: sortedUrlIds
-    .filter((urlId) => urlIdToReplacementName.has(urlId) && latestVersions.has(urlIdToReplacementName.get(urlId)))
-    .map((urlId) => {
-      const repName = urlIdToReplacementName.get(urlId);
-      const content = docContent.get(urlId) || "";
-      const migrateBody = content.replace(/^(#{1,5}) /gm, "$1# ");
-      const docUrl = resolveDocUrl(urlById.get(urlId));
-      return {
-        description: `Replace with ${repName}`,
-        matchDatasources: ["npm"],
-        matchPackageNames: modulesByUrlId.get(urlId),
-        replacementName: repName,
-        replacementVersion: latestVersions.get(repName),
-        draftPR: true,
-        prBodyNotes: [
-          `> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing \`{{{depName}}}\` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n${migrateBody}\n---\n*Source: [e18e module replacements](${docUrl})*\n\n</details>`,
-        ],
-      };
-    }),
-};
-
-const defaultConfig = {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  description: ["e18e presets for Renovate"],
-  extends: [
-    // todo: maybe remove in favor of replacements or better renovate features.
-    // `github>OrbisK/renovate-config-e18e:abandonment#${version}`,
-    `github>OrbisK/renovate-config-e18e:recommendations#${version}`,
-    `github>OrbisK/renovate-config-e18e:replacements#${version}`,
-  ],
-};
+const abandonment = buildAbandonmentConfig(moduleNames);
+const recommendations = buildRecommendationsConfig(
+  sortedUrlIds,
+  modulesByUrlId,
+  urlById,
+);
+const replacementsConfig = buildReplacementsConfig(
+  sortedUrlIds,
+  urlIdToReplacementName,
+  latestVersions,
+  modulesByUrlId,
+  urlById,
+  docContent,
+);
+const defaultConfig = buildDefaultConfig(version);
 
 writeFileSync(
   new URL("../abandonment.json", import.meta.url),
@@ -160,6 +63,11 @@ writeFileSync(
   new URL("../default.json", import.meta.url),
   JSON.stringify(defaultConfig, null, 2) + "\n",
 );
+
 console.log(`Generated abandonment.json with ${moduleNames.length} packages`);
-console.log(`Generated recommendations.json with ${recommendations.packageRules.length} rules for ${moduleNames.length} packages`);
-console.log(`Generated replacements.json with ${replacementsConfig.packageRules.length} replacements`);
+console.log(
+  `Generated recommendations.json with ${recommendations.packageRules.length} rules for ${moduleNames.length} packages`,
+);
+console.log(
+  `Generated replacements.json with ${replacementsConfig.packageRules.length} replacements`,
+);
