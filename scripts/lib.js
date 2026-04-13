@@ -170,6 +170,17 @@ export function buildMergeConfidenceConfig(sortedUrlIds, modulesByUrlId, urlById
       description: ['All Merge Confidence columns with e18e Community Notes'],
       packageRules: allBadges.packageRules,
     },
+    'all-badges-append': {
+      description: ['All Merge Confidence columns with e18e Community Notes and {{arg0}}'],
+      packageRules: [
+        {
+          description: 'All Merge Confidence columns with e18e Community Notes and {{arg0}}',
+          matchDatasources: ['npm'],
+          matchUpdateTypes: ['patch', 'minor', 'major'],
+          prBodyColumns: ['Package', 'Change', 'Age', 'Adoption', 'Passing', 'Confidence', 'Community Notes', '{{arg0}}'],
+        },
+      ],
+    },
   }
 }
 

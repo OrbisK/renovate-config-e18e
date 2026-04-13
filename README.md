@@ -46,6 +46,7 @@ The default preset extends `best-practices`, which combines [`config:best-practi
 | `github>OrbisK/renovate-config-e18e:recommendations` | Adds replacement recommendations to PR bodies (see [below](#recommendations-preset)) |
 | `github>OrbisK/renovate-config-e18e:replacements` | Replaces packages with recommended alternatives using [`replacementName`](https://docs.renovatebot.com/configuration-options/#packagerulesreplacementname), opens a [**draft PR**](https://docs.renovatebot.com/configuration-options/#draftpr) with an embedded migration guide |
 | `github>OrbisK/renovate-config-e18e:columns:community-notes` | Adds a "Community Notes" column to the default [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns) for patch, minor and major updates |
+| `github>OrbisK/renovate-config-e18e:mergeConfidence:all-badges-append(column)` | All Merge Confidence columns with e18e Community Notes plus a custom appended column |
 | `github>OrbisK/renovate-config-e18e:mergeConfidence:age-confidence` | Like `columns:community-notes` with columns matching [`mergeConfidence:age-confidence-badges`](https://docs.renovatebot.com/presets-mergeConfidence/#mergeconfidenceage-confidence-badges) |
 | `github>OrbisK/renovate-config-e18e:mergeConfidence:all-badges` | Like `columns:community-notes` with columns matching [`mergeConfidence:all-badges`](https://docs.renovatebot.com/presets-mergeConfidence/#mergeconfidenceall-badges) |
 
@@ -75,6 +76,18 @@ provides a detailed migration guide.
 
 > [!NOTE]
 > Renovate's [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns) does **not** merge — it overrides. If you set `prBodyColumns` yourself or use presets that set it (e.g. [Merge Confidence](https://docs.renovatebot.com/merge-confidence/)), you need to include `"Community Notes"` in your column list manually.
+
+### Columns presets
+
+The `mergeConfidence:all-badges-append` preset accepts one argument to append a custom column to the all Merge Confidence columns layout (Package, Change, Age, Adoption, Passing, Confidence, Community Notes). This is useful because Renovate's [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns) does not merge — it overrides, so adding a single column normally requires duplicating the entire list.
+
+```json
+{
+  "extends": [
+    "github>OrbisK/renovate-config-e18e:mergeConfidence:all-badges-append(Pending)"
+  ]
+}
+```
 
 ## How it works
 
