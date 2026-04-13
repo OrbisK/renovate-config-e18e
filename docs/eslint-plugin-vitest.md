@@ -15,7 +15,7 @@ the [original maintainer has lost access to their old npm account](https://githu
 ```diff
 + import vitest from '@vitest/eslint-plugin'
 - import vitest from 'eslint-plugin-vitest'
-  
+
   export default [
     {
       files: ['tests/**'], // or any other pattern

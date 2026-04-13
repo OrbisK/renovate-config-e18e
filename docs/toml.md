@@ -18,7 +18,7 @@ Parse (load):
 ```diff
 - import toml from 'toml'
 + import { parse } from 'smol-toml'
-  
+
 - const obj = toml.parse(src)
 + const obj = parse(src)
 ```
@@ -40,7 +40,7 @@ Example:
 ```diff
 - import toml from 'toml'
 + import { TOML } from 'bun'
-  
+
 - toml.parse(src)
 + TOML.parse(src)
 ```

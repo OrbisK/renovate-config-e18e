@@ -17,7 +17,7 @@ Example:
 ```diff
 + import * as pkg from 'empathic/package'
 - import findPkg from 'find-pkg'
-  
+
 - await findPkg(path)
 + pkg.up(path)
 ```

@@ -80,7 +80,7 @@ Modern Node.js includes built-in `fs` and `fs/promises` APIs that cover what [ `
 
 ```diff
 - await fsExtra.outputFile(file, data)
-  
+
 + await fsPromises.mkdir(path.dirname(file), { recursive: true })
 + await fsPromises.writeFile(file, data)
 ```
@@ -89,7 +89,7 @@ Modern Node.js includes built-in `fs` and `fs/promises` APIs that cover what [ `
 
 ```diff
 - fsExtra.outputFileSync(file, data)
-  
+
 + fs.mkdirSync(path.dirname(file), { recursive: true })
 + fs.writeFileSync(file, data)
 ```
@@ -105,7 +105,7 @@ Modern Node.js includes built-in `fs` and `fs/promises` APIs that cover what [ `
 
 ```diff
 - await fsExtra.writeJson(file, obj)
-  
+
 + await fsPromises.mkdir(path.dirname(file), { recursive: true })
 + await fsPromises.writeFile(file, JSON.stringify(obj, null, 2))
 ```
@@ -114,7 +114,7 @@ Modern Node.js includes built-in `fs` and `fs/promises` APIs that cover what [ `
 
 ```diff
 - await fsExtra.ensureFile(file)
-  
+
 + await fsPromises.mkdir(path.dirname(file), { recursive: true })
 + await fsPromises.access(file).catch(() => fsPromises.writeFile(file, ''))
 ```
@@ -123,7 +123,7 @@ Modern Node.js includes built-in `fs` and `fs/promises` APIs that cover what [ `
 
 ```diff
 - fsExtra.ensureFileSync(file)
-  
+
 + fs.mkdirSync(path.dirname(file), { recursive: true })
 + fs.writeFileSync(file, '')
 ```
@@ -132,7 +132,7 @@ Modern Node.js includes built-in `fs` and `fs/promises` APIs that cover what [ `
 
 ```diff
 - await fsExtra.ensureLink(src, dest)
-  
+
 + await fsPromises.mkdir(path.dirname(dest), { recursive: true })
 + await fsPromises.link(src, dest)
 ```
@@ -149,7 +149,7 @@ Modern Node.js includes built-in `fs` and `fs/promises` APIs that cover what [ `
 
 ```diff
 - await fsExtra.ensureSymlink(src, dest)
-  
+
 + await fsPromises.mkdir(path.dirname(dest), { recursive: true })
 + await fsPromises.symlink(src, dest)
 ```
@@ -158,7 +158,7 @@ Modern Node.js includes built-in `fs` and `fs/promises` APIs that cover what [ `
 
 ```diff
 - fsExtra.ensureSymlinkSync(src, dest)
-  
+
 + fs.mkdirSync(path.dirname(dest), { recursive: true })
 + fs.symlinkSync(src, dest)
 ```
@@ -167,7 +167,7 @@ Modern Node.js includes built-in `fs` and `fs/promises` APIs that cover what [ `
 
 ```diff
 - await fsExtra.emptyDir(dir)
-  
+
 + await fsPromises.rm(dir, { recursive: true, force: true })
 + await fsPromises.mkdir(dir, { recursive: true })
 ```
@@ -187,11 +187,13 @@ For example:
 ```js
 try {
   await fsPromises.rename(src, dest)
-} catch (err) {
+}
+catch (err) {
   if (err.code === 'EXDEV') {
     await fsPromises.cp(src, dest, { recursive: true })
     await fsPromises.rm(src, { recursive: true, force: true })
-  } else {
+  }
+  else {
     throw err
   }
 }

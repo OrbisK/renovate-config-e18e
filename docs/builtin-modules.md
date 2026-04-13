@@ -12,7 +12,7 @@ use [builtinModules](https://nodejs.org/api/module.html#modulebuiltinmodules):
 ```diff
   - import builtinModulesList from 'builtin-modules'
   + import {builtinModules} from 'node:module'
-    
+
 -   builtinModulesList.includes('fs')
 +   builtinModules.includes('fs')
 ```

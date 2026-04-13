@@ -15,7 +15,7 @@ Example:
 ```diff
 + import * as pkg from 'empathic'
 - import findCacheDirectory from 'find-cache-directory'
-  
+
 - findCacheDirectory({ name: 'foo' })
 + pkg.cache('foo')
 ```

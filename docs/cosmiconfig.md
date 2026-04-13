@@ -52,7 +52,7 @@ const options = {
   loaders: {
     '.yaml': yamlLoader,
     '.yml': yamlLoader,
-    noExt: yamlLoader
+    'noExt': yamlLoader
   }
 }
 

@@ -18,7 +18,7 @@ Example:
 + import { dirname } from 'node:path'
 + import * as pkg from 'empathic/package'
 - import { packageDirectory } from 'pkg-dir'
-  
+
 - const dir = await packageDirectory()
 + const dir = dirname(pkg.up())
 ```

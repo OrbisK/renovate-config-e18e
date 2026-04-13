@@ -14,7 +14,7 @@ It has new features, bugfixes and updated dependencies.
 ```diff
 + import nPlugin from 'eslint-plugin-n'
 - import nodePlugin from 'eslint-plugin-node'
-  
+
   export default [
     {
       files: ['**/*.js'], // or any other pattern

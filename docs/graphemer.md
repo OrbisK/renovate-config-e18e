@@ -14,13 +14,13 @@ the modern native JavaScript API for text segmentation, available in Node.js 16+
 
 ```diff
 - import GraphemeSplitter from 'grapheme-splitter'
-  
+
 - const splitter = new GraphemeSplitter()
 + const segmenter = new Intl.Segmenter()
-  
+
 - const graphemes = splitter.splitGraphemes(text)
 + const graphemes = [...segmenter.segment(text)].map((s) => s.segment)
-  
+
 - const count = splitter.countGraphemes(text)
 + const count = [...segmenter.segment(text)].length
 ```
@@ -33,12 +33,12 @@ dependencies and excellent browser compatibility.
 ```diff
 - import GraphemeSplitter from 'grapheme-splitter'
 + import { countGraphemes, splitGraphemes } from 'unicode-segmenter/grapheme'
-  
+
 - const splitter = new GraphemeSplitter()
-  
+
 - const graphemes = splitter.splitGraphemes(text)
 + const graphemes = [...splitGraphemes(text)]
-  
+
 - const count = splitter.countGraphemes(text)
 + const count = countGraphemes(text)
 ```

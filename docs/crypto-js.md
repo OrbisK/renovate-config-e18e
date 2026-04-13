@@ -16,7 +16,7 @@ This supports hashes/HMAC, AES-GCM, PBKDF2/scrypt, RSA/ECDSA/Ed25519, and secure
 ```diff
 - import sha256 from 'crypto-js/sha256'
 + import { createHash } from 'node:crypto'
-  
+
   const secret = 'abcdefg'
 - const hash = sha256(secret).toString()
 + const hash = createHash('sha256')

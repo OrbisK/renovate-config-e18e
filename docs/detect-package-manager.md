@@ -22,7 +22,7 @@ for detecting the package manager being used in a project.
 ```diff
 - import { detect } from 'detect-package-manager'
 + import { detect } from 'package-manager-detector'
-  
+
 - const pm = await detect()
 + const result = await detect()
 + const pm = result?.name

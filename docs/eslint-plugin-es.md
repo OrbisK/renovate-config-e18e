@@ -15,9 +15,9 @@ maintained. It has new features, bugfixes and updated dependencies.
 - import { FlatCompat } from '@eslint/eslintrc'
 - import pluginES from 'eslint-plugin-es'
 + import pluginESx from 'eslint-plugin-es-x'
-  
+
 - const compat = new FlatCompat()
-  
+
   export default [
     {
       files: ['**/*.js'],
@@ -33,7 +33,7 @@ maintained. It has new features, bugfixes and updated dependencies.
 +       'es-x/no-regexp-lookbehind-assertions': 'error'
       }
     },
-  
+
 -   ...compat.extends('plugin:es/restrict-to-es2018'),
 +   pluginESx.configs['flat/restrict-to-es2018']
   ]

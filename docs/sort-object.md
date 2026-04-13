@@ -15,9 +15,9 @@ For simple cases:
 
 ```diff
 - import sortObj from 'sort-object'
-  
+
 - const sorted = sortObj(object)
-  
+
   // Ascending A→Z
 + const sorted = Object.fromEntries(
 +   Object.entries(object).sort((a, b) => a[0].localeCompare(b[0]))
@@ -30,7 +30,7 @@ Replicating `sortBy` (function returns an ordered key list):
 
 ```diff
 - import sortObj from 'sort-object'
-  
+
 - const sorted = sortObj(object, {
 -   sortBy: (obj) => {
 -     const arr = []
@@ -41,7 +41,7 @@ Replicating `sortBy` (function returns an ordered key list):
 -     return arr.reverse()
 -   }
 - })
-  
+
 + const sortBy = (obj) =>
 +   Object.keys(obj)
 +     .filter((k) => obj[k].startsWith('a'))
@@ -59,11 +59,11 @@ use cases (custom order array or comparator).
 ```diff
 - import sortObj from 'sort-object'
 + import sortObjectKeys from 'sort-object-keys'
-  
+
   // Default A→Z
 - const sorted = sortObj(object)
 + const sorted = sortObjectKeys(object)
-  
+
   // With comparator
 - const sortedByCmp = sortObj(object, { sort: (a, b) => a.localeCompare(b) })
 + const sortedByCmp = sortObjectKeys(object, (a, b) => a.localeCompare(b))
@@ -76,7 +76,7 @@ use cases (custom order array or comparator).
 ```diff
 - import sortObj from 'sort-object'
 + import sortobject from 'sortobject'
-  
+
 - const sorted = sortObj(object)
 + const sorted = sortobject(object)
 ```

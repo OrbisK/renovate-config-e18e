@@ -32,7 +32,7 @@ Remove explicit dotenv config:
 
 ```diff
 - import dotenv from 'dotenv'
-  
+
 - dotenv.config({ path: '.env' })
   // No runtime configuration needed
 ```
@@ -56,9 +56,9 @@ parse a `.env` string into an object without loading it into `process.env`.
 ```diff
 - import { parse } from 'dotenv'
 + import { parseEnv } from 'node:util'
-  
+
   const envContent = '...'
-  
+
 - const env = parse(envContent)
 + const env = parseEnv(envContent)
 ```

@@ -18,7 +18,7 @@ Parse (load):
 ```diff
 - import yaml from 'js-yaml'
 + import { parse } from 'yaml'
-  
+
 - const obj = yaml.load(src)
 + const obj = parse(src)
 ```
@@ -28,7 +28,7 @@ Stringify (dump):
 ```diff
 - import yaml from 'js-yaml'
 + import { stringify } from 'yaml'
-  
+
 - const text = yaml.dump(obj)
 + const text = stringify(obj)
 ```
@@ -38,7 +38,7 @@ Multi-document:
 ```diff
 - import yaml from 'js-yaml'
 + import { parseAllDocuments } from 'yaml'
-  
+
 - const out: any[] = []
 - yaml.loadAll(src, (d) => out.push(d))
 + const out = parseAllDocuments(src).map((d) => d.toJSON())
@@ -54,7 +54,7 @@ Example:
 ```diff
 - import yaml from 'js-yaml'
 + import { YAML } from 'bun'
-  
+
 - yaml.load(src)
 + YAML.parse(src)
 ```

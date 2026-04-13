@@ -17,14 +17,14 @@ pulling in an extra dependency.
 ```diff
 - import MockDate from 'mockdate'
 + import { vi, test, expect } from 'vitest'
-  
+
   test('freeze date', () => {
 -   MockDate.set('2026-01-01')
 +   vi.useFakeTimers()
 +   vi.setSystemTime(new Date('2026-01-01'))
-  
+
     expect(new Date().toISOString()).toBe('2026-01-01T00:00:00.000Z')
-  
+
 -   MockDate.reset()
 +   vi.useRealTimers()
   })
@@ -39,13 +39,13 @@ pulling in an extra dependency.
 - import MockDate from 'mockdate'
 + import { test } from 'node:test'
 + import assert from 'node:assert/strict'
-  
+
   test('freeze date', (t) => {
 -   MockDate.set('2026-01-01')
 +   t.mock.timers.enable({ apis: ['Date'], now: new Date('2026-01-01') })
-  
+
     assert.equal(new Date().toISOString(), '2026-01-01T00:00:00.000Z')
-  
+
 -   MockDate.reset()
   })
 ```
@@ -57,13 +57,13 @@ pulling in an extra dependency.
 ```diff
 - import MockDate from 'mockdate'
 + import { test, expect, mock } from 'bun:test'
-  
+
   test('freeze date', () => {
 -   MockDate.set('2026-01-01')
 +   mock.timers.enable({ now: new Date('2026-01-01') })
-  
+
     expect(new Date().toISOString()).toBe('2026-01-01T00:00:00.000Z')
-  
+
 -   MockDate.reset()
 +   mock.timers.reset()
   })

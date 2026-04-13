@@ -12,7 +12,7 @@ be used to strip ANSI escape codes from a string.
 ```diff
 - import stripAnsi from 'strip-ansi'
 + import { stripVTControlCharacters } from 'node:util'
-  
+
 - console.log(stripAnsi('\u001B[4me18e\u001B[0m'))
 + console.log(stripVTControlCharacters('\u001B[4me18e\u001B[0m'))
 ```
@@ -29,7 +29,7 @@ identical:
 ```diff
 - import stripAnsi from 'strip-ansi'
 + import { stripVTControlCharacters } from 'node:util'
-  
+
 - console.log(stripAnsi('\u001B[4me18e\u001B[0m'))
 + console.log(stripVTControlCharacters('\u001B[4me18e\u001B[0m'))
 ```
@@ -44,7 +44,7 @@ layer:
 ```diff
 - import stripAnsi from 'strip-ansi'
 + import { stripVTControlCharacters } from 'node:util'
-  
+
 - console.log(stripAnsi('\u001B[1mHello\u001B[0m'))
 + console.log(stripVTControlCharacters('\u001B[1mHello\u001B[0m'))
 ```
@@ -57,7 +57,7 @@ method.
 ```diff
 - import stripAnsi from 'strip-ansi'
 + import { stripANSI } from 'bun'
-  
+
 - console.log(stripAnsi('\u001B[31mHello World\u001B[0m'))
 + console.log(Bun.stripANSI('\u001B[31mHello World\u001B[0m'))
 ```

@@ -15,10 +15,10 @@ Example:
   import { Buffer } from 'node:buffer'
 - import bufferEqual from 'buffer-equal-constant-time'
 + import * as crypto from 'node:crypto'
-  
+
   const bufUser = Buffer.from('303')
   const bufSecret = Buffer.from('303')
-  
+
 - bufferEqual(bufUser, bufSecret)
 + bufUser.length === bufSecret.length
 +   ? crypto.timingSafeEqual(bufUser, bufSecret)

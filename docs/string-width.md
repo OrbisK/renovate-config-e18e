@@ -14,7 +14,7 @@ that’s faster and smaller.
 ```diff
 - import stringWidth from 'string-width'
 + import stringWidth from 'fast-string-width'
-  
+
   console.log(stringWidth('abc')) // 3
   console.log(stringWidth('👩‍👩‍👧‍👦')) // 1
   console.log(stringWidth('\u001B[31mhello\u001B[39m')) // 5
@@ -27,7 +27,7 @@ If you’re on Bun ≥ 1.0.29, you can use the built‑in [`stringWidth`](https:
 ```diff
 - import stringWidth from 'string-width'
 + import { stringWidth } from 'bun'
-  
+
   console.log(stringWidth('abc')) // 3
   console.log(stringWidth('👩‍👩‍👧‍👦')) // 1
   console.log(stringWidth('\u001B[31mhello\u001B[39m')) // 5

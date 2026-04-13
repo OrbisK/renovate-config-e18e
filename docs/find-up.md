@@ -18,7 +18,7 @@ Example:
 ```diff
 + import * as find from 'empathic/find'
 - import { findUp } from 'find-up'
-  
+
 - await findUp('package.json')
 + find.up('package.json')
 ```
@@ -30,7 +30,7 @@ When finding multiple files, you can use `find.any`:
 ```diff
 + import * as find from 'empathic/find'
 - import { findUpMultiple } from 'find-up'
-  
+
 - const files = await findUpMultiple(['package.json', 'tsconfig.json'])
 + const files = find.any(['package.json', 'tsconfig.json'])
 ```
@@ -46,7 +46,7 @@ For example, finding a file:
 ```diff
 + import * as find from 'empathic/find'
 - import { findUp } from 'find-up'
-  
+
 - await findUp('package.json', { type: 'file' })
 + find.file('package.json')
 ```
@@ -68,7 +68,7 @@ This option is replaced by `last`:
 ```diff
 - import { findUp } from 'find-up'
 + import * as find from 'empathic/find'
-  
+
 - await findUp(
 + find.file(
     'package.json',
@@ -85,7 +85,7 @@ and other configuration files with TypeScript support.
 ```diff
 - import { findUp } from 'find-up'
 + import { readPackageJSON } from 'pkg-types'
-  
+
 - const packagePath = await findUp('package.json')
 + const packageJson = await readPackageJSON()
 ```

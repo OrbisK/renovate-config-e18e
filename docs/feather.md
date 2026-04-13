@@ -18,7 +18,7 @@ Example:
 ```diff
 - import feather from 'feather-icons'
 + import { icons } from 'lucide'
-  
+
 - feather.icons.x.toSvg({ class: 'icon icon-x' })
 + icons.x.toSvg({ class: 'icon icon-x' })
 ```
@@ -35,7 +35,7 @@ Example:
 ```diff
 - import { Camera, ArrowRight } from 'react-feather'
 + import { Camera, ArrowRight } from 'lucide-react'
-  
+
   export function Header() {
     return (
       <>

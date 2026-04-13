@@ -15,11 +15,11 @@ Example migration from [`mkdirp`](https://github.com/isaacs/node-mkdirp):
 - import { mkdirp } from 'mkdirp'
 + import { mkdir, mkdirSync } from 'node:fs'
 + import { mkdir as mkdirAsync } from 'node:fs/promises'
-  
+
   // Async
 - await mkdirp('/tmp/foo/bar/baz')
 + await mkdirAsync('/tmp/foo/bar/baz', { recursive: true })
-  
+
   // Sync
 - mkdirp.sync('/tmp/foo/bar/baz')
 + mkdirSync('/tmp/foo/bar/baz', { recursive: true })
@@ -31,11 +31,11 @@ Example migration from [`make-dir`](https://github.com/sindresorhus/make-dir):
 - import { makeDirectory, makeDirectorySync } from 'make-dir'
 + import { mkdir, mkdirSync } from 'node:fs'
 + import { mkdir as mkdirAsync } from 'node:fs/promises'
-  
+
   // Async
 - await makeDirectory('/tmp/foo/bar/baz')
 + await mkdirAsync('/tmp/foo/bar/baz', { recursive: true })
-  
+
   // Sync
 - makeDirectorySync('/tmp/foo/bar/baz')
 + mkdirSync('/tmp/foo/bar/baz', { recursive: true })

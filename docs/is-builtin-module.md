@@ -12,7 +12,7 @@ use [isBuiltin](https://nodejs.org/api/module.html#moduleisbuiltinmodulename):
 ```diff
   + import { isBuiltin } from 'node:module'
   - import isBuiltinModule from 'is-builtin-module'
-    
+
 +   isBuiltin('fs')
 -   isBuiltinModule('fs')
 ```
@@ -27,14 +27,14 @@ using [builtinModules](https://nodejs.org/api/module.html#modulebuiltinmodules):
 ```diff
   + import { builtinModules } from 'node:module'
   - import isBuiltinModule from 'is-builtin-module'
-    
+
   + function isBuiltin(moduleName) {
   +   const name = moduleName.startsWith('node:')
   +     ? moduleName.slice(5)
   +     : moduleName
   +   return builtinModules.includes(name)
   + }
-    
+
 +   isBuiltin('fs')
 -   isBuiltinModule('fs')
 ```

@@ -16,10 +16,10 @@ Example:
 ```diff
   - import equal from 'deep-equal'
   + import { isDeepStrictEqual } from 'node:util'
-    
+
     const a = { foo: 'bar' }
     const b = { foo: 'bar' }
-    
+
 -   equal(a, b)
 +   isDeepStrictEqual(a, b)
 ```
@@ -33,10 +33,10 @@ Example:
 ```diff
   - import equal from 'deep-equal'
   + import dequal from 'dequal'
-    
+
     const a = { foo: 'bar' }
     const b = { foo: 'bar' }
-    
+
 -   equal(a, b)
 +   dequal(a, b)
 ```

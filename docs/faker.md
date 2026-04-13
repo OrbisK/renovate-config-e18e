@@ -14,8 +14,8 @@ features, bugfixes, modern ESM/CJS builds, and updated data/locales.
 ```diff
 - const faker = require('faker')
 + const { faker } = require('@faker-js/faker')
-  
+
   faker.datatype.boolean()
-  
+
   faker.image.avatar()
 ```

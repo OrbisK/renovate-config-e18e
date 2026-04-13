@@ -17,7 +17,7 @@ Example:
 ```diff
 + import {styleText} from 'node:util'
 - import chalk from 'chalk'
-  
+
 - console.log(`Hello ${chalk.blue('blue')} world!`)
 + console.log(`Hello ${styleText('blue', 'blue')} world!`)
 ```
@@ -40,10 +40,10 @@ When using multiple styles, you can pass an array to `styleText`:
 ```diff
 - import chalk from 'chalk'
 + import picocolors from 'picocolors'
-  
+
 - console.log(`Hello ${chalk.blue('blue')} world!`)
 + console.log(`Hello ${picocolors.blue('blue')} world!`)
-  
+
   // A chained example
 - console.log(chalk.blue.bgRed('blue on red'))
 + console.log(picocolors.blue(picocolors.bgRed('blue on red')))
@@ -62,7 +62,7 @@ Example:
 ```diff
 + import ansis from 'ansis'
 - import chalk from 'chalk'
-  
+
 - console.log(`Hello ${chalk.blue('blue')} world!`)
 + console.log(`Hello ${ansis.blue('blue')} world!`)
 ```

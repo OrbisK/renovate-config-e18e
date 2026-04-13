@@ -37,7 +37,7 @@ Example:
 ```diff
 - import { Helmet } from 'react-helmet'
 + import { Helmet, HelmetProvider } from 'react-helmet-async'
-  
+
   const app = (
 +   <HelmetProvider>
       <App>

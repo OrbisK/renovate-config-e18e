@@ -1,20 +1,24 @@
 {
   "name": "renovate-config-e18e",
-  "version": "0.0.20",
   "type": "module",
+  "version": "0.0.20",
+  "packageManager": "pnpm@10.33.0",
   "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
   "scripts": {
     "generate": "node scripts/generate.js",
     "test": "vitest run",
     "test:watch": "vitest",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "release": "pnpm run generate && bumpp"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.33.0",
   "devDependencies": {
+    "@antfu/eslint-config": "^8.2.0",
     "bumpp": "^11.0.1",
+    "eslint": "^10.2.0",
     "module-replacements": "3.0.0-beta.4",
     "vitest": "^4.1.4"
   }

@@ -14,7 +14,7 @@ Example:
 ```diff
 - import * as cui from 'core-util-is'
 + import { types } from 'node:util'
-  
+
 - const isDate = cui.isDate(value)
 + const isDate = types.isDate(value)
 ```

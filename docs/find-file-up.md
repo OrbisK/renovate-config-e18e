@@ -17,7 +17,7 @@ Example:
 ```diff
 + import * as find from 'empathic/find'
 - import findUp from 'find-file-up'
-  
+
 - await findUp('package.json', cwd)
 + find.file('package.json', { cwd })
 ```

@@ -15,7 +15,7 @@ Node API, switch your import to `cpx2`.
 ```diff
 - npm i -D cpx
 + npm i -D cpx2
-  
+
   # CLI stays the same (bin name is still "cpx")
   cpx "src/**/*.{html,png,jpg}" app --watch
 ```
@@ -27,7 +27,7 @@ Node API replacement:
 ```diff
 - const cpx = require('cpx')
 + const cpx = require('cpx2')
-  
+
   cpx.copy('src/**/*.js', 'dist', (err) => {
     if (err) throw err
   })

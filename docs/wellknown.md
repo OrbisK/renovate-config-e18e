@@ -15,16 +15,16 @@ Example:
 ```diff
 - import wellknown from 'wellknown'
 + import { wktToGeoJSON, geoJSONToWkt } from 'betterknown'
-  
+
 - wellknown.parse('POINT(1 2)')
 + wktToGeoJSON('POINT(1 2)')
-  
+
 - wellknown.stringify({
 + geoJSONToWkt({
     type: 'Point',
     coordinates: [1, 2]
   })
-  
+
 - wellknown.stringify({
 + geoJSONToWkt({
     type: 'Feature',

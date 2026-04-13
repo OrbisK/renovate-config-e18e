@@ -18,7 +18,7 @@ Example:
 ```diff
 - import fg from 'fast-glob'
 + import { glob } from 'tinyglobby'
-  
+
 - const files = await fg('**/*.ts', {
 + const files = await glob('**/*.ts', {
     cwd: process.cwd(),

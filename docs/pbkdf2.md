@@ -37,11 +37,11 @@ const derivedKey = await deriveKey('password', salt)
 ```diff
 - import pbkdf2 from 'pbkdf2'
 + import * as crypto from 'node:crypto'
-  
+
   const salt = crypto.getRandomValues(new Uint8Array(16))
   const iterations = 100000
   const keylen = 32
-  
+
 - const derivedKey = pbkdf2.pbkdf2Sync('password', salt, iterations, keylen, 'sha512')
 + const derivedKey = crypto.pbkdf2Sync('password', salt, iterations, keylen, 'sha512')
 ```

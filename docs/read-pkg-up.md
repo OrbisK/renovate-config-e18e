@@ -16,7 +16,7 @@ For example:
 ```diff
 - import { readPackageUp } from 'read-pkg-up'
 + import { readPackageJSON } from 'pkg-types'
-  
+
 + const packageJson = await readPackageJSON()
 - const packageJson = await readPackageUp()
 ```
@@ -39,7 +39,7 @@ It can be combined with `node:fs` to read `package.json` files:
 - import { readPackageUp } from 'read-pkg-up'
 + import fs from 'node:fs/promises'
 + import * as pkg from 'empathic'
-  
+
 - const packageJson = await readPackageUp()
 + const packageJsonPath = pkg.up()
 + const packageJson = packageJsonPath

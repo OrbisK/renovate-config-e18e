@@ -14,7 +14,7 @@ is the actively maintained successor with updated dependencies, flat config supp
 ```diff
 - import eslintComments from 'eslint-plugin-eslint-comments'
 + import commentsCommunity from '@eslint-community/eslint-plugin-eslint-comments/configs'
-  
+
   export default [
 +   commentsCommunity.recommended,
     {

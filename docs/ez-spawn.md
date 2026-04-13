@@ -15,7 +15,7 @@ For example:
 ```diff
 - import ezSpawn from '@jsdevtools/ez-spawn'
 + import { x } from 'tinyexec'
-  
+
 - await ezSpawn.async('ls -l')
 + await x('ls', ['-l'])
 ```
@@ -27,7 +27,7 @@ a command and arguments:
 - import ezSpawn from '@jsdevtools/ez-spawn'
 + import { tokenizeArgs } from 'args-tokenizer'
 + import { x } from 'tinyexec'
-  
+
 + const [command, ...args] = tokenizeArgs('ls -l')
 - await ezSpawn.async('ls -l')
 + await x(command, args)

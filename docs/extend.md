@@ -12,7 +12,7 @@ If you only need to deep clone an object, you can use [ `structuredClone`](https
 
 ```diff
   - import extend from 'extend'
-    
+
 -   extend(true, {}, config)
 +   structuredClone(config)
 ```

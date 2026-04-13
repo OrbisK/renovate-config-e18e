@@ -13,16 +13,16 @@ Example:
 ```diff
 - import split from 'split'
 + import { createInterface } from 'node:readline'
-  
+
   const input = fs.createReadStream('file.txt')
-  
+
 - const stream = input.pipe(split())
 - stream.on('data', (line) => {
 -   fn(line)
 - })
-  
+
 + const lines = createInterface({ input, crlfDelay: Infinity })
-  
+
 + for await (const line of lines) {
 +   fn(line)
 + }

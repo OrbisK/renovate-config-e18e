@@ -17,7 +17,7 @@ replacement.
 ```diff
 - import rimraf from 'rimraf'
 + import { rm } from 'node:fs/promises'
-  
+
 - await rimraf('./dist')
 + await rm('./dist', { recursive: true, force: true })
 ```
@@ -27,7 +27,7 @@ replacement.
 ```diff
 - import rimraf from 'rimraf'
 + import * as fs from 'node:fs'
-  
+
 - rimraf.sync('./dist')
 + fs.rmSync('./dist', { recursive: true, force: true })
 ```
@@ -43,7 +43,7 @@ Node v12.10.0, though it’s deprecated as of Node v14.
 ```diff
 - import rimraf from 'rimraf'
 + import { rmdir } from 'node:fs/promises'
-  
+
 - await rimraf('./dist')
 + await rmdir('./dist', { recursive: true })
 ```

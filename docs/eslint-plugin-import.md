@@ -19,7 +19,7 @@ resolution via a Rust-based resolver, a smaller dependency footprint
 - import importPlugin from 'eslint-plugin-import'
 + import { createNodeResolver, importX } from 'eslint-plugin-import-x'
 + import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript'
-  
+
   export default [
 -   importPlugin.flatConfigs.recommended,
 +   importX.flatConfigs.recommended,

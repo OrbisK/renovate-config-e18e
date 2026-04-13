@@ -16,7 +16,7 @@ Example:
 + import { mkdtemp, realpath } from 'node:fs/promises'
 + import { join } from 'node:path'
 + import { tmpdir } from 'node:os'
-  
+
 - const tempDirPath = temp.mkdirSync('foo')
 + const tempDirPath = await mkdtemp(join(await realpath(tmpdir()), 'foo-'))
 ```
@@ -34,7 +34,7 @@ Example:
 + import { mkdtempDisposable } from 'node:fs/promises'
 + import { join } from 'node:path'
 + import { tmpdir } from 'node:os'
-  
+
 - temp.track()
 - const tempDirPath = temp.mkdirSync('foo')
 + await using tempDir = await mkdtempDisposable(join(tmpdir(), 'foo-'))
@@ -49,14 +49,14 @@ path and require `--allow-write`.
 
 ```diff
 - import { temporaryDirectory } from 'tempy'
-  
+
 - const tempDir = temporaryDirectory({ prefix: 'foo-' })
 + const tempDir = await Deno.makeTempDir({ prefix: 'foo-' })
 ```
 
 ```diff
 - import { temporaryFile } from 'tempy'
-  
+
 - const tempFile = temporaryFile({ extension: 'txt' })
 + const tempFile = await Deno.makeTempFile({ suffix: '.txt' })
 ```

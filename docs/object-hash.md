@@ -17,7 +17,7 @@ Example:
 ```diff
 - import objectHash from 'object-hash'
 + import { hash } from 'ohash'
-  
+
 - const h = objectHash(obj)
 + const h = hash(obj)
 ```
@@ -31,7 +31,7 @@ Example:
 ```diff
 - import objectHash from 'object-hash'
 + import stringify from 'safe-stable-stringify'
-  
+
 - const h = objectHash(obj, { algorithm: 'sha256' })
 + const data = new TextEncoder().encode(stringify(obj))
 + const buf = await crypto.subtle.digest('SHA-256', data)
@@ -52,7 +52,7 @@ Example:
 ```diff
 - import objectHash from 'object-hash'
 + import stringify from 'safe-stable-stringify'
-  
+
 - const h = objectHash(obj, { algorithm: 'sha256' })
 + const hasher = new CryptoHasher('sha256')
 + hasher.update(stringify(obj))

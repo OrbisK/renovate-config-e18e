@@ -16,7 +16,7 @@ Flat config example:
 ```diff
 + import eslintReact from '@eslint-react/eslint-plugin'
 - import reactPlugin from 'eslint-plugin-react'
-  
+
   export default [
     {
       files: ['**/*.{jsx,tsx}'],
@@ -27,7 +27,7 @@ Flat config example:
       rules: {
 -       ...reactPlugin.configs.recommended.rules,
 +       ...eslintReact.configs.recommended.rules,
-  
+
 -       'react/no-unknown-property': 'error',
 +       '@eslint-react/dom/no-unknown-property': 'error'
       }

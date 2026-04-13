@@ -16,12 +16,12 @@ Example:
 - import bodyParser from 'body-parser'
 + import {json, urlencoded} from 'milliparsec'
   import express from 'express'
-  
+
   const app = express()
-  
+
 - app.use(bodyParser.json())
 - app.use(bodyParser.urlencoded({extended: true}))
-  
+
 + app.use(json())
 + app.use(urlencoded())
 ```

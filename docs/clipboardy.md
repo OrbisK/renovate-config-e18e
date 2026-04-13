@@ -13,7 +13,7 @@ replacements:
 ```diff
 - import clipboard from 'clipboardy'
 + import * as clipboard from 'tinyclip'
-  
+
 - await clipboard.write('hello world')
 + await clipboard.writeText('hello world')
 - await clipboard.read()
@@ -30,7 +30,7 @@ Learn more about the [Clipboard API](https://developer.mozilla.org/en-US/docs/We
 
 ```diff
 - import clipboard from 'clipboardy'
-  
+
 - await clipboard.write('hello world')
 + await navigator.clipboard.writeText('hello world')
 - await clipboard.read()

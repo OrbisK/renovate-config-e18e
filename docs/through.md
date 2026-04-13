@@ -11,7 +11,7 @@ description: Modern alternatives to the through package
 ```diff
 - import through from 'through'
 + import { Writable } from 'node:stream'
-  
+
 - through(fn)
 + new Writable({
 +   write: (chunk, encoding, callback) => {

@@ -20,7 +20,7 @@ even smaller package size.
 ```diff
 - import debug from 'debug'
 + import { createDebug } from 'obug'
-  
+
 - const logger = debug('name')
 + const logger = createDebug('name')
 ```

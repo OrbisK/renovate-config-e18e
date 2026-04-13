@@ -27,7 +27,7 @@ than [`shortid`](https://github.com/dylang/shortid).
 ```diff
 - import shortid from 'shortid'
 + import { nanoid } from 'nanoid'
-  
+
 - const id = shortid.generate()
 + const id = nanoid() => "V1StGXR8_Z5jdHi6B-myT"
 ```
@@ -47,7 +47,7 @@ nanoid(10) // e.g., "NG3oYbq9qE"
 ```diff
 - shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@')
 + import { customAlphabet } from 'nanoid'
-  
+
 + const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@'
 + const makeId = customAlphabet(alphabet, 12)
 + const id = makeId()

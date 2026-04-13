@@ -28,7 +28,7 @@ export default {
 
 ### Rolldown (`rolldown.config.ts`)
 
-```js
+```ts
 import { defineConfig, type RolldownPlugin } from 'rolldown'
 import { visualizer } from 'rollup-plugin-visualizer'
 
@@ -66,8 +66,8 @@ rspack bundles
 Example:
 
 ```js
-import { defineConfig } from 'vite'
 import Sonda from 'sonda/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   build: {

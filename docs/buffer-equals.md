@@ -13,10 +13,10 @@ Example:
 ```diff
   import {Buffer} from 'node:buffer'
 - import bufferEquals from 'buffer-equals'
-  
+
   const buf1 = Buffer.from('303')
   const buf2 = Buffer.from('303')
-  
+
 - bufferEquals(buf1, buf2)
 + buf1.equals(buf2)
 ```

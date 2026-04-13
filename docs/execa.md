@@ -16,7 +16,7 @@ Example:
 ```diff
 - import { execa } from 'execa'
 + import { x } from 'tinyexec'
-  
+
 - const { stdout } = await execa('ls', ['-l'])
 + const { stdout } = await x('ls', ['-l'], { throwOnError: true })
 ```
@@ -31,7 +31,7 @@ Example:
 ```diff
 - import { execa } from 'execa'
 + import exec from 'nanoexec'
-  
+
 - const { stdout } = await execa('echo', ['example'])
 + const res = await exec('echo', ['example'])
 + const stdout = res.stdout.toString('utf8')
@@ -47,7 +47,7 @@ Example:
 ```diff
 - import { $ } from 'execa'
 + import { $ } from 'bun'
-  
+
 - const { stdout } = await $`echo "Hello"`
 + const stdout = await $`echo "Hello"`.text()
 ```

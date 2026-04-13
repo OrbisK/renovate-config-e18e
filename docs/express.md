@@ -24,13 +24,13 @@ Example:
 - import express from 'express'
 + import { H3, defineHandler, toNodeHandler } from 'h3'
 + import { createServer } from 'node:http'
-  
+
 - const app = express()
 + const app = new H3()
-  
+
 - app.get('/', (req, res) => res.send('Hello world'))
 + app.get('/', defineHandler(() => 'Hello world'))
-  
+
 - app.listen(3000)
 + createServer(toNodeHandler(app)).listen(3000)
 ```
@@ -45,12 +45,12 @@ Example:
 ```diff
 - import express from 'express'
 + import { App } from '@tinyhttp/app'
-  
+
 - const app = express()
 + const app = new App()
-  
+
   app.get('/', (req, res) => res.send('Hello world'))
-  
+
   app.listen(3000)
 ```
 
@@ -63,13 +63,13 @@ Example:
 ```diff
 - import express from 'express'
 + import { Hono } from 'hono'
-  
+
 - const app = express()
 + const app = new Hono()
-  
+
 - app.get('/', (req, res) => res.send('Hello world'))
 + app.get('/', (context) => context.text('Hello world'))
-  
+
 + export default app
 ```
 
@@ -83,12 +83,12 @@ Example:
 ```diff
 - import express from 'express'
 + import { Elysia } from 'elysia'
-  
+
 - const app = express()
 + const app = new Elysia()
-  
+
 - app.get('/', (req, res) => res.send('Hello world'))
 + app.get('/', () => 'Hello world')
-  
+
   app.listen(3000)
 ```

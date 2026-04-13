@@ -15,7 +15,7 @@ For example:
 ```diff
 + import { readPackageJSON } from 'pkg-types'
 - import { readPackage } from 'read-pkg'
-  
+
 - const packageJson = await readPackage()
 + const packageJson = await readPackageJSON()
 ```
@@ -35,7 +35,7 @@ You can use `node:fs` to read a known `package.json`:
 ```diff
 + import fs from 'node:fs/promises'
 - import { readPackage } from 'read-pkg'
-  
+
 - const packageJson = await readPackageUp()
 + const packageJson = JSON.parse(await readFile('./package.json', 'utf8'))
 ```

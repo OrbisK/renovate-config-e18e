@@ -15,7 +15,7 @@ Example:
 ```diff
 - import tokml from 'tokml'
 + import { toKML } from '@placemarkio/tokml'
-  
+
   const geojson = {
     type: 'FeatureCollection',
     features: [
@@ -26,7 +26,7 @@ Example:
       }
     ]
   }
-  
+
 - const kml = tokml(geojson)
 + const kml = toKML(geojson)
 ```

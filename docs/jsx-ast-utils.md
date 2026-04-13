@@ -14,10 +14,10 @@ package size.
 ```diff
 - import { hasProp } from 'jsx-ast-utils'
 + import { hasProp } from 'jsx-ast-utils-x'
-  
+
 - import hasProp from 'jsx-ast-utils/hasProp'
 + import hasProp from 'jsx-ast-utils-x/hasProp'
-  
+
   module.exports = (context) => ({
     JSXOpeningElement: (node) => {
       const onChange = hasProp(node.attributes, 'onChange')

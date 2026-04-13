@@ -13,7 +13,7 @@ Use [`fs/promises.access`](https://nodejs.org/docs/latest/api/fs.html#fspromises
 ```diff
 - import pathExists from 'path-exists'
 + import { access } from 'node:fs/promises'
-  
+
 - const exists = await pathExists('/etc/passwd')
 + const exists = await access('/etc/passwd').then(
 +   () => true,
@@ -28,7 +28,7 @@ Added in v0.1.21: synchronous path/file existence check via [ `fs.existsSync`](h
 ```diff
 - import pathExists from 'path-exists'
 + import { existsSync } from 'node:fs'
-  
+
 - const exists = await pathExists('/etc/passwd')
 + const exists = existsSync('/etc/passwd')
 ```
@@ -39,7 +39,7 @@ Added in v0.1.21: synchronous path/file existence check via [ `fs.existsSync`](h
 
 ```diff
   - import pathExists from 'path-exists'
-    
+
     const path = '/path/to/package.json'
   - const exists = await pathExists(path)
   + const file = Bun.file(path)

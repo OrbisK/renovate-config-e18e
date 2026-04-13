@@ -14,9 +14,9 @@ use [gzipSync](https://nodejs.org/api/zlib.html#zlibgzipsync) which exist inside
 ```diff
 - import { gzipSizeSync } from 'gzip-size'
 + import { gzipSync } from 'node:zlib'
-  
+
   const text = 'Lorem ipsum dolor sil amet'
-  
+
 - console.log(gzipSizeSync(text))
 + console.log(gzipSync(text).length)
 ```
@@ -27,11 +27,11 @@ use [gzipSync](https://nodejs.org/api/zlib.html#zlibgzipsync) which exist inside
 - import { gzipSize } from 'gzip-size'
 + import { gzipSync } from 'node:zlib'
 + import { promisify } from 'node:util'
-  
+
 + const gzipAsync = promisify(gzip)
-  
+
   const text = 'Lorem ipsum dolor sil amet'
-  
+
 - console.log(await gzipSize(text))
 + console.log((await gzipAsync(text)).length)
 ```
@@ -42,9 +42,9 @@ use [gzipSync](https://nodejs.org/api/zlib.html#zlibgzipsync) which exist inside
 - import { gzipSizeFromFileSync } from 'gzip-size'
 + import { gzipSync } from 'node:zlib'
 + import { readFileSync } from 'node:fs'
-  
+
   const path = '/path/to/file'
-  
+
 - console.log(gzipSizeFromFileSync(path))
 + console.log(gzipSync(readFileSync(path)).length)
 ```

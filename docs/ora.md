@@ -15,13 +15,13 @@ one dependency (`picocolors`).
 ```diff
 - import ora from 'ora'
 + import { createSpinner } from 'nanospinner'
-  
+
 - const spinner = ora('Loading...').start()
 + const spinner = createSpinner('Loading...').start()
-  
+
 - spinner.succeed('Done!')
 + spinner.success('Done!')
-  
+
 - spinner.fail('Error!')
 + spinner.error('Error!')
 ```
@@ -34,7 +34,7 @@ and colors through Node.js built-in styling.
 ```diff
 - import ora from 'ora'
 + import { Spinner } from 'picospinner'
-  
+
 - const spinner = ora('Loading...').start()
 + const spinner = new Spinner('Loading...')
 + spinner.start()

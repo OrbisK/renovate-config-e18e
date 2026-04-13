@@ -21,7 +21,7 @@ Example:
 
 ```diff
 - import * as URI from 'uri-js'
-  
+
 - URI.resolve('https://a/b/c/d?q', '../../g')
 + new URL('../../g', 'https://a/b/c/d?q').href
 ```
@@ -38,7 +38,7 @@ with the same API and no deprecation warnings.
 ```diff
 - import * as URI from 'uri-js'
 + import * as URI from 'uri-js-replace'
-  
+
   const parsed = URI.parse('uri://user:pass@example.com:123/one/two?q=a#f')
   const out = URI.serialize({
     scheme: 'http',
@@ -56,7 +56,7 @@ parse/serialize/resolve/equal) with options similar to `uri-js`.
 ```diff
 - import * as uri from 'uri-js'
 + import * as uri from 'fast-uri'
-  
+
   uri.parse('uri://user:pass@example.com:123/one/two.three?q1=a1#a')
   uri.serialize({ scheme: 'http', host: 'example.com', fragment: 'footer' })
   uri.resolve('uri://a/b/c/d?q', '../../g')

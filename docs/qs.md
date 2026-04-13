@@ -18,9 +18,9 @@ Example:
 
 ```diff
 - import qs from 'qs'
-  
+
   const query = 'a=1&a=2&b=3'
-  
+
 - const obj = qs.parse(query)
 + const sp = new URLSearchParams(query)
 + const obj = Object.fromEntries(sp)
@@ -37,10 +37,10 @@ Example:
 ```diff
 - import qs from 'qs'
 + import fqs from 'fast-querystring'
-  
+
 - const obj = qs.parse('tag=a&tag=b')
 + const obj = fqs.parse('tag=a&tag=b')
-  
+
 - const str = qs.stringify({ tag: ['a', 'b'], q: 'x y' })
 + const str = fqs.stringify({ tag: ['a', 'b'], q: 'x y' })
 ```
@@ -58,16 +58,16 @@ Example:
 ```diff
 - import qs from 'qs'
 + import { parse, stringify } from 'picoquery'
-  
+
 + const opts = {
 +   nestingSyntax: 'js',
 +   arrayRepeat: true,
 +   arrayRepeatSyntax: 'bracket'
 + }
-  
+
 - const obj = qs.parse('user[name]=foo&tags[]=bar&tags[]=baz')
 + const obj = parse('user[name]=foo&tags[]=bar&tags[]=baz', opts)
-  
+
 - const str = qs.stringify(
 -   { user: { name: 'foo' }, tags: ['bar', 'baz'] },
 -   { arrayFormat: 'brackets' }
@@ -86,7 +86,7 @@ Example:
 ```diff
 - import qs from 'qs'
 + import * as qs from 'neoqs'
-  
+
   const obj = qs.parse('a[b][c]=1&arr[]=2&arr[]=3')
   const str = qs.stringify(obj, { arrayFormat: 'brackets' })
 ```

@@ -14,14 +14,14 @@ smaller.
 ```diff
 - import emojiRegex from 'emoji-regex'
 + import emojiRegex from 'emoji-regex-xs'
-  
+
   const text = `
   \u{231A}: ⌚ default emoji presentation character (Emoji_Presentation)
   \u{2194}\u{FE0F}: ↔️ default text presentation character rendered as emoji
   \u{1F469}: 👩 emoji modifier base (Emoji_Modifier_Base)
   \u{1F469}\u{1F3FF}: 👩🏿 emoji modifier base followed by a modifier
   `
-  
+
   const regex = emojiRegex()
   for (const match of text.matchAll(regex)) {
     const emoji = match[0]
@@ -36,10 +36,10 @@ property in a regular expression. This relies on the engine's built‑in Unicode
 
 ```diff
 - import emojiRegex from 'emoji-regex'
-  
+
 - const regex = emojiRegex()
 + const regex = /\p{RGI_Emoji}/gv
-  
+
   for (const match of text.matchAll(regex)) {
     const emoji = match[0]
     console.log(`Matched sequence ${emoji} — code points: ${[...emoji].length}`)

@@ -16,10 +16,10 @@ Example:
 ```diff
 - import moment from 'moment'
 + import dayjs from 'dayjs'
-  
+
 - const now = moment()
 + const now = dayjs()
-  
+
 - const formatted = moment().format('YYYY-MM-DD')
 + const formatted = dayjs().format('YYYY-MM-DD')
 ```
@@ -34,13 +34,13 @@ Example:
 ```diff
 - import moment from 'moment'
 + import { addDays, format, subWeeks } from 'date-fns'
-  
+
 - const formatted = moment().format('YYYY-MM-DD')
 + const formatted = format(new Date(), 'yyyy-MM-dd')
-  
+
 - const tomorrow = moment().add(1, 'day')
 + const tomorrow = addDays(new Date(), 1)
-  
+
 - const lastWeek = moment().subtract(1, 'week')
 + const lastWeek = subWeeks(new Date(), 1)
 ```
@@ -55,13 +55,13 @@ Example:
 ```diff
 - import moment from 'moment'
 + import { DateTime } from 'luxon'
-  
+
 - const now = moment()
 + const now = DateTime.now()
-  
+
 - const formatted = moment().format('YYYY-MM-DD')
 + const formatted = DateTime.now().toFormat('yyyy-MM-dd')
-  
+
 - const tomorrow = moment().add(1, 'day')
 + const tomorrow = DateTime.now().plus({ days: 1 })
 ```
@@ -75,10 +75,10 @@ For simple use cases, native JavaScript [ `Date`](https://developer.mozilla.org/
 
 ```diff
 - import moment from 'moment'
-  
+
 - const formatted = moment().format('YYYY-MM-DD')
 + const formatted = new Date().toISOString().split('T')[0]
-  
+
 - const localized = moment().format('MMMM Do YYYY')
 + const localized = new Intl.DateTimeFormat('en-US', {
 +   year: 'numeric',

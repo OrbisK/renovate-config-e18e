@@ -17,25 +17,25 @@ Example:
 ```diff
   import EventEmitter from 'node:events'
 - import inherits from 'inherits'
-  
+
 - function MyStream() {
 -   EventEmitter.call(this)
 - }
-  
+
 - MyStream.prototype.write = function (data) {
 -   this.emit('data', data)
 - }
-  
+
 - inherits(MyStream, EventEmitter)
-  
+
 + class MyStream extends EventEmitter {
 +   write(data) {
 +     this.emit('data', data)
 +   }
 + }
-  
+
   const stream = new MyStream()
-  
+
   stream.on('data', (data) => {
     console.log(`Received data: "${data}"`)
   })
@@ -52,7 +52,7 @@ Example:
 ```diff
 - import inherits from 'inherits'
 + import { inherits } from 'node:util'
-  
+
   inherits(Target, Base)
 ```
 
@@ -67,9 +67,9 @@ Example:
 
 ```diff
 - import inherits from 'inherits'
-  
+
 - inherits(Target, Base)
-  
+
 + Target.prototype = Object.create(Base.prototype, {
 +   constructor: {
 +     value: Target,

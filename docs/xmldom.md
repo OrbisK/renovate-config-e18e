@@ -15,7 +15,7 @@ For example:
 ```diff
 - import { DOMParser, XMLSerializer } from 'xmldom'
 + import { DOMParser, XMLSerializer } from '@xmldom/xmldom'
-  
+
   const doc = new DOMParser().parseFromString(source, 'text/xml')
   const xml = new XMLSerializer().serializeToString(doc)
 ```
