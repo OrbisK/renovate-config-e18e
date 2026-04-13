@@ -162,6 +162,7 @@ export function buildReplacementsConfig(
           description: `Replace with ${repName}`,
           matchDatasources: ['npm'],
           matchPackageNames: modulesByUrlId.get(urlId),
+          matchUpdateTypes: ['replacement'],
           replacementName: repName,
           replacementVersion: latestVersions.get(repName),
           draftPR: true,

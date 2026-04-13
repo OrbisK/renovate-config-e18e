@@ -13,6 +13,9 @@
         "bluebird",
         "q"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "nativebird",
       "replacementVersion": "1.3.0",
       "draftPR": true,
@@ -28,11 +31,14 @@
       "matchPackageNames": [
         "body-parser"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "milliparsec",
       "replacementVersion": "5.1.1",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `body-parser`\n\n### `milliparsec`\n\n[`milliparsec`](https://github.com/tinyhttp/milliparsec) is a lightweight alternative to [`body-parser`](https://github.com/expressjs/body-parser) with a smaller footprint.\n\nExample:\n\n```diff\n- import bodyParser from 'body-parser'\n+ import {json, urlencoded} from 'milliparsec'\n  import express from 'express'\n  \n  const app = express()\n  \n- app.use(bodyParser.json())\n- app.use(bodyParser.urlencoded({extended: true}))\n  \n+ app.use(json())\n+ app.use(urlencoded())\n```\n\nFor API differences and feature comparison, see\nthe [migration.md](https://github.com/tinyhttp/milliparsec/blob/master/migration.md).\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/body-parser)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `body-parser`\n\n### `milliparsec`\n\n[`milliparsec`](https://github.com/tinyhttp/milliparsec) is a lightweight alternative to [`body-parser`](https://github.com/expressjs/body-parser) with a smaller footprint.\n\nExample:\n\n```diff\n- import bodyParser from 'body-parser'\n+ import {json, urlencoded} from 'milliparsec'\n  import express from 'express'\n\n  const app = express()\n\n- app.use(bodyParser.json())\n- app.use(bodyParser.urlencoded({extended: true}))\n\n+ app.use(json())\n+ app.use(urlencoded())\n```\n\nFor API differences and feature comparison, see\nthe [migration.md](https://github.com/tinyhttp/milliparsec/blob/master/migration.md).\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/body-parser)*\n\n</details>"
       ]
     },
     {
@@ -45,11 +51,14 @@
         "cli-color",
         "colors"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "picocolors",
       "replacementVersion": "1.1.1",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `chalk`\n\n### `styleText` (native)\n\nSince Node 20.x, you can use the [`styleText`](https://nodejs.org/api/util.html#utilstyletextformat-text-options)\nfunction from the `node:util` module to style text in the terminal.\n\nExample:\n\n```diff\n+ import {styleText} from 'node:util'\n- import chalk from 'chalk'\n  \n- console.log(`Hello ${chalk.blue('blue')} world!`)\n+ console.log(`Hello ${styleText('blue', 'blue')} world!`)\n```\n\nWhen using multiple styles, you can pass an array to `styleText`:\n\n```diff\n- console.log(`I am ${chalk.blue.bgRed('blue on red')}!`)\n+ console.log(`I am ${styleText(['blue', 'bgRed'], 'blue on red')}!`)\n```\n\n> [!NOTE]\n> `styleText` does not support RGB and hex colors (e.g. `#EFEFEF` or `255, 239, 235`). You can view the available styles\n> in the [Node documentation](https://nodejs.org/api/util.html#modifiers).\n\n### `picocolors`\n\n[`picocolors`](https://github.com/alexeyraspopov/picocolors) follows a similar API but without chaining:\n\n```diff\n- import chalk from 'chalk'\n+ import picocolors from 'picocolors'\n  \n- console.log(`Hello ${chalk.blue('blue')} world!`)\n+ console.log(`Hello ${picocolors.blue('blue')} world!`)\n  \n  // A chained example\n- console.log(chalk.blue.bgRed('blue on red'))\n+ console.log(picocolors.blue(picocolors.bgRed('blue on red')))\n```\n\n> [!NOTE]\n> `picocolors` currently does not support RGB and hex colors (e.g. `#EFEFEF` or `255, 239, 235`).\n\n### `ansis`\n\n[`ansis`](https://github.com/webdiscus/ansis/) supports a chaining syntax similar to chalk and supports both RGB, and\nhex colors.\n\nExample:\n\n```diff\n+ import ansis from 'ansis'\n- import chalk from 'chalk'\n  \n- console.log(`Hello ${chalk.blue('blue')} world!`)\n+ console.log(`Hello ${ansis.blue('blue')} world!`)\n```\n\nWhen using multiple styles, you can chain them just like in chalk:\n\n```diff\n- console.log(chalk.blue.bgRed('blue on red'))\n+ console.log(ansis.blue.bgRed('blue on red'))\n```\n\nSimilarly, you can use RGB and hex colors:\n\n```diff\n- console.log(chalk.rgb(239, 239, 239)('Hello world!'))\n+ console.log(ansis.rgb(239, 239, 239)('Hello world!'))\n```\n\n### Browser support\n\nWhile these libraries are primarily designed for terminal output, some projects may need colored output in browser\nenvironments.\n\nFollowing [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/console#styling_console_output), the\nnative approach is `%c` directive in `console.log`:\n\n```ts\nconsole.log(\n    'Hello %ce%c1%c8%ce',\n    'color: #ec8f5e;',\n    'color: #f2ca60;',\n    'color: #bece57;',\n    'color: #7bb560;',\n    'Ecosystem Performance'\n)\n```\n\nLibrary support:\n\n- [`ansis`](https://github.com/webdiscus/ansis#browser-compatibility-for-ansi-codes) - colors are supported in\n  _Chromium_ browsers\n- `picocolors` - strips colors in browser environments\n- `node:util` - is not available in browsers\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/chalk)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `chalk`\n\n### `styleText` (native)\n\nSince Node 20.x, you can use the [`styleText`](https://nodejs.org/api/util.html#utilstyletextformat-text-options)\nfunction from the `node:util` module to style text in the terminal.\n\nExample:\n\n```diff\n+ import {styleText} from 'node:util'\n- import chalk from 'chalk'\n\n- console.log(`Hello ${chalk.blue('blue')} world!`)\n+ console.log(`Hello ${styleText('blue', 'blue')} world!`)\n```\n\nWhen using multiple styles, you can pass an array to `styleText`:\n\n```diff\n- console.log(`I am ${chalk.blue.bgRed('blue on red')}!`)\n+ console.log(`I am ${styleText(['blue', 'bgRed'], 'blue on red')}!`)\n```\n\n> [!NOTE]\n> `styleText` does not support RGB and hex colors (e.g. `#EFEFEF` or `255, 239, 235`). You can view the available styles\n> in the [Node documentation](https://nodejs.org/api/util.html#modifiers).\n\n### `picocolors`\n\n[`picocolors`](https://github.com/alexeyraspopov/picocolors) follows a similar API but without chaining:\n\n```diff\n- import chalk from 'chalk'\n+ import picocolors from 'picocolors'\n\n- console.log(`Hello ${chalk.blue('blue')} world!`)\n+ console.log(`Hello ${picocolors.blue('blue')} world!`)\n\n  // A chained example\n- console.log(chalk.blue.bgRed('blue on red'))\n+ console.log(picocolors.blue(picocolors.bgRed('blue on red')))\n```\n\n> [!NOTE]\n> `picocolors` currently does not support RGB and hex colors (e.g. `#EFEFEF` or `255, 239, 235`).\n\n### `ansis`\n\n[`ansis`](https://github.com/webdiscus/ansis/) supports a chaining syntax similar to chalk and supports both RGB, and\nhex colors.\n\nExample:\n\n```diff\n+ import ansis from 'ansis'\n- import chalk from 'chalk'\n\n- console.log(`Hello ${chalk.blue('blue')} world!`)\n+ console.log(`Hello ${ansis.blue('blue')} world!`)\n```\n\nWhen using multiple styles, you can chain them just like in chalk:\n\n```diff\n- console.log(chalk.blue.bgRed('blue on red'))\n+ console.log(ansis.blue.bgRed('blue on red'))\n```\n\nSimilarly, you can use RGB and hex colors:\n\n```diff\n- console.log(chalk.rgb(239, 239, 239)('Hello world!'))\n+ console.log(ansis.rgb(239, 239, 239)('Hello world!'))\n```\n\n### Browser support\n\nWhile these libraries are primarily designed for terminal output, some projects may need colored output in browser\nenvironments.\n\nFollowing [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/console#styling_console_output), the\nnative approach is `%c` directive in `console.log`:\n\n```ts\nconsole.log(\n    'Hello %ce%c1%c8%ce',\n    'color: #ec8f5e;',\n    'color: #f2ca60;',\n    'color: #bece57;',\n    'color: #7bb560;',\n    'Ecosystem Performance'\n)\n```\n\nLibrary support:\n\n- [`ansis`](https://github.com/webdiscus/ansis#browser-compatibility-for-ansi-codes) - colors are supported in\n  _Chromium_ browsers\n- `picocolors` - strips colors in browser environments\n- `node:util` - is not available in browsers\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/chalk)*\n\n</details>"
       ]
     },
     {
@@ -60,11 +69,14 @@
       "matchPackageNames": [
         "clean-webpack-plugin"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "webpack",
       "replacementVersion": "5.106.1",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `clean-webpack-plugin`\n\n### `output.clean` (built-in, since webpack 5)\n\nExample:\n\n```diff\n- const { CleanWebpackPlugin } = require('clean-webpack-plugin')\n  \n  module.exports = {\n-   plugins: [new CleanWebpackPlugin()],\n+   output: { clean: true }\n  }\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/clean-webpack-plugin)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `clean-webpack-plugin`\n\n### `output.clean` (built-in, since webpack 5)\n\nExample:\n\n```diff\n- const { CleanWebpackPlugin } = require('clean-webpack-plugin')\n\n  module.exports = {\n-   plugins: [new CleanWebpackPlugin()],\n+   output: { clean: true }\n  }\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/clean-webpack-plugin)*\n\n</details>"
       ]
     },
     {
@@ -75,11 +87,14 @@
       "matchPackageNames": [
         "cosmiconfig"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "lilconfig",
       "replacementVersion": "3.1.3",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `cosmiconfig`\n\n### `lilconfig`\n\n[`lilconfig`](https://github.com/antonk52/lilconfig) is a zero-dependency alternative to cosmiconfig with the same API\n\n> [!NOTE]\n> `lilconfig` does not support YAML files out of the box unless you provide custom loaders.\n\n#### Example\n\n```js\nimport { lilconfig, lilconfigSync } from 'lilconfig'\n\nconst options = {\n  searchPlaces: [\n    'package.json', // Will use \"myapp\" field\n    '.myapprc',\n    '.myapprc.json',\n    'myapp.config.js'\n  ]\n}\n\nawait lilconfig('myapp', options).search()\n\n// Sync version\nlilconfigSync('myapp', options).search()\n```\n\n#### Loading YAML files\n\n```js\nimport { lilconfig } from 'lilconfig'\nimport { parse } from 'yaml'\n\nconst yamlLoader = (filepath, content) => parse(content)\n\nconst options = {\n  searchPlaces: [\n    'package.json',\n    '.myapprc',\n    '.myapprc.yaml',\n    '.myapprc.yml',\n    'myapp.config.js'\n  ],\n  loaders: {\n    '.yaml': yamlLoader,\n    '.yml': yamlLoader,\n    noExt: yamlLoader\n  }\n}\n\nawait lilconfig('myapp', options).search()\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/cosmiconfig)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `cosmiconfig`\n\n### `lilconfig`\n\n[`lilconfig`](https://github.com/antonk52/lilconfig) is a zero-dependency alternative to cosmiconfig with the same API\n\n> [!NOTE]\n> `lilconfig` does not support YAML files out of the box unless you provide custom loaders.\n\n#### Example\n\n```js\nimport { lilconfig, lilconfigSync } from 'lilconfig'\n\nconst options = {\n  searchPlaces: [\n    'package.json', // Will use \"myapp\" field\n    '.myapprc',\n    '.myapprc.json',\n    'myapp.config.js'\n  ]\n}\n\nawait lilconfig('myapp', options).search()\n\n// Sync version\nlilconfigSync('myapp', options).search()\n```\n\n#### Loading YAML files\n\n```js\nimport { lilconfig } from 'lilconfig'\nimport { parse } from 'yaml'\n\nconst yamlLoader = (filepath, content) => parse(content)\n\nconst options = {\n  searchPlaces: [\n    'package.json',\n    '.myapprc',\n    '.myapprc.yaml',\n    '.myapprc.yml',\n    'myapp.config.js'\n  ],\n  loaders: {\n    '.yaml': yamlLoader,\n    '.yml': yamlLoader,\n    'noExt': yamlLoader\n  }\n}\n\nawait lilconfig('myapp', options).search()\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/cosmiconfig)*\n\n</details>"
       ]
     },
     {
@@ -90,11 +105,14 @@
       "matchPackageNames": [
         "cpx"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "cpx2",
       "replacementVersion": "8.0.2",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `cpx`\n\n### `cpx2`\n\n[`cpx`](https://github.com/mysticatea/cpx) is unmaintained. [`cpx2`](https://github.com/bcomnes/cpx2) is an actively\nmaintained fork that keeps the same CLI bin name (`cpx`), so it works as a drop-in replacement for CLI usage. For the\nNode API, switch your import to `cpx2`.\n\n```diff\n- npm i -D cpx\n+ npm i -D cpx2\n  \n  # CLI stays the same (bin name is still \"cpx\")\n  cpx \"src/**/*.{html,png,jpg}\" app --watch\n```\n\nNode API replacement:\n\n<!-- eslint-skip -->\n\n```diff\n- const cpx = require('cpx')\n+ const cpx = require('cpx2')\n  \n  cpx.copy('src/**/*.js', 'dist', (err) => {\n    if (err) throw err\n  })\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/cpx)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `cpx`\n\n### `cpx2`\n\n[`cpx`](https://github.com/mysticatea/cpx) is unmaintained. [`cpx2`](https://github.com/bcomnes/cpx2) is an actively\nmaintained fork that keeps the same CLI bin name (`cpx`), so it works as a drop-in replacement for CLI usage. For the\nNode API, switch your import to `cpx2`.\n\n```diff\n- npm i -D cpx\n+ npm i -D cpx2\n\n  # CLI stays the same (bin name is still \"cpx\")\n  cpx \"src/**/*.{html,png,jpg}\" app --watch\n```\n\nNode API replacement:\n\n<!-- eslint-skip -->\n\n```diff\n- const cpx = require('cpx')\n+ const cpx = require('cpx2')\n\n  cpx.copy('src/**/*.js', 'dist', (err) => {\n    if (err) throw err\n  })\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/cpx)*\n\n</details>"
       ]
     },
     {
@@ -105,11 +123,14 @@
       "matchPackageNames": [
         "debug"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "obug",
       "replacementVersion": "2.1.1",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `debug`\n\n### `obug`\n\n[`obug`](https://github.com/sxzz/obug) is a lightweight JavaScript debugging utility, forked from debug, featuring\nTypeScript and ESM support.\n\n`obug` v1 retains compatibility with debug, but drops support for older browsers and Node.js versions, making it a\ndrop-in replacement.\n\n`obug` v2 refactors some API imports and usage for better support of ESM and TypeScript, easier customization, and an\neven smaller package size.\n\n```diff\n- import debug from 'debug'\n+ import { createDebug } from 'obug'\n  \n- const logger = debug('name')\n+ const logger = createDebug('name')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/debug)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `debug`\n\n### `obug`\n\n[`obug`](https://github.com/sxzz/obug) is a lightweight JavaScript debugging utility, forked from debug, featuring\nTypeScript and ESM support.\n\n`obug` v1 retains compatibility with debug, but drops support for older browsers and Node.js versions, making it a\ndrop-in replacement.\n\n`obug` v2 refactors some API imports and usage for better support of ESM and TypeScript, easier customization, and an\neven smaller package size.\n\n```diff\n- import debug from 'debug'\n+ import { createDebug } from 'obug'\n\n- const logger = debug('name')\n+ const logger = createDebug('name')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/debug)*\n\n</details>"
       ]
     },
     {
@@ -121,11 +142,14 @@
         "deep-equal",
         "deep-equal-json"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "dequal",
       "replacementVersion": "2.0.3",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `deep-equal`\n\n### `util.isDeepStrictEqual` (native, since Node.js v9.0.0)\n\nNode.js has a builtin function [ `isDeepStrictEqual`](https://nodejs.org/api/util.html#utilisdeepstrictequalval1-val2-options). Consider using that if\nyou don’t need browser support.\n\nExample:\n\n```diff\n  - import equal from 'deep-equal'\n  + import { isDeepStrictEqual } from 'node:util'\n    \n    const a = { foo: 'bar' }\n    const b = { foo: 'bar' }\n    \n-   equal(a, b)\n+   isDeepStrictEqual(a, b)\n```\n\n### `dequal`\n\n[`dequal`](https://github.com/lukeed/dequal) has the same simple API as `deep-equal`.\n\nExample:\n\n```diff\n  - import equal from 'deep-equal'\n  + import dequal from 'dequal'\n    \n    const a = { foo: 'bar' }\n    const b = { foo: 'bar' }\n    \n-   equal(a, b)\n+   dequal(a, b)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/deep-equal)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `deep-equal`\n\n### `util.isDeepStrictEqual` (native, since Node.js v9.0.0)\n\nNode.js has a builtin function [ `isDeepStrictEqual`](https://nodejs.org/api/util.html#utilisdeepstrictequalval1-val2-options). Consider using that if\nyou don’t need browser support.\n\nExample:\n\n```diff\n  - import equal from 'deep-equal'\n  + import { isDeepStrictEqual } from 'node:util'\n\n    const a = { foo: 'bar' }\n    const b = { foo: 'bar' }\n\n-   equal(a, b)\n+   isDeepStrictEqual(a, b)\n```\n\n### `dequal`\n\n[`dequal`](https://github.com/lukeed/dequal) has the same simple API as `deep-equal`.\n\nExample:\n\n```diff\n  - import equal from 'deep-equal'\n  + import dequal from 'dequal'\n\n    const a = { foo: 'bar' }\n    const b = { foo: 'bar' }\n\n-   equal(a, b)\n+   dequal(a, b)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/deep-equal)*\n\n</details>"
       ]
     },
     {
@@ -135,6 +159,9 @@
       ],
       "matchPackageNames": [
         "depcheck"
+      ],
+      "matchUpdateTypes": [
+        "replacement"
       ],
       "replacementName": "knip",
       "replacementVersion": "6.4.1",
@@ -152,11 +179,14 @@
         "detect-package-manager",
         "preferred-pm"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "package-manager-detector",
       "replacementVersion": "1.6.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `detect-package-manager`\n\n### `package-manager-detector`\n\n[`package-manager-detector`](https://github.com/antfu-collective/package-manager-detector) is a lightweight alternative\nfor detecting the package manager being used in a project.\n\n#### Key differences\n\n- **Zero subdependencies** compared to 16 in `detect-package-manager`\n- **ESM-only**, while `detect-package-manager` is primarily CJS (with ESM support)\n- **Smaller bundle size** due to the lack of dependencies\n\n#### Migration example\n\n```diff\n- import { detect } from 'detect-package-manager'\n+ import { detect } from 'package-manager-detector'\n  \n- const pm = await detect()\n+ const result = await detect()\n+ const pm = result?.name\n```\n\n> [!NOTE]\n> `package-manager-detector` returns an object with `name` and `agent` properties, while `detect-package-manager`\n> returns a string directly.\n\nBoth packages can detect npm, yarn, pnpm, and bun package managers in your project by analyzing lock files.\nAdditionally, `package-manager-detector` also supports deno.\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/detect-package-manager)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `detect-package-manager`\n\n### `package-manager-detector`\n\n[`package-manager-detector`](https://github.com/antfu-collective/package-manager-detector) is a lightweight alternative\nfor detecting the package manager being used in a project.\n\n#### Key differences\n\n- **Zero subdependencies** compared to 16 in `detect-package-manager`\n- **ESM-only**, while `detect-package-manager` is primarily CJS (with ESM support)\n- **Smaller bundle size** due to the lack of dependencies\n\n#### Migration example\n\n```diff\n- import { detect } from 'detect-package-manager'\n+ import { detect } from 'package-manager-detector'\n\n- const pm = await detect()\n+ const result = await detect()\n+ const pm = result?.name\n```\n\n> [!NOTE]\n> `package-manager-detector` returns an object with `name` and `agent` properties, while `detect-package-manager`\n> returns a string directly.\n\nBoth packages can detect npm, yarn, pnpm, and bun package managers in your project by analyzing lock files.\nAdditionally, `package-manager-detector` also supports deno.\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/detect-package-manager)*\n\n</details>"
       ]
     },
     {
@@ -170,11 +200,14 @@
         "object-path",
         "set-value"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "dlv",
       "replacementVersion": "1.1.3",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `dot-prop`\n\n### `dlv` and `dset`\n\n[`dlv`](https://github.com/developit/dlv) gets nested values with default fallbacks and [ `dset`](https://github.com/lukeed/dset) sets nested values with automatic intermediate object creation.\n\n```diff\n- import { getProperty, setProperty } from 'dot-prop'\n+ import delve from 'dlv'\n+ import { dset } from 'dset'\n  \n- const value = getProperty(obj, 'foo.bar.baz')\n+ const value = delve(obj, 'foo.bar.baz')\n  \n- setProperty(obj, 'foo.bar.baz', 'value')\n+ dset(obj, 'foo.bar.baz', 'value')\n```\n\n### `object-path`\n\n[`object-path`](https://github.com/mariocasciaro/object-path) provides get/set/has/delete operations plus array methods\nlike push, insert, and empty.\n\n```diff\n- import { deleteProperty, getProperty, hasProperty, setProperty } from 'dot-prop'\n+ import objectPath from 'object-path'\n  \n- const value = getProperty(obj, 'foo.bar.baz')\n+ const value = objectPath.get(obj, 'foo.bar.baz')\n  \n- setProperty(obj, 'foo.bar.baz', 'value')\n+ objectPath.set(obj, 'foo.bar.baz', 'value')\n  \n- const exists = hasProperty(obj, 'foo.bar.baz')\n+ const exists = objectPath.has(obj, 'foo.bar.baz')\n  \n- deleteProperty(obj, 'foo.bar.baz')\n+ objectPath.del(obj, 'foo.bar.baz')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/dot-prop)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `dot-prop`\n\n### `dlv` and `dset`\n\n[`dlv`](https://github.com/developit/dlv) gets nested values with default fallbacks and [ `dset`](https://github.com/lukeed/dset) sets nested values with automatic intermediate object creation.\n\n```diff\n- import { getProperty, setProperty } from 'dot-prop'\n+ import delve from 'dlv'\n+ import { dset } from 'dset'\n\n- const value = getProperty(obj, 'foo.bar.baz')\n+ const value = delve(obj, 'foo.bar.baz')\n\n- setProperty(obj, 'foo.bar.baz', 'value')\n+ dset(obj, 'foo.bar.baz', 'value')\n```\n\n### `object-path`\n\n[`object-path`](https://github.com/mariocasciaro/object-path) provides get/set/has/delete operations plus array methods\nlike push, insert, and empty.\n\n```diff\n- import { deleteProperty, getProperty, hasProperty, setProperty } from 'dot-prop'\n+ import objectPath from 'object-path'\n\n- const value = getProperty(obj, 'foo.bar.baz')\n+ const value = objectPath.get(obj, 'foo.bar.baz')\n\n- setProperty(obj, 'foo.bar.baz', 'value')\n+ objectPath.set(obj, 'foo.bar.baz', 'value')\n\n- const exists = hasProperty(obj, 'foo.bar.baz')\n+ const exists = objectPath.has(obj, 'foo.bar.baz')\n\n- deleteProperty(obj, 'foo.bar.baz')\n+ objectPath.del(obj, 'foo.bar.baz')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/dot-prop)*\n\n</details>"
       ]
     },
     {
@@ -185,11 +218,14 @@
       "matchPackageNames": [
         "emoji-regex"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "emoji-regex-xs",
       "replacementVersion": "2.0.1",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `emoji-regex`\n\n### `emoji-regex-xs`\n\n[`emoji-regex-xs`](https://github.com/slevithan/emoji-regex-xs) offers the same API and features whilst being 98%\nsmaller.\n\n```diff\n- import emojiRegex from 'emoji-regex'\n+ import emojiRegex from 'emoji-regex-xs'\n  \n  const text = `\n  \\u{231A}: ⌚ default emoji presentation character (Emoji_Presentation)\n  \\u{2194}\\u{FE0F}: ↔️ default text presentation character rendered as emoji\n  \\u{1F469}: 👩 emoji modifier base (Emoji_Modifier_Base)\n  \\u{1F469}\\u{1F3FF}: 👩🏿 emoji modifier base followed by a modifier\n  `\n  \n  const regex = emojiRegex()\n  for (const match of text.matchAll(regex)) {\n    const emoji = match[0]\n    console.log(`Matched sequence ${emoji} — code points: ${[...emoji].length}`)\n  }\n```\n\n### Unicode RegExp (native)\n\nIf your target runtime supports ES2024 Unicode property sets, you can use the native [ `\\p{RGI_Emoji}`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Unicode_character_class_escape)\nproperty in a regular expression. This relies on the engine's built‑in Unicode handling.\n\n```diff\n- import emojiRegex from 'emoji-regex'\n  \n- const regex = emojiRegex()\n+ const regex = /\\p{RGI_Emoji}/gv\n  \n  for (const match of text.matchAll(regex)) {\n    const emoji = match[0]\n    console.log(`Matched sequence ${emoji} — code points: ${[...emoji].length}`)\n  }\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/emoji-regex)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `emoji-regex`\n\n### `emoji-regex-xs`\n\n[`emoji-regex-xs`](https://github.com/slevithan/emoji-regex-xs) offers the same API and features whilst being 98%\nsmaller.\n\n```diff\n- import emojiRegex from 'emoji-regex'\n+ import emojiRegex from 'emoji-regex-xs'\n\n  const text = `\n  \\u{231A}: ⌚ default emoji presentation character (Emoji_Presentation)\n  \\u{2194}\\u{FE0F}: ↔️ default text presentation character rendered as emoji\n  \\u{1F469}: 👩 emoji modifier base (Emoji_Modifier_Base)\n  \\u{1F469}\\u{1F3FF}: 👩🏿 emoji modifier base followed by a modifier\n  `\n\n  const regex = emojiRegex()\n  for (const match of text.matchAll(regex)) {\n    const emoji = match[0]\n    console.log(`Matched sequence ${emoji} — code points: ${[...emoji].length}`)\n  }\n```\n\n### Unicode RegExp (native)\n\nIf your target runtime supports ES2024 Unicode property sets, you can use the native [ `\\p{RGI_Emoji}`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Unicode_character_class_escape)\nproperty in a regular expression. This relies on the engine's built‑in Unicode handling.\n\n```diff\n- import emojiRegex from 'emoji-regex'\n\n- const regex = emojiRegex()\n+ const regex = /\\p{RGI_Emoji}/gv\n\n  for (const match of text.matchAll(regex)) {\n    const emoji = match[0]\n    console.log(`Matched sequence ${emoji} — code points: ${[...emoji].length}`)\n  }\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/emoji-regex)*\n\n</details>"
       ]
     },
     {
@@ -200,11 +236,14 @@
       "matchPackageNames": [
         "eslint-plugin-es"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "eslint-plugin-es-x",
       "replacementVersion": "9.6.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `eslint-plugin-es`\n\n### `eslint-plugin-es-x`\n\n[eslint-plugin-es-x](https://github.com/eslint-community/eslint-plugin-es-x) is a direct fork which is actively\nmaintained. It has new features, bugfixes and updated dependencies.\n\n```diff\n- import { FlatCompat } from '@eslint/eslintrc'\n- import pluginES from 'eslint-plugin-es'\n+ import pluginESx from 'eslint-plugin-es-x'\n  \n- const compat = new FlatCompat()\n  \n  export default [\n    {\n      files: ['**/*.js'],\n      languageOptions: {\n        ecmaVersion: 2020\n      },\n      plugins: {\n-       es: pluginES,\n+       'es-x': pluginESx\n      },\n      rules: {\n-       'es/no-regexp-lookbehind-assertions': 'error',\n+       'es-x/no-regexp-lookbehind-assertions': 'error'\n      }\n    },\n  \n-   ...compat.extends('plugin:es/restrict-to-es2018'),\n+   pluginESx.configs['flat/restrict-to-es2018']\n  ]\n```\n\nIf you're using a legacy config format:\n\n```diff\n  module.exports = {\n    extends: [\n      'eslint:recommended',\n-     'plugin:es/restrict-to-es2018',\n+     'plugin:es-x/restrict-to-es2018'\n    ],\n    plugins: [\n-     'es',\n+     'es-x'\n    ],\n    rules: {\n-     'es/no-regexp-lookbehind-assertions': 'error',\n+     'es-x/no-regexp-lookbehind-assertions': 'error'\n    }\n  }\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/eslint-plugin-es)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `eslint-plugin-es`\n\n### `eslint-plugin-es-x`\n\n[eslint-plugin-es-x](https://github.com/eslint-community/eslint-plugin-es-x) is a direct fork which is actively\nmaintained. It has new features, bugfixes and updated dependencies.\n\n```diff\n- import { FlatCompat } from '@eslint/eslintrc'\n- import pluginES from 'eslint-plugin-es'\n+ import pluginESx from 'eslint-plugin-es-x'\n\n- const compat = new FlatCompat()\n\n  export default [\n    {\n      files: ['**/*.js'],\n      languageOptions: {\n        ecmaVersion: 2020\n      },\n      plugins: {\n-       es: pluginES,\n+       'es-x': pluginESx\n      },\n      rules: {\n-       'es/no-regexp-lookbehind-assertions': 'error',\n+       'es-x/no-regexp-lookbehind-assertions': 'error'\n      }\n    },\n\n-   ...compat.extends('plugin:es/restrict-to-es2018'),\n+   pluginESx.configs['flat/restrict-to-es2018']\n  ]\n```\n\nIf you're using a legacy config format:\n\n```diff\n  module.exports = {\n    extends: [\n      'eslint:recommended',\n-     'plugin:es/restrict-to-es2018',\n+     'plugin:es-x/restrict-to-es2018'\n    ],\n    plugins: [\n-     'es',\n+     'es-x'\n    ],\n    rules: {\n-     'es/no-regexp-lookbehind-assertions': 'error',\n+     'es-x/no-regexp-lookbehind-assertions': 'error'\n    }\n  }\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/eslint-plugin-es)*\n\n</details>"
       ]
     },
     {
@@ -215,11 +254,14 @@
       "matchPackageNames": [
         "eslint-plugin-eslint-comments"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "@eslint-community/eslint-plugin-eslint-comments",
       "replacementVersion": "4.7.1",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `eslint-plugin-eslint-comments`\n\n### `@eslint-community/eslint-plugin-eslint-comments`\n\n[`@eslint-community/eslint-plugin-eslint-comments`](https://github.com/eslint-community/eslint-plugin-eslint-comments)\nis the actively maintained successor with updated dependencies, flat config support, and continued development.\n\n```diff\n- import eslintComments from 'eslint-plugin-eslint-comments'\n+ import commentsCommunity from '@eslint-community/eslint-plugin-eslint-comments/configs'\n  \n  export default [\n+   commentsCommunity.recommended,\n    {\n      plugins: {\n-       'eslint-comments': eslintComments\n      },\n      rules: {\n-       'eslint-comments/no-unused-disable': 'error',\n+       '@eslint-community/eslint-comments/no-unused-disable': 'error'\n      }\n    }\n  ]\n```\n\nIf you're using a legacy config format:\n\n```diff\n  module.exports = {\n    extends: [\n      'eslint:recommended',\n-     'plugin:eslint-comments/recommended',\n+     'plugin:@eslint-community/eslint-comments/recommended'\n    ],\n    rules: {\n-     'eslint-comments/no-unused-disable': 'error',\n+     '@eslint-community/eslint-comments/no-unused-disable': 'error'\n    }\n  }\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/eslint-plugin-eslint-comments)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `eslint-plugin-eslint-comments`\n\n### `@eslint-community/eslint-plugin-eslint-comments`\n\n[`@eslint-community/eslint-plugin-eslint-comments`](https://github.com/eslint-community/eslint-plugin-eslint-comments)\nis the actively maintained successor with updated dependencies, flat config support, and continued development.\n\n```diff\n- import eslintComments from 'eslint-plugin-eslint-comments'\n+ import commentsCommunity from '@eslint-community/eslint-plugin-eslint-comments/configs'\n\n  export default [\n+   commentsCommunity.recommended,\n    {\n      plugins: {\n-       'eslint-comments': eslintComments\n      },\n      rules: {\n-       'eslint-comments/no-unused-disable': 'error',\n+       '@eslint-community/eslint-comments/no-unused-disable': 'error'\n      }\n    }\n  ]\n```\n\nIf you're using a legacy config format:\n\n```diff\n  module.exports = {\n    extends: [\n      'eslint:recommended',\n-     'plugin:eslint-comments/recommended',\n+     'plugin:@eslint-community/eslint-comments/recommended'\n    ],\n    rules: {\n-     'eslint-comments/no-unused-disable': 'error',\n+     '@eslint-community/eslint-comments/no-unused-disable': 'error'\n    }\n  }\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/eslint-plugin-eslint-comments)*\n\n</details>"
       ]
     },
     {
@@ -230,11 +272,14 @@
       "matchPackageNames": [
         "eslint-plugin-import"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "eslint-plugin-import-x",
       "replacementVersion": "4.16.2",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `eslint-plugin-import`\n\n### `eslint-plugin-import-x`\n\n[`eslint-plugin-import-x`](https://github.com/un-ts/eslint-plugin-import-x) is a modern fork of [ `eslint-plugin-import`](https://github.com/import-js/eslint-plugin-import). `import-x` focuses on faster module\nresolution via a Rust-based resolver, a smaller dependency footprint\n\n#### Flat config\n\n<!-- prettier-ignore -->\n\n```diff\n- import importPlugin from 'eslint-plugin-import'\n+ import { createNodeResolver, importX } from 'eslint-plugin-import-x'\n+ import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript'\n  \n  export default [\n-   importPlugin.flatConfigs.recommended,\n+   importX.flatConfigs.recommended,\n    {\n      settings: {\n-       'import/resolver': { typescript: true },\n+       'import-x/resolver-next': [\n+         createTypeScriptImportResolver(),\n+         createNodeResolver()\n+       ]\n      },\n      rules: {\n-       'import/no-unresolved': 'error',\n+       'import-x/no-unresolved': 'error',\n-       'import/no-nodejs-modules': 'warn',\n+       'import-x/no-nodejs-modules': 'warn'\n      }\n    }\n  ]\n```\n\n#### Legacy config\n\n```diff\n  module.exports = {\n    extends: [\n      'eslint:recommended',\n-     'plugin:import/recommended',\n+     'plugin:import-x/recommended',\n-     'plugin:import/typescript',\n+     'plugin:import-x/typescript'\n    ],\n    plugins: [\n-     'import',\n+     'import-x'\n    ],\n    settings: {\n-     'import/resolver': { typescript: true },\n+     'import-x/resolver': { typescript: true }\n    },\n    rules: {\n-     'import/no-unresolved': 'error',\n+     'import-x/no-unresolved': 'error'\n    }\n  }\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/eslint-plugin-import)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `eslint-plugin-import`\n\n### `eslint-plugin-import-x`\n\n[`eslint-plugin-import-x`](https://github.com/un-ts/eslint-plugin-import-x) is a modern fork of [ `eslint-plugin-import`](https://github.com/import-js/eslint-plugin-import). `import-x` focuses on faster module\nresolution via a Rust-based resolver, a smaller dependency footprint\n\n#### Flat config\n\n<!-- prettier-ignore -->\n\n```diff\n- import importPlugin from 'eslint-plugin-import'\n+ import { createNodeResolver, importX } from 'eslint-plugin-import-x'\n+ import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript'\n\n  export default [\n-   importPlugin.flatConfigs.recommended,\n+   importX.flatConfigs.recommended,\n    {\n      settings: {\n-       'import/resolver': { typescript: true },\n+       'import-x/resolver-next': [\n+         createTypeScriptImportResolver(),\n+         createNodeResolver()\n+       ]\n      },\n      rules: {\n-       'import/no-unresolved': 'error',\n+       'import-x/no-unresolved': 'error',\n-       'import/no-nodejs-modules': 'warn',\n+       'import-x/no-nodejs-modules': 'warn'\n      }\n    }\n  ]\n```\n\n#### Legacy config\n\n```diff\n  module.exports = {\n    extends: [\n      'eslint:recommended',\n-     'plugin:import/recommended',\n+     'plugin:import-x/recommended',\n-     'plugin:import/typescript',\n+     'plugin:import-x/typescript'\n    ],\n    plugins: [\n-     'import',\n+     'import-x'\n    ],\n    settings: {\n-     'import/resolver': { typescript: true },\n+     'import-x/resolver': { typescript: true }\n    },\n    rules: {\n-     'import/no-unresolved': 'error',\n+     'import-x/no-unresolved': 'error'\n    }\n  }\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/eslint-plugin-import)*\n\n</details>"
       ]
     },
     {
@@ -245,11 +290,14 @@
       "matchPackageNames": [
         "eslint-plugin-node"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "eslint-plugin-n",
       "replacementVersion": "17.24.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `eslint-plugin-node`\n\n### `eslint-plugin-n`\n\n[`eslint-plugin-n`](https://github.com/eslint-community/eslint-plugin-n) is a direct fork which is actively maintained.\nIt has new features, bugfixes and updated dependencies.\n\n```diff\n+ import nPlugin from 'eslint-plugin-n'\n- import nodePlugin from 'eslint-plugin-node'\n  \n  export default [\n    {\n      files: ['**/*.js'], // or any other pattern\n      plugins: {\n-       node: nodePlugin,\n+       n: nPlugin\n      },\n      rules: {\n-       ...nodePlugin.configs['recommended-script'].rules,\n+       ...nPlugin.configs['recommended-script'].rules,\n-       'node/exports-style': ['error', 'module.exports'],\n+       'n/exports-style': ['error', 'module.exports']\n      }\n    }\n  ]\n```\n\nIf you're using a legacy config format:\n\n```diff\n  module.exports = {\n    extends: [\n      'eslint:recommended',\n-     'plugin:node/recommended',\n+     'plugin:n/recommended'\n    ]\n  }\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/eslint-plugin-node)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `eslint-plugin-node`\n\n### `eslint-plugin-n`\n\n[`eslint-plugin-n`](https://github.com/eslint-community/eslint-plugin-n) is a direct fork which is actively maintained.\nIt has new features, bugfixes and updated dependencies.\n\n```diff\n+ import nPlugin from 'eslint-plugin-n'\n- import nodePlugin from 'eslint-plugin-node'\n\n  export default [\n    {\n      files: ['**/*.js'], // or any other pattern\n      plugins: {\n-       node: nodePlugin,\n+       n: nPlugin\n      },\n      rules: {\n-       ...nodePlugin.configs['recommended-script'].rules,\n+       ...nPlugin.configs['recommended-script'].rules,\n-       'node/exports-style': ['error', 'module.exports'],\n+       'n/exports-style': ['error', 'module.exports']\n      }\n    }\n  ]\n```\n\nIf you're using a legacy config format:\n\n```diff\n  module.exports = {\n    extends: [\n      'eslint:recommended',\n-     'plugin:node/recommended',\n+     'plugin:n/recommended'\n    ]\n  }\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/eslint-plugin-node)*\n\n</details>"
       ]
     },
     {
@@ -260,11 +308,14 @@
       "matchPackageNames": [
         "eslint-plugin-react"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "@eslint-react/eslint-plugin",
       "replacementVersion": "4.2.3",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `eslint-plugin-react`\n\n### `@eslint-react/eslint-plugin`\n\n[`@eslint-react/eslint-plugin`](https://github.com/Rel1cx/eslint-react) is not a drop-in replacement, but a feature‑rich\nalternative that covers many of the same (and additional) rules.\n\nFlat config example:\n\n```diff\n+ import eslintReact from '@eslint-react/eslint-plugin'\n- import reactPlugin from 'eslint-plugin-react'\n  \n  export default [\n    {\n      files: ['**/*.{jsx,tsx}'],\n      plugins: {\n-       react: reactPlugin,\n+       '@eslint-react': eslintReact\n      },\n      rules: {\n-       ...reactPlugin.configs.recommended.rules,\n+       ...eslintReact.configs.recommended.rules,\n  \n-       'react/no-unknown-property': 'error',\n+       '@eslint-react/dom/no-unknown-property': 'error'\n      }\n    }\n  ]\n```\n\n> [!NOTE]\n> `@eslint-react/eslint-plugin` is not a drop‑in replacement.\n> Use [their migration guide](https://eslint-react.xyz/docs/migration) to map rules/options and automate changes where\n> possible.\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/eslint-plugin-react)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `eslint-plugin-react`\n\n### `@eslint-react/eslint-plugin`\n\n[`@eslint-react/eslint-plugin`](https://github.com/Rel1cx/eslint-react) is not a drop-in replacement, but a feature‑rich\nalternative that covers many of the same (and additional) rules.\n\nFlat config example:\n\n```diff\n+ import eslintReact from '@eslint-react/eslint-plugin'\n- import reactPlugin from 'eslint-plugin-react'\n\n  export default [\n    {\n      files: ['**/*.{jsx,tsx}'],\n      plugins: {\n-       react: reactPlugin,\n+       '@eslint-react': eslintReact\n      },\n      rules: {\n-       ...reactPlugin.configs.recommended.rules,\n+       ...eslintReact.configs.recommended.rules,\n\n-       'react/no-unknown-property': 'error',\n+       '@eslint-react/dom/no-unknown-property': 'error'\n      }\n    }\n  ]\n```\n\n> [!NOTE]\n> `@eslint-react/eslint-plugin` is not a drop‑in replacement.\n> Use [their migration guide](https://eslint-react.xyz/docs/migration) to map rules/options and automate changes where\n> possible.\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/eslint-plugin-react)*\n\n</details>"
       ]
     },
     {
@@ -275,11 +326,14 @@
       "matchPackageNames": [
         "eslint-plugin-vitest"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "@vitest/eslint-plugin",
       "replacementVersion": "1.6.15",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `eslint-plugin-vitest`\n\n### `@vitest/eslint-plugin`\n\n[`@vitest/eslint-plugin`](https://github.com/vitest-dev/eslint-plugin-vitest) is the same project as\n`eslint-plugin-vitest` but re-published under a different name. `eslint-plugin-vitest` is no longer maintained because\nthe [original maintainer has lost access to their old npm account](https://github.com/vitest-dev/eslint-plugin-vitest/issues/537).\n\n```diff\n+ import vitest from '@vitest/eslint-plugin'\n- import vitest from 'eslint-plugin-vitest'\n  \n  export default [\n    {\n      files: ['tests/**'], // or any other pattern\n      plugins: {\n        vitest\n      },\n      rules: {\n        ...vitest.configs.recommended.rules, // you can also use vitest.configs.all.rules to enable all rules\n        'vitest/max-nested-describe': ['error', { max: 3 }] // you can also modify rules' behavior using option like this\n      }\n    }\n  ]\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/eslint-plugin-vitest)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `eslint-plugin-vitest`\n\n### `@vitest/eslint-plugin`\n\n[`@vitest/eslint-plugin`](https://github.com/vitest-dev/eslint-plugin-vitest) is the same project as\n`eslint-plugin-vitest` but re-published under a different name. `eslint-plugin-vitest` is no longer maintained because\nthe [original maintainer has lost access to their old npm account](https://github.com/vitest-dev/eslint-plugin-vitest/issues/537).\n\n```diff\n+ import vitest from '@vitest/eslint-plugin'\n- import vitest from 'eslint-plugin-vitest'\n\n  export default [\n    {\n      files: ['tests/**'], // or any other pattern\n      plugins: {\n        vitest\n      },\n      rules: {\n        ...vitest.configs.recommended.rules, // you can also use vitest.configs.all.rules to enable all rules\n        'vitest/max-nested-describe': ['error', { max: 3 }] // you can also modify rules' behavior using option like this\n      }\n    }\n  ]\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/eslint-plugin-vitest)*\n\n</details>"
       ]
     },
     {
@@ -290,11 +344,14 @@
       "matchPackageNames": [
         "execa"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "tinyexec",
       "replacementVersion": "1.1.1",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `execa`\n\n### `tinyexec`\n\n[`tinyexec`](https://github.com/tinylibs/tinyexec) is a minimal process execution library.\n\nExample:\n\n```diff\n- import { execa } from 'execa'\n+ import { x } from 'tinyexec'\n  \n- const { stdout } = await execa('ls', ['-l'])\n+ const { stdout } = await x('ls', ['-l'], { throwOnError: true })\n```\n\n### `nanoexec`\n\nIf you prefer a very thin wrapper over `child_process.spawn` (including full spawn options and optional shell), [ `nanoexec`](https://github.com/fabiospampinato/nanoexec) is another light alternative. Its `stdout`/`stderr` are\nBuffers.\n\nExample:\n\n```diff\n- import { execa } from 'execa'\n+ import exec from 'nanoexec'\n  \n- const { stdout } = await execa('echo', ['example'])\n+ const res = await exec('echo', ['example'])\n+ const stdout = res.stdout.toString('utf8')\n```\n\n### Bun\n\nIf you’re on Bun, its built-in [`$`](https://bun.com/reference/bun/$) template tag can replace `execa`’s script-style\nusage:\n\nExample:\n\n```diff\n- import { $ } from 'execa'\n+ import { $ } from 'bun'\n  \n- const { stdout } = await $`echo \"Hello\"`\n+ const stdout = await $`echo \"Hello\"`.text()\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/execa)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `execa`\n\n### `tinyexec`\n\n[`tinyexec`](https://github.com/tinylibs/tinyexec) is a minimal process execution library.\n\nExample:\n\n```diff\n- import { execa } from 'execa'\n+ import { x } from 'tinyexec'\n\n- const { stdout } = await execa('ls', ['-l'])\n+ const { stdout } = await x('ls', ['-l'], { throwOnError: true })\n```\n\n### `nanoexec`\n\nIf you prefer a very thin wrapper over `child_process.spawn` (including full spawn options and optional shell), [ `nanoexec`](https://github.com/fabiospampinato/nanoexec) is another light alternative. Its `stdout`/`stderr` are\nBuffers.\n\nExample:\n\n```diff\n- import { execa } from 'execa'\n+ import exec from 'nanoexec'\n\n- const { stdout } = await execa('echo', ['example'])\n+ const res = await exec('echo', ['example'])\n+ const stdout = res.stdout.toString('utf8')\n```\n\n### Bun\n\nIf you’re on Bun, its built-in [`$`](https://bun.com/reference/bun/$) template tag can replace `execa`’s script-style\nusage:\n\nExample:\n\n```diff\n- import { $ } from 'execa'\n+ import { $ } from 'bun'\n\n- const { stdout } = await $`echo \"Hello\"`\n+ const stdout = await $`echo \"Hello\"`.text()\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/execa)*\n\n</details>"
       ]
     },
     {
@@ -305,11 +362,14 @@
       "matchPackageNames": [
         "express"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "h3",
       "replacementVersion": "2.0.1-rc.20",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `express`\n\nExpress has been the industry standard for years, but the ecosystem has shifted toward ESM-first, type-safe, and\nruntime-agnostic frameworks that offer significantly better performance and developer experience.\n\n### `h3`\n\n[`h3`](https://github.com/h3js/h3) is a minimal H(TTP) framework built for high performance and portability.\n\nExample:\n\n<!-- prettier-ignore -->\n\n```diff\n- import express from 'express'\n+ import { H3, defineHandler, toNodeHandler } from 'h3'\n+ import { createServer } from 'node:http'\n  \n- const app = express()\n+ const app = new H3()\n  \n- app.get('/', (req, res) => res.send('Hello world'))\n+ app.get('/', defineHandler(() => 'Hello world'))\n  \n- app.listen(3000)\n+ createServer(toNodeHandler(app)).listen(3000)\n```\n\n### `tinyhttp`\n\n[`tinyhttp`](https://github.com/tinyhttp/tinyhttp) is designed to be a drop-in replacement remaining compatible with\nmany Express middlewares.\n\nExample:\n\n```diff\n- import express from 'express'\n+ import { App } from '@tinyhttp/app'\n  \n- const app = express()\n+ const app = new App()\n  \n  app.get('/', (req, res) => res.send('Hello world'))\n  \n  app.listen(3000)\n```\n\n### `hono`\n\n[`hono`](https://github.com/honojs/hono) is a small, simple, and fast web framework for the Edges.\n\nExample:\n\n```diff\n- import express from 'express'\n+ import { Hono } from 'hono'\n  \n- const app = express()\n+ const app = new Hono()\n  \n- app.get('/', (req, res) => res.send('Hello world'))\n+ app.get('/', (context) => context.text('Hello world'))\n  \n+ export default app\n```\n\n### `elysia`\n\nIf you are using Bun, [`elysia`](https://github.com/elysiajs/elysia) is often the best choice as it is specifically\noptimized for the Bun runtime.\n\nExample:\n\n```diff\n- import express from 'express'\n+ import { Elysia } from 'elysia'\n  \n- const app = express()\n+ const app = new Elysia()\n  \n- app.get('/', (req, res) => res.send('Hello world'))\n+ app.get('/', () => 'Hello world')\n  \n  app.listen(3000)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/express)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `express`\n\nExpress has been the industry standard for years, but the ecosystem has shifted toward ESM-first, type-safe, and\nruntime-agnostic frameworks that offer significantly better performance and developer experience.\n\n### `h3`\n\n[`h3`](https://github.com/h3js/h3) is a minimal H(TTP) framework built for high performance and portability.\n\nExample:\n\n<!-- prettier-ignore -->\n\n```diff\n- import express from 'express'\n+ import { H3, defineHandler, toNodeHandler } from 'h3'\n+ import { createServer } from 'node:http'\n\n- const app = express()\n+ const app = new H3()\n\n- app.get('/', (req, res) => res.send('Hello world'))\n+ app.get('/', defineHandler(() => 'Hello world'))\n\n- app.listen(3000)\n+ createServer(toNodeHandler(app)).listen(3000)\n```\n\n### `tinyhttp`\n\n[`tinyhttp`](https://github.com/tinyhttp/tinyhttp) is designed to be a drop-in replacement remaining compatible with\nmany Express middlewares.\n\nExample:\n\n```diff\n- import express from 'express'\n+ import { App } from '@tinyhttp/app'\n\n- const app = express()\n+ const app = new App()\n\n  app.get('/', (req, res) => res.send('Hello world'))\n\n  app.listen(3000)\n```\n\n### `hono`\n\n[`hono`](https://github.com/honojs/hono) is a small, simple, and fast web framework for the Edges.\n\nExample:\n\n```diff\n- import express from 'express'\n+ import { Hono } from 'hono'\n\n- const app = express()\n+ const app = new Hono()\n\n- app.get('/', (req, res) => res.send('Hello world'))\n+ app.get('/', (context) => context.text('Hello world'))\n\n+ export default app\n```\n\n### `elysia`\n\nIf you are using Bun, [`elysia`](https://github.com/elysiajs/elysia) is often the best choice as it is specifically\noptimized for the Bun runtime.\n\nExample:\n\n```diff\n- import express from 'express'\n+ import { Elysia } from 'elysia'\n\n- const app = express()\n+ const app = new Elysia()\n\n- app.get('/', (req, res) => res.send('Hello world'))\n+ app.get('/', () => 'Hello world')\n\n  app.listen(3000)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/express)*\n\n</details>"
       ]
     },
     {
@@ -322,11 +382,14 @@
         "ez-spawn",
         "ezspawn"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "tinyexec",
       "replacementVersion": "1.1.1",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `@jsdevtools/ez-spawn`\n\n### `tinyexec`\n\n`ez-spawn` accepts shell-like command strings, which `tinyexec` does not.\n\nFor example:\n\n```diff\n- import ezSpawn from '@jsdevtools/ez-spawn'\n+ import { x } from 'tinyexec'\n  \n- await ezSpawn.async('ls -l')\n+ await x('ls', ['-l'])\n```\n\nAlternatively, you can use [`args-tokenizer`](https://github.com/TrySound/args-tokenizer/) to convert a shell string to\na command and arguments:\n\n```diff\n- import ezSpawn from '@jsdevtools/ez-spawn'\n+ import { tokenizeArgs } from 'args-tokenizer'\n+ import { x } from 'tinyexec'\n  \n+ const [command, ...args] = tokenizeArgs('ls -l')\n- await ezSpawn.async('ls -l')\n+ await x(command, args)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/ez-spawn)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `@jsdevtools/ez-spawn`\n\n### `tinyexec`\n\n`ez-spawn` accepts shell-like command strings, which `tinyexec` does not.\n\nFor example:\n\n```diff\n- import ezSpawn from '@jsdevtools/ez-spawn'\n+ import { x } from 'tinyexec'\n\n- await ezSpawn.async('ls -l')\n+ await x('ls', ['-l'])\n```\n\nAlternatively, you can use [`args-tokenizer`](https://github.com/TrySound/args-tokenizer/) to convert a shell string to\na command and arguments:\n\n```diff\n- import ezSpawn from '@jsdevtools/ez-spawn'\n+ import { tokenizeArgs } from 'args-tokenizer'\n+ import { x } from 'tinyexec'\n\n+ const [command, ...args] = tokenizeArgs('ls -l')\n- await ezSpawn.async('ls -l')\n+ await x(command, args)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/ez-spawn)*\n\n</details>"
       ]
     },
     {
@@ -337,11 +400,14 @@
       "matchPackageNames": [
         "faker"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "@faker-js/faker",
       "replacementVersion": "10.4.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `faker`\n\n### `@faker-js/faker`\n\n[`@faker-js/faker`](https://github.com/faker-js/faker) is a direct, community‑maintained fork of `faker` with new\nfeatures, bugfixes, modern ESM/CJS builds, and updated data/locales.\n\n```diff\n- const faker = require('faker')\n+ const { faker } = require('@faker-js/faker')\n  \n  faker.datatype.boolean()\n  \n  faker.image.avatar()\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/faker)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `faker`\n\n### `@faker-js/faker`\n\n[`@faker-js/faker`](https://github.com/faker-js/faker) is a direct, community‑maintained fork of `faker` with new\nfeatures, bugfixes, modern ESM/CJS builds, and updated data/locales.\n\n```diff\n- const faker = require('faker')\n+ const { faker } = require('@faker-js/faker')\n\n  faker.datatype.boolean()\n\n  faker.image.avatar()\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/faker)*\n\n</details>"
       ]
     },
     {
@@ -352,11 +418,14 @@
       "matchPackageNames": [
         "fast-glob"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "tinyglobby",
       "replacementVersion": "0.2.16",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `fast-glob`\n\n### `tinyglobby`\n\n[`tinyglobby`](https://github.com/SuperchupuDev/tinyglobby) is a modern, lightweight alternative that provides similar\nfunctionality with better performance.\n\nExample:\n\n<!-- eslint-skip -->\n\n```diff\n- import fg from 'fast-glob'\n+ import { glob } from 'tinyglobby'\n  \n- const files = await fg('**/*.ts', {\n+ const files = await glob('**/*.ts', {\n    cwd: process.cwd(),\n    ignore: ['**/node_modules/**'],\n+   expandDirectories: false\n  })\n```\n\nMost options from `fast-glob` have direct equivalents in `tinyglobby`. Check\nthe [tinyglobby documentation](https://superchupu.dev/tinyglobby/migration) for the complete list of supported options.\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/fast-glob)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `fast-glob`\n\n### `tinyglobby`\n\n[`tinyglobby`](https://github.com/SuperchupuDev/tinyglobby) is a modern, lightweight alternative that provides similar\nfunctionality with better performance.\n\nExample:\n\n<!-- eslint-skip -->\n\n```diff\n- import fg from 'fast-glob'\n+ import { glob } from 'tinyglobby'\n\n- const files = await fg('**/*.ts', {\n+ const files = await glob('**/*.ts', {\n    cwd: process.cwd(),\n    ignore: ['**/node_modules/**'],\n+   expandDirectories: false\n  })\n```\n\nMost options from `fast-glob` have direct equivalents in `tinyglobby`. Check\nthe [tinyglobby documentation](https://superchupu.dev/tinyglobby/migration) for the complete list of supported options.\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/fast-glob)*\n\n</details>"
       ]
     },
     {
@@ -376,6 +445,9 @@
         "teeny-request",
         "whatwg-fetch"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "ofetch",
       "replacementVersion": "1.5.1",
       "draftPR": true,
@@ -391,11 +463,14 @@
       "matchPackageNames": [
         "find-cache-dir"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "empathic",
       "replacementVersion": "2.0.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `find-cache-dir`\n\n### `empathic`\n\n[`empathic`](https://github.com/lukeed/empathic) provides a more generic way to find files and directories upwards.\n\nExample:\n\n```diff\n+ import * as pkg from 'empathic'\n- import findCacheDirectory from 'find-cache-dir'\n  \n- findCacheDirectory({ name: 'foo' })\n+ pkg.cache('foo')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/find-cache-dir)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `find-cache-dir`\n\n### `empathic`\n\n[`empathic`](https://github.com/lukeed/empathic) provides a more generic way to find files and directories upwards.\n\nExample:\n\n```diff\n+ import * as pkg from 'empathic'\n- import findCacheDirectory from 'find-cache-dir'\n\n- findCacheDirectory({ name: 'foo' })\n+ pkg.cache('foo')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/find-cache-dir)*\n\n</details>"
       ]
     },
     {
@@ -406,11 +481,14 @@
       "matchPackageNames": [
         "find-cache-directory"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "empathic",
       "replacementVersion": "2.0.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `find-cache-directory`\n\n### `empathic`\n\n[`empathic`](https://github.com/lukeed/empathic) provides a more generic way to find files and directories upwards.\n\nExample:\n\n```diff\n+ import * as pkg from 'empathic'\n- import findCacheDirectory from 'find-cache-directory'\n  \n- findCacheDirectory({ name: 'foo' })\n+ pkg.cache('foo')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/find-cache-directory)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `find-cache-directory`\n\n### `empathic`\n\n[`empathic`](https://github.com/lukeed/empathic) provides a more generic way to find files and directories upwards.\n\nExample:\n\n```diff\n+ import * as pkg from 'empathic'\n- import findCacheDirectory from 'find-cache-directory'\n\n- findCacheDirectory({ name: 'foo' })\n+ pkg.cache('foo')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/find-cache-directory)*\n\n</details>"
       ]
     },
     {
@@ -421,11 +499,14 @@
       "matchPackageNames": [
         "find-file-up"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "empathic",
       "replacementVersion": "2.0.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `find-file-up`\n\n### `empathic`\n\n[`empathic`](https://github.com/lukeed/empathic) provides a more generic way to find files and directories upwards.\n\nThe main difference is that `empathic` is _synchronous_, so you should no longer `await` the result.\n\nExample:\n\n```diff\n+ import * as find from 'empathic/find'\n- import findUp from 'find-file-up'\n  \n- await findUp('package.json', cwd)\n+ find.file('package.json', { cwd })\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/find-file-up)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `find-file-up`\n\n### `empathic`\n\n[`empathic`](https://github.com/lukeed/empathic) provides a more generic way to find files and directories upwards.\n\nThe main difference is that `empathic` is _synchronous_, so you should no longer `await` the result.\n\nExample:\n\n```diff\n+ import * as find from 'empathic/find'\n- import findUp from 'find-file-up'\n\n- await findUp('package.json', cwd)\n+ find.file('package.json', { cwd })\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/find-file-up)*\n\n</details>"
       ]
     },
     {
@@ -436,11 +517,14 @@
       "matchPackageNames": [
         "find-pkg"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "empathic",
       "replacementVersion": "2.0.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `find-pkg`\n\n### `empathic`\n\n[`empathic`](https://github.com/lukeed/empathic) provides a more generic way to find files and directories upwards.\n\nThe main difference is that `empathic` is _synchronous_, so you should no longer `await` the result.\n\nExample:\n\n```diff\n+ import * as pkg from 'empathic/package'\n- import findPkg from 'find-pkg'\n  \n- await findPkg(path)\n+ pkg.up(path)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/find-pkg)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `find-pkg`\n\n### `empathic`\n\n[`empathic`](https://github.com/lukeed/empathic) provides a more generic way to find files and directories upwards.\n\nThe main difference is that `empathic` is _synchronous_, so you should no longer `await` the result.\n\nExample:\n\n```diff\n+ import * as pkg from 'empathic/package'\n- import findPkg from 'find-pkg'\n\n- await findPkg(path)\n+ pkg.up(path)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/find-pkg)*\n\n</details>"
       ]
     },
     {
@@ -453,11 +537,14 @@
         "package-up",
         "pkg-up"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "empathic",
       "replacementVersion": "2.0.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `find-up`\n\n### `empathic`\n\n[`empathic`](https://github.com/lukeed/empathic) provides a more generic way to find files and directories upwards.\n\nThe main difference is that `empathic` is _synchronous_, so you should no longer `await` the result.\n\nExample:\n\n```diff\n+ import * as find from 'empathic/find'\n- import { findUp } from 'find-up'\n  \n- await findUp('package.json')\n+ find.up('package.json')\n```\n\n#### `findUpMultiple`\n\nWhen finding multiple files, you can use `find.any`:\n\n```diff\n+ import * as find from 'empathic/find'\n- import { findUpMultiple } from 'find-up'\n  \n- const files = await findUpMultiple(['package.json', 'tsconfig.json'])\n+ const files = find.any(['package.json', 'tsconfig.json'])\n```\n\n#### Options\n\n##### `type`\n\nThe `type` option can be replaced by using the equivalent function.\n\nFor example, finding a file:\n\n```diff\n+ import * as find from 'empathic/find'\n- import { findUp } from 'find-up'\n  \n- await findUp('package.json', { type: 'file' })\n+ find.file('package.json')\n```\n\n##### `cwd`\n\nThis option is supported just the same:\n\n```ts\nfind.file('package.json', { cwd })\n```\n\n##### `stopAt`\n\nThis option is replaced by `last`:\n\n<!-- eslint-skip -->\n\n```diff\n- import { findUp } from 'find-up'\n+ import * as find from 'empathic/find'\n  \n- await findUp(\n+ find.file(\n    'package.json',\n-   { stopAt: '/some/dir' },\n+   { last: '/some/dir' },\n  )\n```\n\n### `pkg-types`\n\n[`pkg-types`](https://github.com/unjs/pkg-types) provides utilities for reading and writing package.json, tsconfig.json,\nand other configuration files with TypeScript support.\n\n```diff\n- import { findUp } from 'find-up'\n+ import { readPackageJSON } from 'pkg-types'\n  \n- const packagePath = await findUp('package.json')\n+ const packageJson = await readPackageJSON()\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/find-up)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `find-up`\n\n### `empathic`\n\n[`empathic`](https://github.com/lukeed/empathic) provides a more generic way to find files and directories upwards.\n\nThe main difference is that `empathic` is _synchronous_, so you should no longer `await` the result.\n\nExample:\n\n```diff\n+ import * as find from 'empathic/find'\n- import { findUp } from 'find-up'\n\n- await findUp('package.json')\n+ find.up('package.json')\n```\n\n#### `findUpMultiple`\n\nWhen finding multiple files, you can use `find.any`:\n\n```diff\n+ import * as find from 'empathic/find'\n- import { findUpMultiple } from 'find-up'\n\n- const files = await findUpMultiple(['package.json', 'tsconfig.json'])\n+ const files = find.any(['package.json', 'tsconfig.json'])\n```\n\n#### Options\n\n##### `type`\n\nThe `type` option can be replaced by using the equivalent function.\n\nFor example, finding a file:\n\n```diff\n+ import * as find from 'empathic/find'\n- import { findUp } from 'find-up'\n\n- await findUp('package.json', { type: 'file' })\n+ find.file('package.json')\n```\n\n##### `cwd`\n\nThis option is supported just the same:\n\n```ts\nfind.file('package.json', { cwd })\n```\n\n##### `stopAt`\n\nThis option is replaced by `last`:\n\n<!-- eslint-skip -->\n\n```diff\n- import { findUp } from 'find-up'\n+ import * as find from 'empathic/find'\n\n- await findUp(\n+ find.file(\n    'package.json',\n-   { stopAt: '/some/dir' },\n+   { last: '/some/dir' },\n  )\n```\n\n### `pkg-types`\n\n[`pkg-types`](https://github.com/unjs/pkg-types) provides utilities for reading and writing package.json, tsconfig.json,\nand other configuration files with TypeScript support.\n\n```diff\n- import { findUp } from 'find-up'\n+ import { readPackageJSON } from 'pkg-types'\n\n- const packagePath = await findUp('package.json')\n+ const packageJson = await readPackageJSON()\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/find-up)*\n\n</details>"
       ]
     },
     {
@@ -468,11 +555,14 @@
       "matchPackageNames": [
         "glob"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "tinyglobby",
       "replacementVersion": "0.2.16",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `glob`\n\n### `tinyglobby`\n\n[`tinyglobby`](https://github.com/SuperchupuDev/tinyglobby) provides a similar API.\n\nExample:\n\n```diff\n- import { glob } from 'glob'\n+ import { glob } from 'tinyglobby'\n  \n  const files = await glob('**/*.ts')\n```\n\nMost options available to `glob` are available in `tinyglobby`, read more at\nthe [tinyglobby documentation](https://superchupu.dev/tinyglobby/documentation).\n\n### `fs.glob` (native, since Node 22.x)\n\n[`fs.glob`](https://nodejs.org/api/fs.html#fspromisesglobpattern-options) is built into modern versions of Node.\n\nExample:\n\n<!-- eslint-skip -->\n\n```diff\n- import { glob } from 'glob'\n+ import { glob } from 'node:fs/promises'\n  \n- const files = await glob('src/**/*.ts', {\n+ const files = await Array.fromAsync(glob('src/**/*.ts', {\n    cwd,\n- })\n+ }))\n```\n\nYou can also iterate over the results asynchronously:\n\n```ts\nfor await (const result of glob('src/**/*.ts', { cwd })) {\n  // result is an individual path\n  console.log(result)\n}\n```\n\n> [!NOTE]\n> Node's built-in `glob` is more minimal and does not support negation patterns or fine-grained options like setting a\n> max depth out of the box.\n\n### `fdir`\n\n[`fdir`](https://github.com/thecodrr/fdir/) offers similar functionality but through a different API (and `tinyglobby`\nis actually built on top of it).\n\nExample:\n\n<!-- eslint-skip -->\n\n```diff\n+ import { fdir } from 'fdir'\n- import { glob } from 'glob'\n  \n+ const files = new fdir()\n+   .withBasePath()\n+   .glob('src/**/*.ts')\n+   .crawl(cwd)\n+   .withPromise()\n- const files = await glob('src/**/*.ts', { cwd, maxDepth: 6 })\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/glob)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `glob`\n\n### `tinyglobby`\n\n[`tinyglobby`](https://github.com/SuperchupuDev/tinyglobby) provides a similar API.\n\nExample:\n\n```diff\n- import { glob } from 'glob'\n+ import { glob } from 'tinyglobby'\n\n  const files = await glob('**/*.ts')\n```\n\nMost options available to `glob` are available in `tinyglobby`, read more at\nthe [tinyglobby documentation](https://superchupu.dev/tinyglobby/documentation).\n\n### `fs.glob` (native, since Node 22.x)\n\n[`fs.glob`](https://nodejs.org/api/fs.html#fspromisesglobpattern-options) is built into modern versions of Node.\n\nExample:\n\n<!-- eslint-skip -->\n\n```diff\n- import { glob } from 'glob'\n+ import { glob } from 'node:fs/promises'\n\n- const files = await glob('src/**/*.ts', {\n+ const files = await Array.fromAsync(glob('src/**/*.ts', {\n    cwd,\n- })\n+ }))\n```\n\nYou can also iterate over the results asynchronously:\n\n```ts\nfor await (const result of glob('src/**/*.ts', { cwd })) {\n  // result is an individual path\n  console.log(result)\n}\n```\n\n> [!NOTE]\n> Node's built-in `glob` is more minimal and does not support negation patterns or fine-grained options like setting a\n> max depth out of the box.\n\n### `fdir`\n\n[`fdir`](https://github.com/thecodrr/fdir/) offers similar functionality but through a different API (and `tinyglobby`\nis actually built on top of it).\n\nExample:\n\n<!-- eslint-skip -->\n\n```diff\n+ import { fdir } from 'fdir'\n- import { glob } from 'glob'\n\n+ const files = new fdir()\n+   .withBasePath()\n+   .glob('src/**/*.ts')\n+   .crawl(cwd)\n+   .withPromise()\n- const files = await glob('src/**/*.ts', { cwd, maxDepth: 6 })\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/glob)*\n\n</details>"
       ]
     },
     {
@@ -482,6 +572,9 @@
       ],
       "matchPackageNames": [
         "globby"
+      ],
+      "matchUpdateTypes": [
+        "replacement"
       ],
       "replacementName": "tinyglobby",
       "replacementVersion": "0.2.16",
@@ -499,11 +592,14 @@
         "grapheme-splitter",
         "graphemer"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "unicode-segmenter",
       "replacementVersion": "0.15.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `grapheme-splitter` / `graphemer`\n\n### `Intl.Segmenter` (native)\n\n[`Intl.Segmenter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter) is\nthe modern native JavaScript API for text segmentation, available in Node.js 16+, Chrome 87+, Safari 14.1+, and Firefox\n132+.\n\n```diff\n- import GraphemeSplitter from 'grapheme-splitter'\n  \n- const splitter = new GraphemeSplitter()\n+ const segmenter = new Intl.Segmenter()\n  \n- const graphemes = splitter.splitGraphemes(text)\n+ const graphemes = [...segmenter.segment(text)].map((s) => s.segment)\n  \n- const count = splitter.countGraphemes(text)\n+ const count = [...segmenter.segment(text)].length\n```\n\n### `unicode-segmenter`\n\n[`unicode-segmenter`](https://github.com/cometkim/unicode-segmenter) is a lightweight, fast alternative with zero\ndependencies and excellent browser compatibility.\n\n```diff\n- import GraphemeSplitter from 'grapheme-splitter'\n+ import { countGraphemes, splitGraphemes } from 'unicode-segmenter/grapheme'\n  \n- const splitter = new GraphemeSplitter()\n  \n- const graphemes = splitter.splitGraphemes(text)\n+ const graphemes = [...splitGraphemes(text)]\n  \n- const count = splitter.countGraphemes(text)\n+ const count = countGraphemes(text)\n```\n\nYou can also use it as an `Intl.Segmenter` polyfill:\n\n```ts\nimport 'unicode-segmenter/intl-polyfill'\n\nconst segmenter = new Intl.Segmenter()\nconst graphemes = [...segmenter.segment(text)].map((s) => s.segment)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/graphemer)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `grapheme-splitter` / `graphemer`\n\n### `Intl.Segmenter` (native)\n\n[`Intl.Segmenter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter) is\nthe modern native JavaScript API for text segmentation, available in Node.js 16+, Chrome 87+, Safari 14.1+, and Firefox\n132+.\n\n```diff\n- import GraphemeSplitter from 'grapheme-splitter'\n\n- const splitter = new GraphemeSplitter()\n+ const segmenter = new Intl.Segmenter()\n\n- const graphemes = splitter.splitGraphemes(text)\n+ const graphemes = [...segmenter.segment(text)].map((s) => s.segment)\n\n- const count = splitter.countGraphemes(text)\n+ const count = [...segmenter.segment(text)].length\n```\n\n### `unicode-segmenter`\n\n[`unicode-segmenter`](https://github.com/cometkim/unicode-segmenter) is a lightweight, fast alternative with zero\ndependencies and excellent browser compatibility.\n\n```diff\n- import GraphemeSplitter from 'grapheme-splitter'\n+ import { countGraphemes, splitGraphemes } from 'unicode-segmenter/grapheme'\n\n- const splitter = new GraphemeSplitter()\n\n- const graphemes = splitter.splitGraphemes(text)\n+ const graphemes = [...splitGraphemes(text)]\n\n- const count = splitter.countGraphemes(text)\n+ const count = countGraphemes(text)\n```\n\nYou can also use it as an `Intl.Segmenter` polyfill:\n\n```ts\nimport 'unicode-segmenter/intl-polyfill'\n\nconst segmenter = new Intl.Segmenter()\nconst graphemes = [...segmenter.segment(text)].map((s) => s.segment)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/graphemer)*\n\n</details>"
       ]
     },
     {
@@ -514,11 +610,14 @@
       "matchPackageNames": [
         "invariant"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "tiny-invariant",
       "replacementVersion": "1.3.3",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `invariant`\n\n### `tiny-invariant`\n\n[`tiny-invariant`](https://github.com/alexreardon/tiny-invariant) provides a similar API with zero dependencies.\n\nFor example:\n\n```diff\n- import invariant from 'invariant'\n+ import invariant from 'tiny-invariant'\n  \n- invariant(ok, 'Hello %s, code %d', name, code)\n+ invariant(ok, `Hello ${name}, code ${code}`)\n```\n\nSimilarly, you can lazily compute messages to avoid unnecessary work:\n\n```diff\n- import invariant from 'invariant'\n+ import invariant from 'tiny-invariant'\n  \n- invariant(value, getExpensiveMessage())\n+ invariant(value, () => getExpensiveMessage())\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/invariant)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `invariant`\n\n### `tiny-invariant`\n\n[`tiny-invariant`](https://github.com/alexreardon/tiny-invariant) provides a similar API with zero dependencies.\n\nFor example:\n\n```diff\n- import invariant from 'invariant'\n+ import invariant from 'tiny-invariant'\n\n- invariant(ok, 'Hello %s, code %d', name, code)\n+ invariant(ok, `Hello ${name}, code ${code}`)\n```\n\nSimilarly, you can lazily compute messages to avoid unnecessary work:\n\n```diff\n- import invariant from 'invariant'\n+ import invariant from 'tiny-invariant'\n\n- invariant(value, getExpensiveMessage())\n+ invariant(value, () => getExpensiveMessage())\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/invariant)*\n\n</details>"
       ]
     },
     {
@@ -529,11 +628,14 @@
       "matchPackageNames": [
         "js-yaml"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "yaml",
       "replacementVersion": "2.8.3",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `js-yaml`\n\n`js-yaml` appears to be unmaintained and has known spec-compliance issues.\n\n### `yaml`\n\n[`yaml`](https://github.com/eemeli/yaml) is a well maintained YAML 1.2/1.1 parser/stringifier with better spec\ncompliance, comment/AST support, and no deps.\n\nParse (load):\n\n```diff\n- import yaml from 'js-yaml'\n+ import { parse } from 'yaml'\n  \n- const obj = yaml.load(src)\n+ const obj = parse(src)\n```\n\nStringify (dump):\n\n```diff\n- import yaml from 'js-yaml'\n+ import { stringify } from 'yaml'\n  \n- const text = yaml.dump(obj)\n+ const text = stringify(obj)\n```\n\nMulti-document:\n\n```diff\n- import yaml from 'js-yaml'\n+ import { parseAllDocuments } from 'yaml'\n  \n- const out: any[] = []\n- yaml.loadAll(src, (d) => out.push(d))\n+ const out = parseAllDocuments(src).map((d) => d.toJSON())\n```\n\n### Bun `YAML` API\n\n[Native YAML parsing](https://bun.com/docs/runtime/yaml) is supported in Bun\nsince [v1.2.21](https://bun.com/blog/release-notes/bun-v1.2.21#native-yaml-support).\n\nExample:\n\n```diff\n- import yaml from 'js-yaml'\n+ import { YAML } from 'bun'\n  \n- yaml.load(src)\n+ YAML.parse(src)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/js-yaml)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `js-yaml`\n\n`js-yaml` appears to be unmaintained and has known spec-compliance issues.\n\n### `yaml`\n\n[`yaml`](https://github.com/eemeli/yaml) is a well maintained YAML 1.2/1.1 parser/stringifier with better spec\ncompliance, comment/AST support, and no deps.\n\nParse (load):\n\n```diff\n- import yaml from 'js-yaml'\n+ import { parse } from 'yaml'\n\n- const obj = yaml.load(src)\n+ const obj = parse(src)\n```\n\nStringify (dump):\n\n```diff\n- import yaml from 'js-yaml'\n+ import { stringify } from 'yaml'\n\n- const text = yaml.dump(obj)\n+ const text = stringify(obj)\n```\n\nMulti-document:\n\n```diff\n- import yaml from 'js-yaml'\n+ import { parseAllDocuments } from 'yaml'\n\n- const out: any[] = []\n- yaml.loadAll(src, (d) => out.push(d))\n+ const out = parseAllDocuments(src).map((d) => d.toJSON())\n```\n\n### Bun `YAML` API\n\n[Native YAML parsing](https://bun.com/docs/runtime/yaml) is supported in Bun\nsince [v1.2.21](https://bun.com/blog/release-notes/bun-v1.2.21#native-yaml-support).\n\nExample:\n\n```diff\n- import yaml from 'js-yaml'\n+ import { YAML } from 'bun'\n\n- yaml.load(src)\n+ YAML.parse(src)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/js-yaml)*\n\n</details>"
       ]
     },
     {
@@ -544,11 +646,14 @@
       "matchPackageNames": [
         "jsx-ast-utils"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "jsx-ast-utils-x",
       "replacementVersion": "0.1.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `jsx-ast-utils`\n\n### `jsx-ast-utils-x`\n\n[`jsx-ast-utils-x`](https://github.com/eslinter/jsx-ast-utils-x) is a zero‑dependency alternative to [ `jsx-ast-utils`](https://github.com/jsx-eslint/jsx-ast-utils) that aims to maintain API compatibility while reducing\npackage size.\n\n```diff\n- import { hasProp } from 'jsx-ast-utils'\n+ import { hasProp } from 'jsx-ast-utils-x'\n  \n- import hasProp from 'jsx-ast-utils/hasProp'\n+ import hasProp from 'jsx-ast-utils-x/hasProp'\n  \n  module.exports = (context) => ({\n    JSXOpeningElement: (node) => {\n      const onChange = hasProp(node.attributes, 'onChange')\n      if (onChange) {\n        context.report({ node, message: 'No onChange!' })\n      }\n    }\n  })\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/jsx-ast-utils)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `jsx-ast-utils`\n\n### `jsx-ast-utils-x`\n\n[`jsx-ast-utils-x`](https://github.com/eslinter/jsx-ast-utils-x) is a zero‑dependency alternative to [ `jsx-ast-utils`](https://github.com/jsx-eslint/jsx-ast-utils) that aims to maintain API compatibility while reducing\npackage size.\n\n```diff\n- import { hasProp } from 'jsx-ast-utils'\n+ import { hasProp } from 'jsx-ast-utils-x'\n\n- import hasProp from 'jsx-ast-utils/hasProp'\n+ import hasProp from 'jsx-ast-utils-x/hasProp'\n\n  module.exports = (context) => ({\n    JSXOpeningElement: (node) => {\n      const onChange = hasProp(node.attributes, 'onChange')\n      if (onChange) {\n        context.report({ node, message: 'No onChange!' })\n      }\n    }\n  })\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/jsx-ast-utils)*\n\n</details>"
       ]
     },
     {
@@ -558,6 +663,9 @@
       ],
       "matchPackageNames": [
         "lint-staged"
+      ],
+      "matchUpdateTypes": [
+        "replacement"
       ],
       "replacementName": "nano-staged",
       "replacementVersion": "1.0.2",
@@ -895,6 +1003,9 @@
         "lodash.zipwith",
         "underscore"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "es-toolkit",
       "replacementVersion": "1.45.1",
       "draftPR": true,
@@ -909,6 +1020,9 @@
       ],
       "matchPackageNames": [
         "materialize-css"
+      ],
+      "matchUpdateTypes": [
+        "replacement"
       ],
       "replacementName": "@materializecss/materialize",
       "replacementVersion": "2.3.3",
@@ -925,6 +1039,9 @@
       "matchPackageNames": [
         "node-telegram-bot-api"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "grammy",
       "replacementVersion": "1.42.0",
       "draftPR": true,
@@ -939,6 +1056,9 @@
       ],
       "matchPackageNames": [
         "npm-run-all"
+      ],
+      "matchUpdateTypes": [
+        "replacement"
       ],
       "replacementName": "npm-run-all2",
       "replacementVersion": "8.0.4",
@@ -955,11 +1075,14 @@
       "matchPackageNames": [
         "object-hash"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "ohash",
       "replacementVersion": "2.0.11",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `object-hash`\n\n### `ohash`\n\n[`ohash`](https://github.com/unjs/ohash) is actively maintained and provides hashing, stable serialization, equality\nchecks, and diffs. It uses stable serialization + SHA-256, returning Base64URL by default. Its serializer was originally\nbased on `object-hash`.\n\nExample:\n\n```diff\n- import objectHash from 'object-hash'\n+ import { hash } from 'ohash'\n  \n- const h = objectHash(obj)\n+ const h = hash(obj)\n```\n\n### Web Crypto\n\nUse the standard `SubtleCrypto.digest` available in modern runtimes. Pair it with a stable serializer (e.g., [ `safe-stable-stringify`](https://github.com/BridgeAR/safe-stable-stringify)) to ensure deterministic key ordering.\n\nExample:\n\n```diff\n- import objectHash from 'object-hash'\n+ import stringify from 'safe-stable-stringify'\n  \n- const h = objectHash(obj, { algorithm: 'sha256' })\n+ const data = new TextEncoder().encode(stringify(obj))\n+ const buf = await crypto.subtle.digest('SHA-256', data)\n+ const h = Array.from(new Uint8Array(buf))\n+   .map((b) => b.toString(16).padStart(2, '0'))\n+   .join('')\n```\n\n### Bun `CryptoHasher`\n\nBun provides a native incremental hasher (e.g., SHA-256). Combine it with a stable serializer for object hashing. For\nfast non-crypto fingerprints, see [`Bun.hash`](https://bun.com/reference/bun/hash).\n\nDocs: https://bun.com/reference/bun/CryptoHasher\n\nExample:\n\n```diff\n- import objectHash from 'object-hash'\n+ import stringify from 'safe-stable-stringify'\n  \n- const h = objectHash(obj, { algorithm: 'sha256' })\n+ const hasher = new CryptoHasher('sha256')\n+ hasher.update(stringify(obj))\n+ const h = hasher.digest('hex')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/object-hash)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `object-hash`\n\n### `ohash`\n\n[`ohash`](https://github.com/unjs/ohash) is actively maintained and provides hashing, stable serialization, equality\nchecks, and diffs. It uses stable serialization + SHA-256, returning Base64URL by default. Its serializer was originally\nbased on `object-hash`.\n\nExample:\n\n```diff\n- import objectHash from 'object-hash'\n+ import { hash } from 'ohash'\n\n- const h = objectHash(obj)\n+ const h = hash(obj)\n```\n\n### Web Crypto\n\nUse the standard `SubtleCrypto.digest` available in modern runtimes. Pair it with a stable serializer (e.g., [ `safe-stable-stringify`](https://github.com/BridgeAR/safe-stable-stringify)) to ensure deterministic key ordering.\n\nExample:\n\n```diff\n- import objectHash from 'object-hash'\n+ import stringify from 'safe-stable-stringify'\n\n- const h = objectHash(obj, { algorithm: 'sha256' })\n+ const data = new TextEncoder().encode(stringify(obj))\n+ const buf = await crypto.subtle.digest('SHA-256', data)\n+ const h = Array.from(new Uint8Array(buf))\n+   .map((b) => b.toString(16).padStart(2, '0'))\n+   .join('')\n```\n\n### Bun `CryptoHasher`\n\nBun provides a native incremental hasher (e.g., SHA-256). Combine it with a stable serializer for object hashing. For\nfast non-crypto fingerprints, see [`Bun.hash`](https://bun.com/reference/bun/hash).\n\nDocs: https://bun.com/reference/bun/CryptoHasher\n\nExample:\n\n```diff\n- import objectHash from 'object-hash'\n+ import stringify from 'safe-stable-stringify'\n\n- const h = objectHash(obj, { algorithm: 'sha256' })\n+ const hasher = new CryptoHasher('sha256')\n+ hasher.update(stringify(obj))\n+ const h = hasher.digest('hex')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/object-hash)*\n\n</details>"
       ]
     },
     {
@@ -970,11 +1093,14 @@
       "matchPackageNames": [
         "ora"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "nanospinner",
       "replacementVersion": "1.2.2",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `ora`\n\n### `nanospinner`\n\n[`nanospinner`](https://github.com/usmanyunusov/nanospinner) provides simple start/success/error/warning methods with\none dependency (`picocolors`).\n\n```diff\n- import ora from 'ora'\n+ import { createSpinner } from 'nanospinner'\n  \n- const spinner = ora('Loading...').start()\n+ const spinner = createSpinner('Loading...').start()\n  \n- spinner.succeed('Done!')\n+ spinner.success('Done!')\n  \n- spinner.fail('Error!')\n+ spinner.error('Error!')\n```\n\n### `picospinner`\n\n[`picospinner`](https://github.com/tinylibs/picospinner) has zero dependencies with support for custom symbols, frames,\nand colors through Node.js built-in styling.\n\n```diff\n- import ora from 'ora'\n+ import { Spinner } from 'picospinner'\n  \n- const spinner = ora('Loading...').start()\n+ const spinner = new Spinner('Loading...')\n+ spinner.start()\n```\n\nIf you want to customize the color of the spinner, you can specify this when creating an instance:\n\n```ts\nconst spinner = new Spinner('Loading...', { colors: { spinner: 'yellow' } })\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/ora)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `ora`\n\n### `nanospinner`\n\n[`nanospinner`](https://github.com/usmanyunusov/nanospinner) provides simple start/success/error/warning methods with\none dependency (`picocolors`).\n\n```diff\n- import ora from 'ora'\n+ import { createSpinner } from 'nanospinner'\n\n- const spinner = ora('Loading...').start()\n+ const spinner = createSpinner('Loading...').start()\n\n- spinner.succeed('Done!')\n+ spinner.success('Done!')\n\n- spinner.fail('Error!')\n+ spinner.error('Error!')\n```\n\n### `picospinner`\n\n[`picospinner`](https://github.com/tinylibs/picospinner) has zero dependencies with support for custom symbols, frames,\nand colors through Node.js built-in styling.\n\n```diff\n- import ora from 'ora'\n+ import { Spinner } from 'picospinner'\n\n- const spinner = ora('Loading...').start()\n+ const spinner = new Spinner('Loading...')\n+ spinner.start()\n```\n\nIf you want to customize the color of the spinner, you can specify this when creating an instance:\n\n```ts\nconst spinner = new Spinner('Loading...', { colors: { spinner: 'yellow' } })\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/ora)*\n\n</details>"
       ]
     },
     {
@@ -985,11 +1111,14 @@
       "matchPackageNames": [
         "pkg-dir"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "empathic",
       "replacementVersion": "2.0.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `pkg-dir`\n\n### `empathic`\n\n[`empathic`](https://github.com/lukeed/empathic) provides a more generic way to find files and directories upwards.\n\nThe main difference is that `empathic` is _synchronous_, so you should no longer `await` the result.\n\nExample:\n\n```diff\n+ import { dirname } from 'node:path'\n+ import * as pkg from 'empathic/package'\n- import { packageDirectory } from 'pkg-dir'\n  \n- const dir = await packageDirectory()\n+ const dir = dirname(pkg.up())\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/pkg-dir)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `pkg-dir`\n\n### `empathic`\n\n[`empathic`](https://github.com/lukeed/empathic) provides a more generic way to find files and directories upwards.\n\nThe main difference is that `empathic` is _synchronous_, so you should no longer `await` the result.\n\nExample:\n\n```diff\n+ import { dirname } from 'node:path'\n+ import * as pkg from 'empathic/package'\n- import { packageDirectory } from 'pkg-dir'\n\n- const dir = await packageDirectory()\n+ const dir = dirname(pkg.up())\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/pkg-dir)*\n\n</details>"
       ]
     },
     {
@@ -1001,11 +1130,14 @@
         "qs",
         "querystring"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "fast-querystring",
       "replacementVersion": "1.1.2",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `qs`\n\n### `URLSearchParams` (native)\n\n[`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) is built into browsers and Node.js (>=\n10). Use it when you don’t need nested objects or automatic array parsing. It preserves multiple values via `getAll`,\nand `toString()` gives you a URL-safe query string.\n\nExample:\n\n```diff\n- import qs from 'qs'\n  \n  const query = 'a=1&a=2&b=3'\n  \n- const obj = qs.parse(query)\n+ const sp = new URLSearchParams(query)\n+ const obj = Object.fromEntries(sp)\n+ const a = sp.getAll('a')\n```\n\n### `fast-querystring`\n\n[`fast-querystring`](https://github.com/anonrig/fast-querystring) is tiny and very fast. It handles flat key/value pairs\nand repeated keys as arrays; it does not support nested objects. Use it when you need arrays but not nesting.\n\nExample:\n\n```diff\n- import qs from 'qs'\n+ import fqs from 'fast-querystring'\n  \n- const obj = qs.parse('tag=a&tag=b')\n+ const obj = fqs.parse('tag=a&tag=b')\n  \n- const str = qs.stringify({ tag: ['a', 'b'], q: 'x y' })\n+ const str = fqs.stringify({ tag: ['a', 'b'], q: 'x y' })\n```\n\n### `picoquery`\n\n[`picoquery`](https://github.com/43081j/picoquery) supports nesting and arrays with a fast single‑pass parser and\nconfigurable syntax. v2.x and above are ESM‑only; v1.x is CommonJS and will be maintained with non‑breaking changes.\n`nestingSyntax: 'js'` offers the highest compatibility with `qs`, though you can pick other syntaxes for performance.\n\nExample:\n\n<!-- prettier-ignore -->\n\n```diff\n- import qs from 'qs'\n+ import { parse, stringify } from 'picoquery'\n  \n+ const opts = {\n+   nestingSyntax: 'js',\n+   arrayRepeat: true,\n+   arrayRepeatSyntax: 'bracket'\n+ }\n  \n- const obj = qs.parse('user[name]=foo&tags[]=bar&tags[]=baz')\n+ const obj = parse('user[name]=foo&tags[]=bar&tags[]=baz', opts)\n  \n- const str = qs.stringify(\n-   { user: { name: 'foo' }, tags: ['bar', 'baz'] },\n-   { arrayFormat: 'brackets' }\n- )\n+ const str = stringify({ user: { name: 'foo' }, tags: ['bar', 'baz'] }, opts)\n```\n\n### `neoqs`\n\n[`neoqs`](https://github.com/PuruVJ/neoqs) is a fork of `qs` without legacy polyfills, with TypeScript types included,\nand with both ESM and CommonJS builds (plus a legacy ES5 mode). Choose it when you want `qs`‑level compatibility with\nmodern packaging options.\n\nExample:\n\n```diff\n- import qs from 'qs'\n+ import * as qs from 'neoqs'\n  \n  const obj = qs.parse('a[b][c]=1&arr[]=2&arr[]=3')\n  const str = qs.stringify(obj, { arrayFormat: 'brackets' })\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/qs)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `qs`\n\n### `URLSearchParams` (native)\n\n[`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) is built into browsers and Node.js (>=\n10). Use it when you don’t need nested objects or automatic array parsing. It preserves multiple values via `getAll`,\nand `toString()` gives you a URL-safe query string.\n\nExample:\n\n```diff\n- import qs from 'qs'\n\n  const query = 'a=1&a=2&b=3'\n\n- const obj = qs.parse(query)\n+ const sp = new URLSearchParams(query)\n+ const obj = Object.fromEntries(sp)\n+ const a = sp.getAll('a')\n```\n\n### `fast-querystring`\n\n[`fast-querystring`](https://github.com/anonrig/fast-querystring) is tiny and very fast. It handles flat key/value pairs\nand repeated keys as arrays; it does not support nested objects. Use it when you need arrays but not nesting.\n\nExample:\n\n```diff\n- import qs from 'qs'\n+ import fqs from 'fast-querystring'\n\n- const obj = qs.parse('tag=a&tag=b')\n+ const obj = fqs.parse('tag=a&tag=b')\n\n- const str = qs.stringify({ tag: ['a', 'b'], q: 'x y' })\n+ const str = fqs.stringify({ tag: ['a', 'b'], q: 'x y' })\n```\n\n### `picoquery`\n\n[`picoquery`](https://github.com/43081j/picoquery) supports nesting and arrays with a fast single‑pass parser and\nconfigurable syntax. v2.x and above are ESM‑only; v1.x is CommonJS and will be maintained with non‑breaking changes.\n`nestingSyntax: 'js'` offers the highest compatibility with `qs`, though you can pick other syntaxes for performance.\n\nExample:\n\n<!-- prettier-ignore -->\n\n```diff\n- import qs from 'qs'\n+ import { parse, stringify } from 'picoquery'\n\n+ const opts = {\n+   nestingSyntax: 'js',\n+   arrayRepeat: true,\n+   arrayRepeatSyntax: 'bracket'\n+ }\n\n- const obj = qs.parse('user[name]=foo&tags[]=bar&tags[]=baz')\n+ const obj = parse('user[name]=foo&tags[]=bar&tags[]=baz', opts)\n\n- const str = qs.stringify(\n-   { user: { name: 'foo' }, tags: ['bar', 'baz'] },\n-   { arrayFormat: 'brackets' }\n- )\n+ const str = stringify({ user: { name: 'foo' }, tags: ['bar', 'baz'] }, opts)\n```\n\n### `neoqs`\n\n[`neoqs`](https://github.com/PuruVJ/neoqs) is a fork of `qs` without legacy polyfills, with TypeScript types included,\nand with both ESM and CommonJS builds (plus a legacy ES5 mode). Choose it when you want `qs`‑level compatibility with\nmodern packaging options.\n\nExample:\n\n```diff\n- import qs from 'qs'\n+ import * as qs from 'neoqs'\n\n  const obj = qs.parse('a[b][c]=1&arr[]=2&arr[]=3')\n  const str = qs.stringify(obj, { arrayFormat: 'brackets' })\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/qs)*\n\n</details>"
       ]
     },
     {
@@ -1016,11 +1148,14 @@
       "matchPackageNames": [
         "react-helmet"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "react",
       "replacementVersion": "19.2.5",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `react-helmet`\n\n### Support for Document Metadata (native, since React 19)\n\n[Support for Document Metadata](https://react.dev/blog/2024/12/05/react-19#support-for-metadata-tags) is available since\nReact 19\n\nExample:\n\n```jsx\nfunction BlogPost({ post }) {\n  return (\n    <article>\n      <h1>{post.title}</h1>\n      <title>{post.title}</title>\n      <meta name=\"keywords\" content={post.keywords} />\n      <p>Eee equals em-see-squared...</p>\n    </article>\n  )\n}\n```\n\n### `react-helmet-async`\n\n[`react-helmet-async`](https://github.com/staylor/react-helmet-async) is a fork of `react-helmet`.\n\nExample:\n\n<!-- prettier-ignore -->\n\n```diff\n- import { Helmet } from 'react-helmet'\n+ import { Helmet, HelmetProvider } from 'react-helmet-async'\n  \n  const app = (\n+   <HelmetProvider>\n      <App>\n        <Helmet>\n          <title>Hello World</title>\n          <link rel=\"canonical\" href=\"https://e18e.dev/\" />\n        </Helmet>\n        <h1>Hello World</h1>\n      </App>\n+   </HelmetProvider>\n  )\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/react-helmet)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `react-helmet`\n\n### Support for Document Metadata (native, since React 19)\n\n[Support for Document Metadata](https://react.dev/blog/2024/12/05/react-19#support-for-metadata-tags) is available since\nReact 19\n\nExample:\n\n```jsx\nfunction BlogPost({ post }) {\n  return (\n    <article>\n      <h1>{post.title}</h1>\n      <title>{post.title}</title>\n      <meta name=\"keywords\" content={post.keywords} />\n      <p>Eee equals em-see-squared...</p>\n    </article>\n  )\n}\n```\n\n### `react-helmet-async`\n\n[`react-helmet-async`](https://github.com/staylor/react-helmet-async) is a fork of `react-helmet`.\n\nExample:\n\n<!-- prettier-ignore -->\n\n```diff\n- import { Helmet } from 'react-helmet'\n+ import { Helmet, HelmetProvider } from 'react-helmet-async'\n\n  const app = (\n+   <HelmetProvider>\n      <App>\n        <Helmet>\n          <title>Hello World</title>\n          <link rel=\"canonical\" href=\"https://e18e.dev/\" />\n        </Helmet>\n        <h1>Hello World</h1>\n      </App>\n+   </HelmetProvider>\n  )\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/react-helmet)*\n\n</details>"
       ]
     },
     {
@@ -1031,11 +1166,14 @@
       "matchPackageNames": [
         "read-package-up"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "pkg-types",
       "replacementVersion": "2.3.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `read-package-up`\n\n### `pkg-types`\n\n[`pkg-types`](https://github.com/unjs/pkg-types) provides a similar API and strong types.\n\nFor example:\n\n```diff\n+ import { readPackageJSON } from 'pkg-types'\n- import { readPackageUp } from 'read-package-up'\n  \n- const packageJson = await readPackageUp()\n+ const packageJson = await readPackageJSON()\n```\n\nSimilarly, you can get hold of the path via `resolvePackageJSON`:\n\n```ts\nimport { resolvePackageJSON } from 'pkg-types'\n\nconst packageJsonPath = await resolvePackageJSON()\n```\n\n### `empathic`\n\n[`empathic`](https://github.com/lukeed/empathic) provides a more generic way to find files and directories upwards.\n\nIt can be combined with `node:fs` to read `package.json` files:\n\n```diff\n+ import fs from 'node:fs/promises'\n+ import * as pkg from 'empathic'\n- import { readPackageUp } from 'read-package-up'\n  \n- const packageJson = await readPackageUp()\n+ const packageJsonPath = pkg.up()\n+ const packageJson = packageJsonPath\n+   ? JSON.parse(await readFile(packageJsonPath, 'utf8'))\n+   : undefined\n```\n\n> [!NOTE]\n> This is of course a more manual way to read the `package.json` file, so one of the other options may be more\n> attractive.\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/read-package-up)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `read-package-up`\n\n### `pkg-types`\n\n[`pkg-types`](https://github.com/unjs/pkg-types) provides a similar API and strong types.\n\nFor example:\n\n```diff\n+ import { readPackageJSON } from 'pkg-types'\n- import { readPackageUp } from 'read-package-up'\n\n- const packageJson = await readPackageUp()\n+ const packageJson = await readPackageJSON()\n```\n\nSimilarly, you can get hold of the path via `resolvePackageJSON`:\n\n```ts\nimport { resolvePackageJSON } from 'pkg-types'\n\nconst packageJsonPath = await resolvePackageJSON()\n```\n\n### `empathic`\n\n[`empathic`](https://github.com/lukeed/empathic) provides a more generic way to find files and directories upwards.\n\nIt can be combined with `node:fs` to read `package.json` files:\n\n```diff\n+ import fs from 'node:fs/promises'\n+ import * as pkg from 'empathic'\n- import { readPackageUp } from 'read-package-up'\n\n- const packageJson = await readPackageUp()\n+ const packageJsonPath = pkg.up()\n+ const packageJson = packageJsonPath\n+   ? JSON.parse(await readFile(packageJsonPath, 'utf8'))\n+   : undefined\n```\n\n> [!NOTE]\n> This is of course a more manual way to read the `package.json` file, so one of the other options may be more\n> attractive.\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/read-package-up)*\n\n</details>"
       ]
     },
     {
@@ -1046,11 +1184,14 @@
       "matchPackageNames": [
         "read-pkg"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "pkg-types",
       "replacementVersion": "2.3.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `read-pkg`\n\n### `pkg-types`\n\n[`pkg-types`](https://github.com/unjs/pkg-types) provides a similar API and strong types.\n\nFor example:\n\n```diff\n+ import { readPackageJSON } from 'pkg-types'\n- import { readPackage } from 'read-pkg'\n  \n- const packageJson = await readPackage()\n+ const packageJson = await readPackageJSON()\n```\n\nYou may also specify a `cwd`:\n\n```ts\nimport { readPackageJSON } from 'pkg-types'\n\nconst packageJson = await readPackageJson({ cwd })\n```\n\n### Native `node:fs`\n\nYou can use `node:fs` to read a known `package.json`:\n\n```diff\n+ import fs from 'node:fs/promises'\n- import { readPackage } from 'read-pkg'\n  \n- const packageJson = await readPackageUp()\n+ const packageJson = JSON.parse(await readFile('./package.json', 'utf8'))\n```\n\n> [!NOTE]\n> Using this approach, you will have to handle errors yourself (e.g. failure to read the file).\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/read-pkg)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `read-pkg`\n\n### `pkg-types`\n\n[`pkg-types`](https://github.com/unjs/pkg-types) provides a similar API and strong types.\n\nFor example:\n\n```diff\n+ import { readPackageJSON } from 'pkg-types'\n- import { readPackage } from 'read-pkg'\n\n- const packageJson = await readPackage()\n+ const packageJson = await readPackageJSON()\n```\n\nYou may also specify a `cwd`:\n\n```ts\nimport { readPackageJSON } from 'pkg-types'\n\nconst packageJson = await readPackageJson({ cwd })\n```\n\n### Native `node:fs`\n\nYou can use `node:fs` to read a known `package.json`:\n\n```diff\n+ import fs from 'node:fs/promises'\n- import { readPackage } from 'read-pkg'\n\n- const packageJson = await readPackageUp()\n+ const packageJson = JSON.parse(await readFile('./package.json', 'utf8'))\n```\n\n> [!NOTE]\n> Using this approach, you will have to handle errors yourself (e.g. failure to read the file).\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/read-pkg)*\n\n</details>"
       ]
     },
     {
@@ -1061,11 +1202,14 @@
       "matchPackageNames": [
         "read-pkg-up"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "pkg-types",
       "replacementVersion": "2.3.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `read-pkg-up`\n\n### `pkg-types`\n\n[`pkg-types`](https://github.com/unjs/pkg-types) provides a similar API and strong types.\n\nFor example:\n\n```diff\n- import { readPackageUp } from 'read-pkg-up'\n+ import { readPackageJSON } from 'pkg-types'\n  \n+ const packageJson = await readPackageJSON()\n- const packageJson = await readPackageUp()\n```\n\nSimilarly, you can get hold of the path via `resolvePackageJSON`:\n\n```ts\nimport { resolvePackageJSON } from 'pkg-types'\n\nconst packageJsonPath = await resolvePackageJSON()\n```\n\n### `empathic`\n\n[`empathic`](https://github.com/lukeed/empathic) provides a more generic way to find files and directories upwards.\n\nIt can be combined with `node:fs` to read `package.json` files:\n\n```diff\n- import { readPackageUp } from 'read-pkg-up'\n+ import fs from 'node:fs/promises'\n+ import * as pkg from 'empathic'\n  \n- const packageJson = await readPackageUp()\n+ const packageJsonPath = pkg.up()\n+ const packageJson = packageJsonPath\n+   ? JSON.parse(await readFile(packageJsonPath, 'utf8'))\n+   : undefined\n```\n\n> [!NOTE]\n> This is of course a more manual way to read the `package.json` file, so one of the other options may be more\n> attractive.\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/read-pkg-up)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `read-pkg-up`\n\n### `pkg-types`\n\n[`pkg-types`](https://github.com/unjs/pkg-types) provides a similar API and strong types.\n\nFor example:\n\n```diff\n- import { readPackageUp } from 'read-pkg-up'\n+ import { readPackageJSON } from 'pkg-types'\n\n+ const packageJson = await readPackageJSON()\n- const packageJson = await readPackageUp()\n```\n\nSimilarly, you can get hold of the path via `resolvePackageJSON`:\n\n```ts\nimport { resolvePackageJSON } from 'pkg-types'\n\nconst packageJsonPath = await resolvePackageJSON()\n```\n\n### `empathic`\n\n[`empathic`](https://github.com/lukeed/empathic) provides a more generic way to find files and directories upwards.\n\nIt can be combined with `node:fs` to read `package.json` files:\n\n```diff\n- import { readPackageUp } from 'read-pkg-up'\n+ import fs from 'node:fs/promises'\n+ import * as pkg from 'empathic'\n\n- const packageJson = await readPackageUp()\n+ const packageJsonPath = pkg.up()\n+ const packageJson = packageJsonPath\n+   ? JSON.parse(await readFile(packageJsonPath, 'utf8'))\n+   : undefined\n```\n\n> [!NOTE]\n> This is of course a more manual way to read the `package.json` file, so one of the other options may be more\n> attractive.\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/read-pkg-up)*\n\n</details>"
       ]
     },
     {
@@ -1075,6 +1219,9 @@
       ],
       "matchPackageNames": [
         "resolve"
+      ],
+      "matchUpdateTypes": [
+        "replacement"
       ],
       "replacementName": "exsolve",
       "replacementVersion": "1.0.8",
@@ -1091,11 +1238,14 @@
       "matchPackageNames": [
         "rimraf"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "premove",
       "replacementVersion": "4.0.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `rimraf`\n\n### `fs.rm` (native, Node.js)\n\nNode.js v14.14.0 and above provide a native alternative: [ `fs.rm`](https://nodejs.org/api/fs.html#fspromisesrmpath-options) and [\n`fs.rmSync`](https://nodejs.org/api/fs.html#fsrmsyncpath-options). It supports recursive deletion and works as a direct\nreplacement.\n\n#### Async methods\n\n```diff\n- import rimraf from 'rimraf'\n+ import { rm } from 'node:fs/promises'\n  \n- await rimraf('./dist')\n+ await rm('./dist', { recursive: true, force: true })\n```\n\n#### Sync methods\n\n```diff\n- import rimraf from 'rimraf'\n+ import * as fs from 'node:fs'\n  \n- rimraf.sync('./dist')\n+ fs.rmSync('./dist', { recursive: true, force: true })\n```\n\n> [!IMPORTANT]\n> Remember to set `{ recursive: true, force: true }` to match the behavior of rimraf.\n\n### `fs.rmdir` (native, Node.js before v14.14.0)\n\nIf you need to support Node.js 12 up to 14.13, you can use [ `fs.rmdir`](https://nodejs.org/api/fs.html#fsrmdirpath-options-callback) with the recursive option. This was added in\nNode v12.10.0, though it’s deprecated as of Node v14.\n\n```diff\n- import rimraf from 'rimraf'\n+ import { rmdir } from 'node:fs/promises'\n  \n- await rimraf('./dist')\n+ await rmdir('./dist', { recursive: true })\n```\n\n### CLI usage\n\nTo replace `rimraf` inside npm scripts, you can run Node directly in eval mode:\n\n```sh\nnode -e \"require('fs').rmSync('./dist', { recursive: true, force: true, maxRetries: process.platform === 'win32' ? 10 : 0 })\"\n```\n\n### `premove`\n\nIf you are on an older Node.js version (before v12.10) or you specifically need a CLI replacement, you can use [ `premove`](https://github.com/lukeed/premove). It provides both an API and a CLI and works on Node.js v8 and newer.\n\n```diff\n  {\n    \"scripts\": {\n-     \"clean\": \"rimraf lib\",\n+     \"clean\": \"premove lib\"\n    }\n  }\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/rimraf)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `rimraf`\n\n### `fs.rm` (native, Node.js)\n\nNode.js v14.14.0 and above provide a native alternative: [ `fs.rm`](https://nodejs.org/api/fs.html#fspromisesrmpath-options) and [\n`fs.rmSync`](https://nodejs.org/api/fs.html#fsrmsyncpath-options). It supports recursive deletion and works as a direct\nreplacement.\n\n#### Async methods\n\n```diff\n- import rimraf from 'rimraf'\n+ import { rm } from 'node:fs/promises'\n\n- await rimraf('./dist')\n+ await rm('./dist', { recursive: true, force: true })\n```\n\n#### Sync methods\n\n```diff\n- import rimraf from 'rimraf'\n+ import * as fs from 'node:fs'\n\n- rimraf.sync('./dist')\n+ fs.rmSync('./dist', { recursive: true, force: true })\n```\n\n> [!IMPORTANT]\n> Remember to set `{ recursive: true, force: true }` to match the behavior of rimraf.\n\n### `fs.rmdir` (native, Node.js before v14.14.0)\n\nIf you need to support Node.js 12 up to 14.13, you can use [ `fs.rmdir`](https://nodejs.org/api/fs.html#fsrmdirpath-options-callback) with the recursive option. This was added in\nNode v12.10.0, though it’s deprecated as of Node v14.\n\n```diff\n- import rimraf from 'rimraf'\n+ import { rmdir } from 'node:fs/promises'\n\n- await rimraf('./dist')\n+ await rmdir('./dist', { recursive: true })\n```\n\n### CLI usage\n\nTo replace `rimraf` inside npm scripts, you can run Node directly in eval mode:\n\n```sh\nnode -e \"require('fs').rmSync('./dist', { recursive: true, force: true, maxRetries: process.platform === 'win32' ? 10 : 0 })\"\n```\n\n### `premove`\n\nIf you are on an older Node.js version (before v12.10) or you specifically need a CLI replacement, you can use [ `premove`](https://github.com/lukeed/premove). It provides both an API and a CLI and works on Node.js v8 and newer.\n\n```diff\n  {\n    \"scripts\": {\n-     \"clean\": \"rimraf lib\",\n+     \"clean\": \"premove lib\"\n    }\n  }\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/rimraf)*\n\n</details>"
       ]
     },
     {
@@ -1107,11 +1257,14 @@
         "randomatic",
         "shortid"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "nanoid",
       "replacementVersion": "5.1.7",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `shortid`\n\n### `nanoid`\n\n[`nanoid`](https://github.com/ai/nanoid) is a tiny, secure, URL‑friendly, unique string ID generator. It’s also faster\nthan [`shortid`](https://github.com/dylang/shortid).\n\n> [!NOTE]\n> **Good to know before migration**\n>\n>\n> - `shortid.isValid(id)`: there’s no direct equivalent. Validate with a regex that matches your chosen alphabet and\n>   length, e.g. `/^[A-Za-z0-9_-]{21}$/`.\n>\n> - `shortid.seed()`/`shortid.worker()`: not needed and not provided by `nanoid` (it uses a secure random source). Avoid\n>   seeded/deterministic IDs for security.\n>\n\n#### Basic migration\n\n```diff\n- import shortid from 'shortid'\n+ import { nanoid } from 'nanoid'\n  \n- const id = shortid.generate()\n+ const id = nanoid() => \"V1StGXR8_Z5jdHi6B-myT\"\n```\n\n#### Control length\n\n```ts\n// shortid produced ~7-14 chars; with nanoid you pick the size explicitly:\nnanoid(10) // e.g., \"NG3oYbq9qE\"\n```\n\n#### Custom alphabet (replacement for `shortid.characters`)\n\n<!-- eslint-skip -->\n<!-- prettier-ignore -->\n\n```diff\n- shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@')\n+ import { customAlphabet } from 'nanoid'\n  \n+ const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@'\n+ const makeId = customAlphabet(alphabet, 12)\n+ const id = makeId()\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/shortid)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `shortid`\n\n### `nanoid`\n\n[`nanoid`](https://github.com/ai/nanoid) is a tiny, secure, URL‑friendly, unique string ID generator. It’s also faster\nthan [`shortid`](https://github.com/dylang/shortid).\n\n> [!NOTE]\n> **Good to know before migration**\n>\n>\n> - `shortid.isValid(id)`: there’s no direct equivalent. Validate with a regex that matches your chosen alphabet and\n>   length, e.g. `/^[A-Za-z0-9_-]{21}$/`.\n>\n> - `shortid.seed()`/`shortid.worker()`: not needed and not provided by `nanoid` (it uses a secure random source). Avoid\n>   seeded/deterministic IDs for security.\n>\n\n#### Basic migration\n\n```diff\n- import shortid from 'shortid'\n+ import { nanoid } from 'nanoid'\n\n- const id = shortid.generate()\n+ const id = nanoid() => \"V1StGXR8_Z5jdHi6B-myT\"\n```\n\n#### Control length\n\n```ts\n// shortid produced ~7-14 chars; with nanoid you pick the size explicitly:\nnanoid(10) // e.g., \"NG3oYbq9qE\"\n```\n\n#### Custom alphabet (replacement for `shortid.characters`)\n\n<!-- eslint-skip -->\n<!-- prettier-ignore -->\n\n```diff\n- shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@')\n+ import { customAlphabet } from 'nanoid'\n\n+ const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@'\n+ const makeId = customAlphabet(alphabet, 12)\n+ const id = makeId()\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/shortid)*\n\n</details>"
       ]
     },
     {
@@ -1122,11 +1275,14 @@
       "matchPackageNames": [
         "sort-object"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "sort-object-keys",
       "replacementVersion": "2.1.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `sort-object`\n\n### `Object.entries` and `Array.sort` (native)\n\nFor simple cases:\n\n<!-- prettier-ignore -->\n\n```diff\n- import sortObj from 'sort-object'\n  \n- const sorted = sortObj(object)\n  \n  // Ascending A→Z\n+ const sorted = Object.fromEntries(\n+   Object.entries(object).sort((a, b) => a[0].localeCompare(b[0]))\n+ )\n```\n\nReplicating `sortBy` (function returns an ordered key list):\n\n<!-- prettier-ignore -->\n\n```diff\n- import sortObj from 'sort-object'\n  \n- const sorted = sortObj(object, {\n-   sortBy: (obj) => {\n-     const arr = []\n-     Object.keys(obj).forEach((k) => {\n-       if (obj[k].startsWith('a'))\n-         arr.push(k)\n-     })\n-     return arr.reverse()\n-   }\n- })\n  \n+ const sortBy = (obj) =>\n+   Object.keys(obj)\n+     .filter((k) => obj[k].startsWith('a'))\n+     .reverse()\n+ const sorted = Object.fromEntries(\n+   sortBy(object).map((k) => [k, object[k]])\n+ )\n```\n\n### `sort-object-keys`\n\n[`sort-object-keys`](https://github.com/keithamus/sort-object-keys) is zero‑dependency and matches common `sort-object`\nuse cases (custom order array or comparator).\n\n```diff\n- import sortObj from 'sort-object'\n+ import sortObjectKeys from 'sort-object-keys'\n  \n  // Default A→Z\n- const sorted = sortObj(object)\n+ const sorted = sortObjectKeys(object)\n  \n  // With comparator\n- const sortedByCmp = sortObj(object, { sort: (a, b) => a.localeCompare(b) })\n+ const sortedByCmp = sortObjectKeys(object, (a, b) => a.localeCompare(b))\n```\n\n### `sortobject`\n\n[`sortobject`](https://github.com/bevry/sortobject) is zero‑dependency and deeply sorts nested objects.\n\n```diff\n- import sortObj from 'sort-object'\n+ import sortobject from 'sortobject'\n  \n- const sorted = sortObj(object)\n+ const sorted = sortobject(object)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/sort-object)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `sort-object`\n\n### `Object.entries` and `Array.sort` (native)\n\nFor simple cases:\n\n<!-- prettier-ignore -->\n\n```diff\n- import sortObj from 'sort-object'\n\n- const sorted = sortObj(object)\n\n  // Ascending A→Z\n+ const sorted = Object.fromEntries(\n+   Object.entries(object).sort((a, b) => a[0].localeCompare(b[0]))\n+ )\n```\n\nReplicating `sortBy` (function returns an ordered key list):\n\n<!-- prettier-ignore -->\n\n```diff\n- import sortObj from 'sort-object'\n\n- const sorted = sortObj(object, {\n-   sortBy: (obj) => {\n-     const arr = []\n-     Object.keys(obj).forEach((k) => {\n-       if (obj[k].startsWith('a'))\n-         arr.push(k)\n-     })\n-     return arr.reverse()\n-   }\n- })\n\n+ const sortBy = (obj) =>\n+   Object.keys(obj)\n+     .filter((k) => obj[k].startsWith('a'))\n+     .reverse()\n+ const sorted = Object.fromEntries(\n+   sortBy(object).map((k) => [k, object[k]])\n+ )\n```\n\n### `sort-object-keys`\n\n[`sort-object-keys`](https://github.com/keithamus/sort-object-keys) is zero‑dependency and matches common `sort-object`\nuse cases (custom order array or comparator).\n\n```diff\n- import sortObj from 'sort-object'\n+ import sortObjectKeys from 'sort-object-keys'\n\n  // Default A→Z\n- const sorted = sortObj(object)\n+ const sorted = sortObjectKeys(object)\n\n  // With comparator\n- const sortedByCmp = sortObj(object, { sort: (a, b) => a.localeCompare(b) })\n+ const sortedByCmp = sortObjectKeys(object, (a, b) => a.localeCompare(b))\n```\n\n### `sortobject`\n\n[`sortobject`](https://github.com/bevry/sortobject) is zero‑dependency and deeply sorts nested objects.\n\n```diff\n- import sortObj from 'sort-object'\n+ import sortobject from 'sortobject'\n\n- const sorted = sortObj(object)\n+ const sorted = sortobject(object)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/sort-object)*\n\n</details>"
       ]
     },
     {
@@ -1137,11 +1293,14 @@
       "matchPackageNames": [
         "string-width"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "fast-string-width",
       "replacementVersion": "3.0.2",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `string-width`\n\n### `fast-string-width`\n\n[`fast-string-width`](https://github.com/fabiospampinato/fast-string-width) is a drop‑in replacement for `string-width`\nthat’s faster and smaller.\n\n```diff\n- import stringWidth from 'string-width'\n+ import stringWidth from 'fast-string-width'\n  \n  console.log(stringWidth('abc')) // 3\n  console.log(stringWidth('👩‍👩‍👧‍👦')) // 1\n  console.log(stringWidth('\\u001B[31mhello\\u001B[39m')) // 5\n```\n\n### Bun API (native)\n\nIf you’re on Bun ≥ 1.0.29, you can use the built‑in [`stringWidth`](https://bun.com/reference/bun/stringWidth):\n\n```diff\n- import stringWidth from 'string-width'\n+ import { stringWidth } from 'bun'\n  \n  console.log(stringWidth('abc')) // 3\n  console.log(stringWidth('👩‍👩‍👧‍👦')) // 1\n  console.log(stringWidth('\\u001B[31mhello\\u001B[39m')) // 5\n  console.log(\n    stringWidth('\\u001B[31mhello\\u001B[39m', { countAnsiEscapeCodes: false })\n  ) // 5\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/string-width)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `string-width`\n\n### `fast-string-width`\n\n[`fast-string-width`](https://github.com/fabiospampinato/fast-string-width) is a drop‑in replacement for `string-width`\nthat’s faster and smaller.\n\n```diff\n- import stringWidth from 'string-width'\n+ import stringWidth from 'fast-string-width'\n\n  console.log(stringWidth('abc')) // 3\n  console.log(stringWidth('👩‍👩‍👧‍👦')) // 1\n  console.log(stringWidth('\\u001B[31mhello\\u001B[39m')) // 5\n```\n\n### Bun API (native)\n\nIf you’re on Bun ≥ 1.0.29, you can use the built‑in [`stringWidth`](https://bun.com/reference/bun/stringWidth):\n\n```diff\n- import stringWidth from 'string-width'\n+ import { stringWidth } from 'bun'\n\n  console.log(stringWidth('abc')) // 3\n  console.log(stringWidth('👩‍👩‍👧‍👦')) // 1\n  console.log(stringWidth('\\u001B[31mhello\\u001B[39m')) // 5\n  console.log(\n    stringWidth('\\u001B[31mhello\\u001B[39m', { countAnsiEscapeCodes: false })\n  ) // 5\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/string-width)*\n\n</details>"
       ]
     },
     {
@@ -1153,11 +1312,14 @@
         "@iarna/toml",
         "toml"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "smol-toml",
       "replacementVersion": "1.6.1",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `toml`\n\n`toml` appears to be unmaintained and has known spec-compliance issues.\n\n### `smol-toml`\n\n[`smol-toml`](https://github.com/squirrelchat/smol-toml) is a well maintained TOML v1.1.0 parser/stringifier with full\nspec compliance, comment/AST support, and no deps.\n\nParse (load):\n\n```diff\n- import toml from 'toml'\n+ import { parse } from 'smol-toml'\n  \n- const obj = toml.parse(src)\n+ const obj = parse(src)\n```\n\nStringify:\n\n```ts\nimport { stringify } from 'smol-toml'\n\nconst text = stringify(obj)\n```\n\n### Bun `TOML` API (native)\n\n[Native TOML parsing](https://bun.com/docs/runtime/toml#runtime-api) is supported in Bun.\n\nExample:\n\n```diff\n- import toml from 'toml'\n+ import { TOML } from 'bun'\n  \n- toml.parse(src)\n+ TOML.parse(src)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/toml)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `toml`\n\n`toml` appears to be unmaintained and has known spec-compliance issues.\n\n### `smol-toml`\n\n[`smol-toml`](https://github.com/squirrelchat/smol-toml) is a well maintained TOML v1.1.0 parser/stringifier with full\nspec compliance, comment/AST support, and no deps.\n\nParse (load):\n\n```diff\n- import toml from 'toml'\n+ import { parse } from 'smol-toml'\n\n- const obj = toml.parse(src)\n+ const obj = parse(src)\n```\n\nStringify:\n\n```ts\nimport { stringify } from 'smol-toml'\n\nconst text = stringify(obj)\n```\n\n### Bun `TOML` API (native)\n\n[Native TOML parsing](https://bun.com/docs/runtime/toml#runtime-api) is supported in Bun.\n\nExample:\n\n```diff\n- import toml from 'toml'\n+ import { TOML } from 'bun'\n\n- toml.parse(src)\n+ TOML.parse(src)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/toml)*\n\n</details>"
       ]
     },
     {
@@ -1168,11 +1330,14 @@
       "matchPackageNames": [
         "traverse"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "neotraverse",
       "replacementVersion": "0.6.18",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `traverse`\n\n### `neotraverse`\n\n[`neotraverse`](https://github.com/puruvj/neotraverse) is a TypeScript rewrite of [ `traverse`](https://github.com/ljharb/js-traverse) with no dependencies. It offers a drop‑in compatible build as well as\na modern API.\n\n```diff\n- import traverse from 'traverse'\n+ import traverse from 'neotraverse'\n  \n  const obj = [5, 6, -3, [7, 8, -2, 1], { f: 10, g: -13 }]\n  \n  traverse(obj).forEach(function (x) {\n    if (x < 0) this.update(x + 128)\n  })\n  \n  console.log(obj)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/traverse)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `traverse`\n\n### `neotraverse`\n\n[`neotraverse`](https://github.com/puruvj/neotraverse) is a TypeScript rewrite of [ `traverse`](https://github.com/ljharb/js-traverse) with no dependencies. It offers a drop‑in compatible build as well as\na modern API.\n\n```diff\n- import traverse from 'traverse'\n+ import traverse from 'neotraverse'\n\n  const obj = [5, 6, -3, [7, 8, -2, 1], { f: 10, g: -13 }]\n\n  traverse(obj).forEach(function (x) {\n    if (x < 0) this.update(x + 128)\n  })\n\n  console.log(obj)\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/traverse)*\n\n</details>"
       ]
     },
     {
@@ -1183,11 +1348,14 @@
       "matchPackageNames": [
         "uri-js"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "uri-js-replace",
       "replacementVersion": "1.0.1",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `uri-js`\n\n[`uri-js`](https://github.com/garycourt/uri-js) is unmaintained and triggers deprecation warnings on modern\nNode.js ([due to `punycode`](https://github.com/garycourt/uri-js/pull/95)).\n\n### `URL` (native)\n\nGood for standard web URLs (http/https/ws/wss/file/mailto, etc.).\n\n- MDN URL: https://developer.mozilla.org/en-US/docs/Web/API/URL\n- Node.js URL: https://nodejs.org/api/url.html#class-url\n\nExample:\n\n```diff\n- import * as URI from 'uri-js'\n  \n- URI.resolve('https://a/b/c/d?q', '../../g')\n+ new URL('../../g', 'https://a/b/c/d?q').href\n```\n\n> [!NOTE]\n> [WHATWG URL](https://url.spec.whatwg.org/) differs from [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986) in\n> some details and may not cover arbitrary custom schemes/URNs.\n\n### `uri-js-replace`\n\n[`uri-js-replace`](https://github.com/andreinwald/uri-js-replace) is a drop-in, zero-dependency replacement for `uri-js`\nwith the same API and no deprecation warnings.\n\n```diff\n- import * as URI from 'uri-js'\n+ import * as URI from 'uri-js-replace'\n  \n  const parsed = URI.parse('uri://user:pass@example.com:123/one/two?q=a#f')\n  const out = URI.serialize({\n    scheme: 'http',\n    host: 'example.com',\n    fragment: 'footer'\n  })\n  const norm = URI.normalize('URI://www.example.org/red%09ros\\xE9#red')\n```\n\n### `fast-uri`\n\n[`fast-uri`](https://github.com/fastify/fast-uri) is a zero-dependency, high-performance RFC 3986 URI toolbox (\nparse/serialize/resolve/equal) with options similar to `uri-js`.\n\n```diff\n- import * as uri from 'uri-js'\n+ import * as uri from 'fast-uri'\n  \n  uri.parse('uri://user:pass@example.com:123/one/two.three?q1=a1#a')\n  uri.serialize({ scheme: 'http', host: 'example.com', fragment: 'footer' })\n  uri.resolve('uri://a/b/c/d?q', '../../g')\n  uri.equal('example://a/b/%7Bfoo%7D', 'eXAMPLE://a/./b/../b/%63/%7bfoo%7d')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/uri-js)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `uri-js`\n\n[`uri-js`](https://github.com/garycourt/uri-js) is unmaintained and triggers deprecation warnings on modern\nNode.js ([due to `punycode`](https://github.com/garycourt/uri-js/pull/95)).\n\n### `URL` (native)\n\nGood for standard web URLs (http/https/ws/wss/file/mailto, etc.).\n\n- MDN URL: https://developer.mozilla.org/en-US/docs/Web/API/URL\n- Node.js URL: https://nodejs.org/api/url.html#class-url\n\nExample:\n\n```diff\n- import * as URI from 'uri-js'\n\n- URI.resolve('https://a/b/c/d?q', '../../g')\n+ new URL('../../g', 'https://a/b/c/d?q').href\n```\n\n> [!NOTE]\n> [WHATWG URL](https://url.spec.whatwg.org/) differs from [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986) in\n> some details and may not cover arbitrary custom schemes/URNs.\n\n### `uri-js-replace`\n\n[`uri-js-replace`](https://github.com/andreinwald/uri-js-replace) is a drop-in, zero-dependency replacement for `uri-js`\nwith the same API and no deprecation warnings.\n\n```diff\n- import * as URI from 'uri-js'\n+ import * as URI from 'uri-js-replace'\n\n  const parsed = URI.parse('uri://user:pass@example.com:123/one/two?q=a#f')\n  const out = URI.serialize({\n    scheme: 'http',\n    host: 'example.com',\n    fragment: 'footer'\n  })\n  const norm = URI.normalize('URI://www.example.org/red%09ros\\xE9#red')\n```\n\n### `fast-uri`\n\n[`fast-uri`](https://github.com/fastify/fast-uri) is a zero-dependency, high-performance RFC 3986 URI toolbox (\nparse/serialize/resolve/equal) with options similar to `uri-js`.\n\n```diff\n- import * as uri from 'uri-js'\n+ import * as uri from 'fast-uri'\n\n  uri.parse('uri://user:pass@example.com:123/one/two.three?q1=a1#a')\n  uri.serialize({ scheme: 'http', host: 'example.com', fragment: 'footer' })\n  uri.resolve('uri://a/b/c/d?q', '../../g')\n  uri.equal('example://a/b/%7Bfoo%7D', 'eXAMPLE://a/./b/../b/%63/%7bfoo%7d')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/uri-js)*\n\n</details>"
       ]
     },
     {
@@ -1198,11 +1366,14 @@
       "matchPackageNames": [
         "wellknown"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "betterknown",
       "replacementVersion": "1.2.0",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `wellknown`\n\n### `betterknown`\n\n[`betterknown`](https://github.com/placemark/betterknown) is a maintained alternative for `wellknown` package.\n\nExample:\n\n```diff\n- import wellknown from 'wellknown'\n+ import { wktToGeoJSON, geoJSONToWkt } from 'betterknown'\n  \n- wellknown.parse('POINT(1 2)')\n+ wktToGeoJSON('POINT(1 2)')\n  \n- wellknown.stringify({\n+ geoJSONToWkt({\n    type: 'Point',\n    coordinates: [1, 2]\n  })\n  \n- wellknown.stringify({\n+ geoJSONToWkt({\n    type: 'Feature',\n    geometry: { type: 'Point', coordinates: [1, 2] },\n    properties: {}\n  })\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/wellknown)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `wellknown`\n\n### `betterknown`\n\n[`betterknown`](https://github.com/placemark/betterknown) is a maintained alternative for `wellknown` package.\n\nExample:\n\n```diff\n- import wellknown from 'wellknown'\n+ import { wktToGeoJSON, geoJSONToWkt } from 'betterknown'\n\n- wellknown.parse('POINT(1 2)')\n+ wktToGeoJSON('POINT(1 2)')\n\n- wellknown.stringify({\n+ geoJSONToWkt({\n    type: 'Point',\n    coordinates: [1, 2]\n  })\n\n- wellknown.stringify({\n+ geoJSONToWkt({\n    type: 'Feature',\n    geometry: { type: 'Point', coordinates: [1, 2] },\n    properties: {}\n  })\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/wellknown)*\n\n</details>"
       ]
     },
     {
@@ -1213,11 +1384,14 @@
       "matchPackageNames": [
         "xmldom"
       ],
+      "matchUpdateTypes": [
+        "replacement"
+      ],
       "replacementName": "@xmldom/xmldom",
       "replacementVersion": "0.9.9",
       "draftPR": true,
       "prBodyNotes": [
-        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `xmldom`\n\n### `@xmldom/xmldom`\n\n[`@xmldom/xmldom`](https://github.com/xmldom/xmldom) is the maintained fork of the original `xmldom`.\n\nFor example:\n\n```diff\n- import { DOMParser, XMLSerializer } from 'xmldom'\n+ import { DOMParser, XMLSerializer } from '@xmldom/xmldom'\n  \n  const doc = new DOMParser().parseFromString(source, 'text/xml')\n  const xml = new XMLSerializer().serializeToString(doc)\n```\n\nCommonJS:\n\n```diff\n- const { DOMParser, XMLSerializer } = require('xmldom')\n+ const { DOMParser, XMLSerializer } = require('@xmldom/xmldom')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/xmldom)*\n\n</details>"
+        "> [!WARNING]\n> **The [e18e](https://e18e.dev) community recommends replacing `{{{depName}}}` with a modern alternative.**\n> This replacement requires manual changes to imports and usage. See the full migration guide below.\n\n<details><summary>Migration guide from e18e</summary>\n\n\n## Replacements for `xmldom`\n\n### `@xmldom/xmldom`\n\n[`@xmldom/xmldom`](https://github.com/xmldom/xmldom) is the maintained fork of the original `xmldom`.\n\nFor example:\n\n```diff\n- import { DOMParser, XMLSerializer } from 'xmldom'\n+ import { DOMParser, XMLSerializer } from '@xmldom/xmldom'\n\n  const doc = new DOMParser().parseFromString(source, 'text/xml')\n  const xml = new XMLSerializer().serializeToString(doc)\n```\n\nCommonJS:\n\n```diff\n- const { DOMParser, XMLSerializer } = require('xmldom')\n+ const { DOMParser, XMLSerializer } = require('@xmldom/xmldom')\n```\n\n---\n*Source: [e18e module replacements](https://e18e.dev/docs/replacements/xmldom)*\n\n</details>"
       ]
     }
   ]
