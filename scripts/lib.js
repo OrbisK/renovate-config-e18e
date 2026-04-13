@@ -213,15 +213,25 @@ export function buildReplacementsConfig(
   }
 }
 
+export function buildBestPracticesConfig(version) {
+  return {
+    $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+    description: ['e18e presets combined with Renovate best practices and Merge Confidence'],
+    extends: [
+      'config:best-practices',
+      `github>OrbisK/renovate-config-e18e:recommendations#${version}`,
+      `github>OrbisK/renovate-config-e18e:replacements#${version}`,
+      `github>OrbisK/renovate-config-e18e:mergeConfidence:all-badges#${version}`,
+    ],
+  }
+}
+
 export function buildDefaultConfig(version) {
   return {
     $schema: 'https://docs.renovatebot.com/renovate-schema.json',
     description: ['e18e presets for Renovate'],
     extends: [
-      // todo: maybe remove in favor of replacements or better renovate features.
-      // `github>OrbisK/renovate-config-e18e:abandonment#${version}`,
-      `github>OrbisK/renovate-config-e18e:recommendations#${version}`,
-      `github>OrbisK/renovate-config-e18e:replacements#${version}`,
+      `github>OrbisK/renovate-config-e18e:best-practices#${version}`,
     ],
   }
 }

@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { preferredReplacements } from 'module-replacements'
 import {
   buildAbandonmentConfig,
+  buildBestPracticesConfig,
   buildColumnsConfig,
   buildDefaultConfig,
   buildMergeConfidenceConfig,
@@ -53,6 +54,7 @@ const mergeConfidence = buildMergeConfidenceConfig(
   modulesByUrlId,
   urlById,
 )
+const bestPractices = buildBestPracticesConfig(version)
 const defaultConfig = buildDefaultConfig(version)
 
 writeFileSync(
@@ -74,6 +76,10 @@ writeFileSync(
 writeFileSync(
   new URL('../mergeConfidence.json', import.meta.url),
   `${JSON.stringify(mergeConfidence, null, 2)}\n`,
+)
+writeFileSync(
+  new URL('../best-practices.json', import.meta.url),
+  `${JSON.stringify(bestPractices, null, 2)}\n`,
 )
 writeFileSync(
   new URL('../default.json', import.meta.url),

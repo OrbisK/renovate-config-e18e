@@ -2,6 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:best-practices",
-    "local>OrbisK/renovate-config-e18e"
+    "local>OrbisK/renovate-config-e18e/best-practices"
   ]
 }

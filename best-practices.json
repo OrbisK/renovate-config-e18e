@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "e18e presets combined with Renovate best practices and Merge Confidence"
+  ],
+  "extends": [
+    "config:best-practices",
+    "github>OrbisK/renovate-config-e18e:recommendations#0.0.20",
+    "github>OrbisK/renovate-config-e18e:replacements#0.0.20",
+    "github>OrbisK/renovate-config-e18e:mergeConfidence:all-badges#0.0.20"
+  ]
+}

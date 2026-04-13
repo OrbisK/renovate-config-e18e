@@ -4,6 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import {
   adjustHeadingLevels,
   buildAbandonmentConfig,
+  buildBestPracticesConfig,
   buildColumnsConfig,
   buildDefaultConfig,
   buildMergeConfidenceConfig,
@@ -210,6 +211,26 @@ describe('buildAbandonmentConfig', () => {
   })
 })
 
+describe('buildBestPracticesConfig', () => {
+  it('interpolates version into extends', () => {
+    const config = buildBestPracticesConfig('1.2.3')
+    expect(config).toMatchInlineSnapshot(`
+      {
+        "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+        "description": [
+          "e18e presets combined with Renovate best practices and Merge Confidence",
+        ],
+        "extends": [
+          "config:best-practices",
+          "github>OrbisK/renovate-config-e18e:recommendations#1.2.3",
+          "github>OrbisK/renovate-config-e18e:replacements#1.2.3",
+          "github>OrbisK/renovate-config-e18e:mergeConfidence:all-badges#1.2.3",
+        ],
+      }
+    `)
+  })
+})
+
 describe('buildDefaultConfig', () => {
   it('interpolates version into extends', () => {
     const config = buildDefaultConfig('1.2.3')
@@ -220,8 +241,7 @@ describe('buildDefaultConfig', () => {
           "e18e presets for Renovate",
         ],
         "extends": [
-          "github>OrbisK/renovate-config-e18e:recommendations#1.2.3",
-          "github>OrbisK/renovate-config-e18e:replacements#1.2.3",
+          "github>OrbisK/renovate-config-e18e:best-practices#1.2.3",
         ],
       }
     `)

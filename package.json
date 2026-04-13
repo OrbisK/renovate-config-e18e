@@ -13,6 +13,7 @@
     "test:watch": "vitest",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
+    "validate-renovate": "pnpx --package renovate -- renovate-config-validator --strict",
     "release": "pnpm run generate && bumpp"
   },
   "devDependencies": {
