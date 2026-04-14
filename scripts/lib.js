@@ -232,7 +232,7 @@ export function buildBestPracticesConfig(version) {
       'config:best-practices',
       `github>OrbisK/renovate-config-e18e:recommendations#${version}`,
       `github>OrbisK/renovate-config-e18e:replacements#${version}`,
-      `github>OrbisK/renovate-config-e18e:mergeConfidence:all-badges#${version}`,
+      `github>OrbisK/renovate-config-e18e:mergeConfidence/all-badges#${version}`,
     ],
   }
 }

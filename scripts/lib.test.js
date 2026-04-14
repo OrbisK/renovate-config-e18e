@@ -224,7 +224,7 @@ describe('buildBestPracticesConfig', () => {
           "config:best-practices",
           "github>OrbisK/renovate-config-e18e:recommendations#1.2.3",
           "github>OrbisK/renovate-config-e18e:replacements#1.2.3",
-          "github>OrbisK/renovate-config-e18e:mergeConfidence:all-badges#1.2.3",
+          "github>OrbisK/renovate-config-e18e:mergeConfidence/all-badges#1.2.3",
         ],
       }
     `)

@@ -37,18 +37,18 @@ find available versions on the [releases page](https://github.com/OrbisK/renovat
 
 ## Individual presets
 
-The default preset extends `best-practices`, which combines [`config:best-practices`](https://docs.renovatebot.com/presets-config/#configbest-practices), `recommendations`, `replacements`, and `mergeConfidence:all-badges`. You can also use the `best-practices` sub-preset directly or pick individual presets:
+The default preset extends `best-practices`, which combines [`config:best-practices`](https://docs.renovatebot.com/presets-config/#configbest-practices), `recommendations`, `replacements`, and `mergeConfidence/all-badges`. You can also use the `best-practices` sub-preset directly or pick individual presets:
 
 | Preset | Description |
 |---|---|
-| `github>OrbisK/renovate-config-e18e:best-practices` | Combines [`config:best-practices`](https://docs.renovatebot.com/presets-config/#configbest-practices), `recommendations`, `replacements`, and `mergeConfidence:all-badges` |
+| `github>OrbisK/renovate-config-e18e:best-practices` | Combines [`config:best-practices`](https://docs.renovatebot.com/presets-config/#configbest-practices), `recommendations`, `replacements`, and `mergeConfidence/all-badges` |
 | `github>OrbisK/renovate-config-e18e:abandonment` | Marks e18e replaceable packages as abandoned using [`abandonmentThreshold`](https://docs.renovatebot.com/configuration-options/#abandonmentthreshold) and adds an `e18e` label |
 | `github>OrbisK/renovate-config-e18e:recommendations` | Adds replacement recommendations to PR bodies (see [below](#recommendations-preset)) |
 | `github>OrbisK/renovate-config-e18e:replacements` | Replaces packages with recommended alternatives using [`replacementName`](https://docs.renovatebot.com/configuration-options/#packagerulesreplacementname), opens a [**draft PR**](https://docs.renovatebot.com/configuration-options/#draftpr) with an embedded migration guide |
-| `github>OrbisK/renovate-config-e18e:columns:community-notes` | Adds a "Community Notes" column to the default [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns) for patch, minor and major updates |
-| `github>OrbisK/renovate-config-e18e:mergeConfidence:all-badges-append(column)` | All Merge Confidence columns with e18e Community Notes plus a custom appended column |
-| `github>OrbisK/renovate-config-e18e:mergeConfidence:age-confidence` | Like `columns:community-notes` with columns matching [`mergeConfidence:age-confidence-badges`](https://docs.renovatebot.com/presets-mergeConfidence/#mergeconfidenceage-confidence-badges) |
-| `github>OrbisK/renovate-config-e18e:mergeConfidence:all-badges` | Like `columns:community-notes` with columns matching [`mergeConfidence:all-badges`](https://docs.renovatebot.com/presets-mergeConfidence/#mergeconfidenceall-badges) |
+| `github>OrbisK/renovate-config-e18e:columns/community-notes` | Adds a "Community Notes" column to the default [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns) for patch, minor and major updates |
+| `github>OrbisK/renovate-config-e18e:mergeConfidence/all-badges-append(column)` | All Merge Confidence columns with e18e Community Notes plus a custom appended column |
+| `github>OrbisK/renovate-config-e18e:mergeConfidence/age-confidence` | Like `columns/community-notes` with columns matching [`mergeConfidence:age-confidence-badges`](https://docs.renovatebot.com/presets-mergeConfidence/#mergeconfidenceage-confidence-badges) |
+| `github>OrbisK/renovate-config-e18e:mergeConfidence/all-badges` | Like `columns/community-notes` with columns matching [`mergeConfidence:all-badges`](https://docs.renovatebot.com/presets-mergeConfidence/#mergeconfidenceall-badges) |
 
 ### Using individual presets
 
@@ -67,7 +67,7 @@ To use only specific presets, reference them directly instead of the default:
 
 The recommendations preset provides two ways to surface e18e replacement info in PRs:
 
-1. **"Community Notes" column** — a shields.io badge in the PR body table linking to the e18e replacement docs. The default preset already includes `mergeConfidence:all-badges` which configures this column automatically. If you use the `recommendations` preset individually, you can enable the column with a `columns` or `mergeConfidence` preset, or add `"Community Notes"` to your own [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns) manually.
+1. **"Community Notes" column** — a shields.io badge in the PR body table linking to the e18e replacement docs. The default preset already includes `mergeConfidence/all-badges` which configures this column automatically. If you use the `recommendations` preset individually, you can enable the column with a `columns` or `mergeConfidence` preset, or add `"Community Notes"` to your own [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns) manually.
 
 2. **Warning callout** — a `[!WARNING]` note added to the PR body with a link to the e18e replacement guide. This is the fallback behavior when the "Community Notes" column is not in `prBodyColumns`.
 
@@ -79,12 +79,12 @@ provides a detailed migration guide.
 
 ### Columns presets
 
-The `mergeConfidence:all-badges-append` preset accepts one argument to append a custom column to the all Merge Confidence columns layout (Package, Change, Age, Adoption, Passing, Confidence, Community Notes). This is useful because Renovate's [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns) does not merge — it overrides, so adding a single column normally requires duplicating the entire list.
+The `mergeConfidence/all-badges-append` preset accepts one argument to append a custom column to the all Merge Confidence columns layout (Package, Change, Age, Adoption, Passing, Confidence, Community Notes). This is useful because Renovate's [`prBodyColumns`](https://docs.renovatebot.com/configuration-options/#prbodycolumns) does not merge — it overrides, so adding a single column normally requires duplicating the entire list.
 
 ```json
 {
   "extends": [
-    "github>OrbisK/renovate-config-e18e:mergeConfidence:all-badges-append(Pending)"
+    "github>OrbisK/renovate-config-e18e:mergeConfidence/all-badges-append(Pending)"
   ]
 }
 ```
