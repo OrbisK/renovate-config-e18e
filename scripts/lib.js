@@ -105,7 +105,7 @@ export function buildAbandonmentConfig(moduleNames) {
   }
 }
 
-export function buildRecommendationsConfig(sortedUrlIds, modulesByUrlId, urlById) {
+export function buildRecommendationsConfig(sortedUrlIds, modulesByUrlId, urlById, { prBodyColumns, includeNotes = true, matchUpdateTypes = ['!replacement'] } = {}) {
   return {
     $schema: 'https://docs.renovatebot.com/renovate-schema.json',
     description: ['Add e18e replacement recommendations to PR body'],
@@ -115,22 +115,72 @@ export function buildRecommendationsConfig(sortedUrlIds, modulesByUrlId, urlById
         description: 'Add e18e replacement recommendations to PR body',
         matchDatasources: ['npm'],
         matchPackageNames: modulesByUrlId.get(urlId),
-        matchUpdateTypes: ['!replacement'],
-        prBodyColumns: [
-          'Package',
-          'Change',
-          'Age',
-          'Confidence',
-          'Community Notes',
-        ],
+        matchUpdateTypes,
+        ...(prBodyColumns && { prBodyColumns }),
         prBodyDefinitions: {
           'Community Notes': `[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](${docUrl})`,
         },
-        prBodyNotes: [
-          `{{#unless (includes prBodyColumns "Community Notes")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for \`{{{depName}}}\`](${docUrl}) to find modern, lighter alternatives.{{/unless}}`,
-        ],
+        ...(includeNotes && {
+          prBodyNotes: [
+            `{{#unless (includes prBodyColumns "Community Notes")}}> [!WARNING]\n> **This package has a recommended replacement.** Check the [e18e replacement guide for \`{{{depName}}}\`](${docUrl}) to find modern, lighter alternatives.{{/unless}}`,
+          ],
+        }),
       }
     }),
+  }
+}
+
+export function buildColumnsConfig() {
+  return {
+    '$schema': 'https://docs.renovatebot.com/renovate-schema.json',
+    'description': ['prBodyColumns presets with e18e Community Notes'],
+    'community-notes': {
+      description: ['Default Renovate columns with e18e Community Notes'],
+      packageRules: [
+        {
+          description: 'Add Community Notes to default prBodyColumns',
+          matchDatasources: ['npm'],
+          matchUpdateTypes: ['patch', 'minor', 'major'],
+          prBodyColumns: ['Package', 'Type', 'Update', 'Change', 'Pending', 'Community Notes'],
+        },
+      ],
+    },
+  }
+}
+
+export function buildMergeConfidenceConfig(sortedUrlIds, modulesByUrlId, urlById) {
+  const ageConfidence = buildRecommendationsConfig(sortedUrlIds, modulesByUrlId, urlById, {
+    prBodyColumns: ['Package', 'Change', 'Age', 'Confidence', 'Community Notes'],
+    matchUpdateTypes: ['patch', 'minor', 'major'],
+    includeNotes: false,
+  })
+  const allBadges = buildRecommendationsConfig(sortedUrlIds, modulesByUrlId, urlById, {
+    prBodyColumns: ['Package', 'Change', 'Age', 'Adoption', 'Passing', 'Confidence', 'Community Notes'],
+    matchUpdateTypes: ['patch', 'minor', 'major'],
+    includeNotes: false,
+  })
+  return {
+    '$schema': 'https://docs.renovatebot.com/renovate-schema.json',
+    'description': ['Merge Confidence columns combined with e18e Community Notes'],
+    'age-confidence': {
+      description: ['Age and Confidence columns with e18e Community Notes'],
+      packageRules: ageConfidence.packageRules,
+    },
+    'all-badges': {
+      description: ['All Merge Confidence columns with e18e Community Notes'],
+      packageRules: allBadges.packageRules,
+    },
+    'all-badges-append': {
+      description: ['All Merge Confidence columns with e18e Community Notes and {{arg0}}'],
+      packageRules: [
+        {
+          description: 'All Merge Confidence columns with e18e Community Notes and {{arg0}}',
+          matchDatasources: ['npm'],
+          matchUpdateTypes: ['patch', 'minor', 'major'],
+          prBodyColumns: ['Package', 'Change', 'Age', 'Adoption', 'Passing', 'Confidence', 'Community Notes', '{{arg0}}'],
+        },
+      ],
+    },
   }
 }
 
@@ -174,15 +224,25 @@ export function buildReplacementsConfig(
   }
 }
 
+export function buildBestPracticesConfig(version) {
+  return {
+    $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+    description: ['e18e presets combined with Renovate best practices and Merge Confidence'],
+    extends: [
+      'config:best-practices',
+      `github>OrbisK/renovate-config-e18e:recommendations#${version}`,
+      `github>OrbisK/renovate-config-e18e:replacements#${version}`,
+      `github>OrbisK/renovate-config-e18e:mergeConfidence:all-badges#${version}`,
+    ],
+  }
+}
+
 export function buildDefaultConfig(version) {
   return {
     $schema: 'https://docs.renovatebot.com/renovate-schema.json',
     description: ['e18e presets for Renovate'],
     extends: [
-      // todo: maybe remove in favor of replacements or better renovate features.
-      // `github>OrbisK/renovate-config-e18e:abandonment#${version}`,
-      `github>OrbisK/renovate-config-e18e:recommendations#${version}`,
-      `github>OrbisK/renovate-config-e18e:replacements#${version}`,
+      `github>OrbisK/renovate-config-e18e:best-practices#${version}`,
     ],
   }
 }

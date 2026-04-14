@@ -4,7 +4,10 @@ import { describe, expect, it, vi } from 'vitest'
 import {
   adjustHeadingLevels,
   buildAbandonmentConfig,
+  buildBestPracticesConfig,
+  buildColumnsConfig,
   buildDefaultConfig,
+  buildMergeConfidenceConfig,
   buildRecommendationsConfig,
   buildReplacementNameMap,
   buildReplacementsConfig,
@@ -208,6 +211,26 @@ describe('buildAbandonmentConfig', () => {
   })
 })
 
+describe('buildBestPracticesConfig', () => {
+  it('interpolates version into extends', () => {
+    const config = buildBestPracticesConfig('1.2.3')
+    expect(config).toMatchInlineSnapshot(`
+      {
+        "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+        "description": [
+          "e18e presets combined with Renovate best practices and Merge Confidence",
+        ],
+        "extends": [
+          "config:best-practices",
+          "github>OrbisK/renovate-config-e18e:recommendations#1.2.3",
+          "github>OrbisK/renovate-config-e18e:replacements#1.2.3",
+          "github>OrbisK/renovate-config-e18e:mergeConfidence:all-badges#1.2.3",
+        ],
+      }
+    `)
+  })
+})
+
 describe('buildDefaultConfig', () => {
   it('interpolates version into extends', () => {
     const config = buildDefaultConfig('1.2.3')
@@ -218,8 +241,7 @@ describe('buildDefaultConfig', () => {
           "e18e presets for Renovate",
         ],
         "extends": [
-          "github>OrbisK/renovate-config-e18e:recommendations#1.2.3",
-          "github>OrbisK/renovate-config-e18e:replacements#1.2.3",
+          "github>OrbisK/renovate-config-e18e:best-practices#1.2.3",
         ],
       }
     `)
@@ -227,9 +249,10 @@ describe('buildDefaultConfig', () => {
 })
 
 describe('buildRecommendationsConfig', () => {
-  it('generates package rules with badge and warning', () => {
-    const modulesByUrlId = new Map([['chalk', ['chalk', 'colors']]])
-    const urlById = new Map([['chalk', { type: 'e18e', id: 'chalk' }]])
+  const modulesByUrlId = new Map([['chalk', ['chalk', 'colors']]])
+  const urlById = new Map([['chalk', { type: 'e18e', id: 'chalk' }]])
+
+  it('generates package rules with badge definition and warning notes by default', () => {
     const config = buildRecommendationsConfig(
       ['chalk'],
       modulesByUrlId,
@@ -248,11 +271,107 @@ describe('buildRecommendationsConfig', () => {
         "!replacement",
       ]
     `)
+    expect(rule.prBodyColumns).toBeUndefined()
     expect(rule.prBodyDefinitions['Community Notes']).toContain(
       'img.shields.io/badge/e18e',
     )
     expect(rule.prBodyNotes[0]).toContain('{{#unless')
     expect(rule.prBodyNotes[0]).toContain('{{{depName}}}')
+  })
+
+  it('includes prBodyColumns when provided', () => {
+    const columns = ['Package', 'Change', 'Community Notes']
+    const config = buildRecommendationsConfig(
+      ['chalk'],
+      modulesByUrlId,
+      urlById,
+      { prBodyColumns: columns },
+    )
+    expect(config.packageRules[0].prBodyColumns).toEqual(columns)
+  })
+
+  it('excludes prBodyNotes when includeNotes is false', () => {
+    const config = buildRecommendationsConfig(
+      ['chalk'],
+      modulesByUrlId,
+      urlById,
+      { prBodyColumns: ['Package', 'Community Notes'], includeNotes: false },
+    )
+    const rule = config.packageRules[0]
+    expect(rule.prBodyColumns).toBeDefined()
+    expect(rule.prBodyNotes).toBeUndefined()
+    expect(rule.prBodyDefinitions['Community Notes']).toContain(
+      'img.shields.io/badge/e18e',
+    )
+  })
+})
+
+describe('buildColumnsConfig', () => {
+  it('generates community-notes sub-preset', () => {
+    const config = buildColumnsConfig()
+    expect(config['community-notes']).toBeDefined()
+  })
+
+  it('community-notes has default Renovate columns plus Community Notes', () => {
+    const config = buildColumnsConfig()
+    expect(config['community-notes'].packageRules[0].prBodyColumns).toEqual(
+      ['Package', 'Type', 'Update', 'Change', 'Pending', 'Community Notes'],
+    )
+  })
+
+  it('community-notes matches only patch, minor, major', () => {
+    const config = buildColumnsConfig()
+    expect(config['community-notes'].packageRules[0].matchUpdateTypes).toEqual(
+      ['patch', 'minor', 'major'],
+    )
+  })
+
+  it('community-notes has a single rule without per-package matching', () => {
+    const config = buildColumnsConfig()
+    expect(config['community-notes'].packageRules).toHaveLength(1)
+    expect(config['community-notes'].packageRules[0].matchPackageNames).toBeUndefined()
+    expect(config['community-notes'].packageRules[0].prBodyDefinitions).toBeUndefined()
+  })
+})
+
+describe('buildMergeConfidenceConfig', () => {
+  const modulesByUrlId = new Map([['chalk', ['chalk', 'colors']]])
+  const urlById = new Map([['chalk', { type: 'e18e', id: 'chalk' }]])
+
+  it('generates age-confidence and all-badges sub-presets', () => {
+    const config = buildMergeConfidenceConfig(['chalk'], modulesByUrlId, urlById)
+    expect(config['age-confidence']).toBeDefined()
+    expect(config['all-badges']).toBeDefined()
+  })
+
+  it('age-confidence has correct columns', () => {
+    const config = buildMergeConfidenceConfig(['chalk'], modulesByUrlId, urlById)
+    expect(config['age-confidence'].packageRules[0].prBodyColumns).toEqual(
+      ['Package', 'Change', 'Age', 'Confidence', 'Community Notes'],
+    )
+  })
+
+  it('all-badges has correct columns', () => {
+    const config = buildMergeConfidenceConfig(['chalk'], modulesByUrlId, urlById)
+    expect(config['all-badges'].packageRules[0].prBodyColumns).toEqual(
+      ['Package', 'Change', 'Age', 'Adoption', 'Passing', 'Confidence', 'Community Notes'],
+    )
+  })
+
+  it('sub-presets match only patch, minor, major', () => {
+    const config = buildMergeConfidenceConfig(['chalk'], modulesByUrlId, urlById)
+    expect(config['age-confidence'].packageRules[0].matchUpdateTypes).toEqual(
+      ['patch', 'minor', 'major'],
+    )
+    expect(config['all-badges'].packageRules[0].matchUpdateTypes).toEqual(
+      ['patch', 'minor', 'major'],
+    )
+  })
+
+  it('sub-presets do not include prBodyNotes', () => {
+    const config = buildMergeConfidenceConfig(['chalk'], modulesByUrlId, urlById)
+    expect(config['age-confidence'].packageRules[0].prBodyNotes).toBeUndefined()
+    expect(config['all-badges'].packageRules[0].prBodyNotes).toBeUndefined()
   })
 })
 

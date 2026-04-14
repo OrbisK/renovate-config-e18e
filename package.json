@@ -13,6 +13,7 @@
     "test:watch": "vitest",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
+    "validate-renovate": "pnpx --package renovate -- renovate-config-validator --strict $(ls *.json | grep -v -e package.json -e columns.json -e mergeConfidence.json -e best-practices.json)",
     "release": "pnpm run generate && bumpp"
   },
   "devDependencies": {

@@ -16,13 +16,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/bluebird-q)"
       },
@@ -40,13 +33,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/body-parser)"
@@ -66,13 +52,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/buf-compare)"
       },
@@ -90,13 +69,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/buffer-equal)"
@@ -116,13 +88,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/buffer-equals)"
       },
@@ -140,13 +105,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/builtin-modules)"
@@ -168,13 +126,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/chalk)"
       },
@@ -192,13 +143,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/clean-webpack-plugin)"
@@ -222,13 +166,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/clipboardy)"
       },
@@ -246,13 +183,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/core-util-is)"
@@ -272,13 +202,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/cosmiconfig)"
       },
@@ -296,13 +219,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/cpx)"
@@ -322,13 +238,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/crypto-js)"
       },
@@ -346,13 +255,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/debug)"
@@ -373,13 +275,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/deep-equal)"
       },
@@ -397,13 +292,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/depcheck)"
@@ -423,13 +311,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/detect-package-manager)"
@@ -452,13 +333,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/dot-prop)"
       },
@@ -476,13 +350,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/dotenv)"
@@ -502,13 +369,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/duplexer)"
       },
@@ -526,13 +386,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/emoji-regex)"
@@ -552,13 +405,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/eslint-plugin-es)"
       },
@@ -576,13 +422,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/eslint-plugin-eslint-comments)"
@@ -602,13 +441,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/eslint-plugin-import)"
       },
@@ -626,13 +458,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/eslint-plugin-node)"
@@ -652,13 +477,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/eslint-plugin-react)"
       },
@@ -676,13 +494,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/eslint-plugin-vitest)"
@@ -702,13 +513,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/event-stream)"
       },
@@ -727,13 +531,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/execa)"
       },
@@ -751,13 +548,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/express)"
@@ -779,13 +569,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/ez-spawn)"
       },
@@ -804,13 +587,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/faker)"
       },
@@ -828,13 +604,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/fast-glob)"
@@ -863,13 +632,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/fetch)"
       },
@@ -887,13 +649,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/find-cache-dir)"
@@ -913,13 +668,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/find-cache-directory)"
       },
@@ -938,13 +686,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/find-file-up)"
       },
@@ -962,13 +703,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/find-pkg)"
@@ -990,13 +724,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/find-up)"
       },
@@ -1014,13 +741,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/fs-extra)"
@@ -1040,13 +760,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/get-stream)"
       },
@@ -1065,13 +778,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/glob)"
       },
@@ -1089,13 +795,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/globby)"
@@ -1116,13 +815,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/graphemer)"
       },
@@ -1140,13 +832,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/gzip-size)"
@@ -1166,13 +851,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/inherits)"
       },
@@ -1190,13 +868,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/invariant)"
@@ -1217,13 +888,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/is-builtin-module)"
       },
@@ -1241,13 +905,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/jquery)"
@@ -1267,13 +924,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/js-yaml)"
       },
@@ -1292,13 +942,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/jsx-ast-utils)"
       },
@@ -1316,13 +959,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/lint-staged)"
@@ -1663,13 +1299,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/lodash-underscore)"
       },
@@ -1688,13 +1317,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/materialize-css)"
       },
@@ -1712,13 +1334,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/md5)"
@@ -1739,13 +1354,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/mkdirp)"
       },
@@ -1763,13 +1371,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/moment)"
@@ -1789,13 +1390,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/node-telegram-bot-api)"
       },
@@ -1813,13 +1407,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/npm-run-all)"
@@ -1839,13 +1426,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/object-hash)"
       },
@@ -1863,13 +1443,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/ora)"
@@ -1889,13 +1462,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/path-exists)"
       },
@@ -1914,13 +1480,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/pkg-dir)"
       },
@@ -1938,13 +1497,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/portal-vue)"
@@ -1965,13 +1517,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/qs)"
       },
@@ -1989,13 +1534,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/react-helmet)"
@@ -2015,13 +1553,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/read-package-up)"
       },
@@ -2039,13 +1570,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/read-pkg)"
@@ -2065,13 +1589,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/read-pkg-up)"
       },
@@ -2089,13 +1606,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/readable-stream)"
@@ -2115,13 +1625,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/resolve)"
       },
@@ -2139,13 +1642,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/rimraf)"
@@ -2166,13 +1662,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/shortid)"
       },
@@ -2190,13 +1679,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/sort-object)"
@@ -2216,13 +1698,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/split)"
       },
@@ -2240,13 +1715,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/stream-buffers)"
@@ -2266,13 +1734,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/string-width)"
       },
@@ -2290,13 +1751,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/strip-ansi)"
@@ -2317,13 +1771,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/tempy)"
       },
@@ -2342,13 +1789,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/through)"
@@ -2369,13 +1809,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/toml)"
       },
@@ -2393,13 +1826,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/traverse)"
@@ -2419,13 +1845,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/uri-js)"
       },
@@ -2443,13 +1862,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/utf8)"
@@ -2469,13 +1881,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/uuidv4)"
       },
@@ -2494,13 +1899,6 @@
       "matchUpdateTypes": [
         "!replacement"
       ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
-      ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/wellknown)"
       },
@@ -2518,13 +1916,6 @@
       ],
       "matchUpdateTypes": [
         "!replacement"
-      ],
-      "prBodyColumns": [
-        "Package",
-        "Change",
-        "Age",
-        "Confidence",
-        "Community Notes"
       ],
       "prBodyDefinitions": {
         "Community Notes": "[![replacement docs](https://img.shields.io/badge/e18e-replacement%20available-blue)](https://e18e.dev/docs/replacements/xmldom)"
