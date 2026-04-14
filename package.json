@@ -1,7 +1,7 @@
 {
   "name": "renovate-config-e18e",
   "type": "module",
-  "version": "0.0.20",
+  "version": "0.1.0",
   "packageManager": "pnpm@10.33.0",
   "description": "",
   "author": "",

@@ -4,6 +4,6 @@
     "e18e presets for Renovate"
   ],
   "extends": [
-    "github>OrbisK/renovate-config-e18e:best-practices#0.0.20"
+    "github>OrbisK/renovate-config-e18e:best-practices#0.1.0"
   ]
 }
