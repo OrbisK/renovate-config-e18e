@@ -20,7 +20,7 @@
     "@antfu/eslint-config": "^8.2.0",
     "bumpp": "^11.0.1",
     "eslint": "^10.2.0",
-    "module-replacements": "3.0.0-beta.4",
+    "module-replacements": "3.0.0-beta.7",
     "vitest": "^4.1.4"
   }
 }
