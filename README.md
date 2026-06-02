@@ -89,6 +89,9 @@ The `mergeConfidence/all-badges-append` preset accepts one argument to append a 
 }
 ```
 
+> [!IMPORTANT]
+> To pin a parameterized preset to a version, put the `#<version>` **before** the parentheses — `…all-badges-append#0.1.3(Pending)`, **not** `…all-badges-append(Pending)#0.1.3`. Renovate strips the `(argument)` before it reads the version tag, so a `#<version>` placed after the parentheses is silently ignored and the preset resolves from the default branch instead of the pinned tag.
+
 ## How it works
 
 The presets are generated from the [`module-replacements`](https://www.npmjs.com/package/module-replacements) package,

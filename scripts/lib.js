@@ -232,7 +232,9 @@ export function buildBestPracticesConfig(version) {
       'config:best-practices',
       `github>OrbisK/renovate-config-e18e:recommendations#${version}`,
       `github>OrbisK/renovate-config-e18e:replacements#${version}`,
-      `github>OrbisK/renovate-config-e18e:mergeConfidence/all-badges-append(npmx)#${version}`,
+      // The version tag must precede the parentheses (`#<v>(arg)`). Renovate's parsePreset strips
+      // `(arg)` before reading the tag, so `(arg)#<v>` silently drops the tag (resolves from HEAD).
+      `github>OrbisK/renovate-config-e18e:mergeConfidence/all-badges-append#${version}(npmx)`,
     ],
   }
 }
