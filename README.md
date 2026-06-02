@@ -30,7 +30,7 @@ find available versions on the [releases page](https://github.com/OrbisK/renovat
  {
    "extends": [
 -    "github>OrbisK/renovate-config-e18e"
-+    "github>OrbisK/renovate-config-e18e#0.1.3"
++    "github>OrbisK/renovate-config-e18e#0.1.4"
    ]
  }
 ```

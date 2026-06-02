@@ -5,8 +5,8 @@
   ],
   "extends": [
     "config:best-practices",
-    "github>OrbisK/renovate-config-e18e:recommendations#0.1.3",
-    "github>OrbisK/renovate-config-e18e:replacements#0.1.3",
-    "github>OrbisK/renovate-config-e18e:mergeConfidence/all-badges-append#0.1.3(npmx)"
+    "github>OrbisK/renovate-config-e18e:recommendations#0.1.4",
+    "github>OrbisK/renovate-config-e18e:replacements#0.1.4",
+    "github>OrbisK/renovate-config-e18e:mergeConfidence/all-badges-append#0.1.4(npmx)"
   ]
 }
