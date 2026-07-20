@@ -9,19 +9,19 @@ importers:
   .:
     devDependencies:
       '@antfu/eslint-config':
-        specifier: ^8.2.0
+        specifier: 8.2.0
         version: 8.2.0(@typescript-eslint/rule-tester@8.58.1(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2))(@typescript-eslint/typescript-estree@8.58.1(typescript@6.0.2))(@typescript-eslint/utils@8.58.1(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2))(@vue/compiler-sfc@3.5.32)(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2)(vitest@4.1.4(vite@8.0.8(jiti@2.6.1)(yaml@2.8.3)))
       bumpp:
-        specifier: ^11.0.1
+        specifier: 11.0.1
         version: 11.0.1
       eslint:
-        specifier: ^10.2.0
+        specifier: 10.2.0
         version: 10.2.0(jiti@2.6.1)
       module-replacements:
         specifier: 3.0.0-beta.4
         version: 3.0.0-beta.4
       vitest:
-        specifier: ^4.1.4
+        specifier: 4.1.4
         version: 4.1.4(vite@8.0.8(jiti@2.6.1)(yaml@2.8.3))
 
 packages:
